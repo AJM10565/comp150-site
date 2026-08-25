@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMP 150 · Week 0 · Welcome</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <style>
+    :root { --r-heading-text-transform: none; }
+    .reveal h1,.reveal h2,.reveal h3 { letter-spacing:-.01em; }
+    .reveal .note { color:#ffd166; font-size:.7em; }
+    .reveal small { color:#9fb3c8; }
+    .reveal table { font-size:.75em; }
+    .reveal .big { font-size:1.6em; font-weight:700; }
+    .reveal .tag { display:inline-block; padding:.1em .5em; border-radius:.4em; background:#264653; font-size:.6em; }
+    .reveal .chips { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:36px; }
+    .reveal .chip { background:#17212b; border:1px solid #2b3a48; border-radius:999px; padding:14px 24px; font-size:26px; color:#e6edf3; display:inline-flex; align-items:center; gap:10px; }
+    .reveal .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:840px; margin:28px auto 0; }
+    .reveal .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; max-width:980px; margin:28px auto 0; }
+    .reveal .card2 { background:#17212b; border:1px solid #2b3a48; border-radius:16px; padding:18px 20px; text-align:left; }
+    .reveal .card2 .ic { font-size:38px; line-height:1; margin-bottom:8px; }
+    .reveal .card2 b { color:#4cc9f0; font-size:25px; }
+    .reveal .card2 small { color:#9fb3c8; font-size:19px; display:block; margin-top:4px; }
+  </style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+<section data-markdown data-separator="^\n---\n" data-separator-vertical="^\n--\n">
+<textarea data-template>
+## COMP 150
+### Introduction to Computing
+Section 003 · Fall 2026 · Tuesdays 4:15–6:45 · IC 216
+
+**Prof. Allan Miller** · amiller17@luc.edu
+<small>Welcome. Grab a seat. Open your laptop.</small>
+
+---
+
+## Tonight
+**First ~90 min — the essentials:**
+1. Who I am & what this class *actually* is
+2. The twist: you'll own your own AI system
+3. How the course works (grades, attendance, deadlines) + syllabus
+
+**Last ~hour — hands on:**
+4. **Install-fest** — set up your AI harness together
+
+<span class="note">Bring a **laptop** every week. Phones/tablets won't cut it.</span>
+
+---
+
+## Who am I
+### Prof. Allan Miller
+Computer Science Department · Loyola University Chicago
+
+[LinkedIn](https://www.linkedin.com/in/ajm10565/) &nbsp;·&nbsp; [GitHub](https://github.com/AJM10565) &nbsp;·&nbsp; [Rate My Professors](https://www.ratemyprofessors.com/professor/2844737)
+
+---
+
+## What is this class?
+A **broad survey of computing** — how the digital world actually works.
+<div class="chips">
+<span class="chip">🔢 Digital Info</span>
+<span class="chip">🔌 Logic & Hardware</span>
+<span class="chip">🤖 AI & LLMs</span>
+<span class="chip">🌐 Networks</span>
+<span class="chip">🔒 Security</span>
+</div>
+
+---
+
+## The Syllabus
+- Everything official lives in the **syllabus** — [open it here](../COMP150_003_Fall2026_Syllabus.pdf).
+- By staying enrolled, you're agreeing to it — it's our contract.
+- When in doubt, check the syllabus first.
+
+---
+
+## Sakai — our hub
+- [**Our Sakai course site**](https://sakai.luc.edu/portal/site/COMP_150_003_2944_1266) — schedule, assignments, quizzes, grades, announcements.
+- **Attendance is taken in Sakai.**
+- Check it before every class.
+
+---
+
+## Course Objectives
+<div class="grid2">
+<div class="card2"><div class="ic">🔢</div><b>Digital Information</b><small>Core concepts & their impact on daily life</small></div>
+<div class="card2"><div class="ic">🖥️</div><b>Computer Organization</b><small>How hardware & software work together</small></div>
+<div class="card2"><div class="ic">🐍</div><b>Computer Programming</b><small>Key concepts, in Python</small></div>
+<div class="card2"><div class="ic">🌐</div><b>Topics in Computing</b><small>AI, cybersecurity, networking</small></div>
+</div>
+
+---
+
+## Computer Systems
+<div style="width:100%;max-width:1000px;margin:0 auto">
+<svg viewBox="0 0 1000 560" style="width:100%;height:auto" font-family="-apple-system,Segoe UI,Roboto,sans-serif">
+<line x1="500" y1="280" x2="280" y2="280" stroke="#4a5b6b" stroke-width="2"/>
+<line x1="500" y1="280" x2="720" y2="280" stroke="#4a5b6b" stroke-width="2"/>
+<line x1="500" y1="200" x2="500" y2="132" stroke="#4a5b6b" stroke-width="2"/>
+<line x1="500" y1="360" x2="500" y2="426" stroke="#4a5b6b" stroke-width="2"/>
+<circle cx="200" cy="92" r="46" fill="#ffd166"/><text x="200" y="97" text-anchor="middle" font-size="13" fill="#1a1200">Automation</text>
+<circle cx="350" cy="78" r="44" fill="#ffd166"/><text x="350" y="83" text-anchor="middle" font-size="14" fill="#1a1200">Content</text>
+<circle cx="500" cy="80" r="58" fill="#4cc9f0"/><text x="500" y="77" text-anchor="middle" font-size="17" font-weight="700" fill="#04121a">AI &amp;</text><text x="500" y="96" text-anchor="middle" font-size="17" font-weight="700" fill="#04121a">LLMs</text>
+<circle cx="650" cy="78" r="44" fill="#ffd166"/><text x="650" y="83" text-anchor="middle" font-size="15" fill="#1a1200">Data</text>
+<circle cx="808" cy="92" r="46" fill="#ffd166"/><text x="808" y="89" text-anchor="middle" font-size="13" fill="#1a1200">Apps &amp;</text><text x="808" y="105" text-anchor="middle" font-size="13" fill="#1a1200">Tools</text>
+<circle cx="350" cy="482" r="44" fill="#e0779a"/><text x="350" y="487" text-anchor="middle" font-size="14" fill="#22040f">Security</text>
+<circle cx="500" cy="480" r="48" fill="#e0779a"/><text x="500" y="485" text-anchor="middle" font-size="14" fill="#22040f">Networks</text>
+<circle cx="650" cy="482" r="44" fill="#e0779a"/><text x="650" y="487" text-anchor="middle" font-size="14" fill="#22040f">Privacy</text>
+<circle cx="500" cy="280" r="82" fill="#143240" stroke="#4cc9f0" stroke-width="3"/><text x="500" y="275" text-anchor="middle" font-size="18" font-weight="700" fill="#e6edf3">Computer</text><text x="500" y="298" text-anchor="middle" font-size="18" font-weight="700" fill="#e6edf3">System</text>
+<rect x="120" y="251" width="150" height="58" rx="8" fill="#e6edf3"/><text x="195" y="286" text-anchor="middle" font-size="18" font-weight="700" fill="#0f1720">Hardware</text>
+<rect x="730" y="251" width="150" height="58" rx="8" fill="#e6edf3"/><text x="805" y="286" text-anchor="middle" font-size="18" font-weight="700" fill="#0f1720">Software</text>
+<rect x="120" y="322" width="150" height="26" rx="5" fill="#7a1e3c"/><text x="195" y="340" text-anchor="middle" font-size="13" fill="#fff">Components</text>
+<rect x="120" y="352" width="150" height="26" rx="5" fill="#7a1e3c"/><text x="195" y="370" text-anchor="middle" font-size="13" fill="#fff">Circuits</text>
+<rect x="120" y="382" width="150" height="26" rx="5" fill="#7a1e3c"/><text x="195" y="400" text-anchor="middle" font-size="13" fill="#fff">Transistors</text>
+<rect x="730" y="322" width="150" height="26" rx="5" fill="#1f6f8b"/><text x="805" y="340" text-anchor="middle" font-size="13" fill="#fff">Applications</text>
+<rect x="730" y="352" width="150" height="26" rx="5" fill="#1f6f8b"/><text x="805" y="370" text-anchor="middle" font-size="13" fill="#fff">Languages</text>
+<rect x="730" y="382" width="150" height="26" rx="5" fill="#1f6f8b"/><text x="805" y="400" text-anchor="middle" font-size="13" fill="#fff">Operating System</text>
+<text x="70" y="250" font-size="13" fill="#9fb3c8">less</text><text x="58" y="268" font-size="13" fill="#9fb3c8">abstract</text><path d="M78 285 L78 405 M70 393 L78 407 L86 393" stroke="#ffd166" stroke-width="3" fill="none"/>
+<text x="905" y="405" font-size="13" fill="#9fb3c8">more</text><text x="895" y="423" font-size="13" fill="#9fb3c8">abstract</text><path d="M922 405 L922 285 M914 297 L922 283 L930 297" stroke="#ffd166" stroke-width="3" fill="none"/>
+</svg>
+</div>
+
+---
+
+## What will you learn?
+<div class="grid3">
+<div class="card2"><div class="ic">👁️</div><b>See the digital world</b><small>— and how to shape it</small></div>
+<div class="card2"><div class="ic">🧩</div><b>How computers work</b><small>top to bottom</small></div>
+<div class="card2"><div class="ic">🐍</div><b>Turn problems into code</b><small>with Python</small></div>
+<div class="card2"><div class="ic">🌐</div><b>How computers talk</b><small>safely & privately</small></div>
+<div class="card2"><div class="ic">📊</div><b>Turn data into insight</b><small>and advantage</small></div>
+<div class="card2"><div class="ic">🤖</div><b>Build & own your AI</b><small>your personal harness</small></div>
+</div>
+
+---
+
+## Course Design
+<div style="width:100%;max-width:760px;margin:0 auto">
+<svg viewBox="0 0 1000 560" style="width:100%;height:auto" font-family="-apple-system,Segoe UI,Roboto,sans-serif">
+<path d="M110,515 C 270,515 250,468 350,458 C 452,448 428,392 492,372 C 572,347 560,318 620,296 C 712,262 700,232 760,206 C 842,170 820,148 895,116" fill="none" stroke="#cdeee2" stroke-width="40" stroke-linecap="round"/>
+<path d="M110,515 C 270,515 250,468 350,458 C 452,448 428,392 492,372 C 572,347 560,318 620,296 C 712,262 700,232 760,206 C 842,170 820,148 895,116" fill="none" stroke="#5f8f7e" stroke-width="3" stroke-dasharray="9 12"/>
+<g><circle cx="150" cy="505" r="25" fill="#f4842f" stroke="#0f1720" stroke-width="3"/><text x="150" y="512" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">1</text><text x="150" y="552" text-anchor="middle" font-size="18" fill="#e6edf3">Digital Information</text></g>
+<g><circle cx="330" cy="460" r="25" fill="#ffd166" stroke="#0f1720" stroke-width="3"/><text x="330" y="467" text-anchor="middle" font-size="22" font-weight="700" fill="#22150a">2</text><text x="330" y="507" text-anchor="middle" font-size="18" fill="#e6edf3">Programming</text></g>
+<g><circle cx="470" cy="384" r="25" fill="#e91e8c" stroke="#0f1720" stroke-width="3"/><text x="470" y="391" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">3</text><text x="432" y="360" text-anchor="end" font-size="18" fill="#e6edf3">Digital Logic</text><text x="432" y="382" text-anchor="end" font-size="18" fill="#e6edf3">& Hardware</text></g>
+<g><circle cx="610" cy="298" r="25" fill="#2b8ad6" stroke="#0f1720" stroke-width="3"/><text x="610" y="305" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">4</text><text x="650" y="304" text-anchor="start" font-size="18" fill="#e6edf3">Artificial Intelligence</text></g>
+<g><circle cx="755" cy="208" r="25" fill="#f4842f" stroke="#0f1720" stroke-width="3"/><text x="755" y="215" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">5</text><text x="715" y="186" text-anchor="end" font-size="18" fill="#e6edf3">Computer</text><text x="715" y="208" text-anchor="end" font-size="18" fill="#e6edf3">Networks</text></g>
+<g><circle cx="883" cy="120" r="25" fill="#e91e8c" stroke="#0f1720" stroke-width="3"/><text x="883" y="127" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">6</text><text x="843" y="98" text-anchor="end" font-size="18" fill="#e6edf3">Security</text><text x="843" y="120" text-anchor="end" font-size="18" fill="#e6edf3">& Privacy</text></g>
+</svg>
+</div>
+<div class="chips"><span class="chip">🤖 You build & use your own AI harness the whole way</span></div>
+
+---
+
+## The twist
+<p class="big">You'll leave owning an AI system that's <em>yours</em>.</p>
+
+Not "we used ChatGPT in class."
+You will **build, customize, and keep** your own AI *harness* — on your own laptop, in your own private GitHub — that keeps working for you long after this class ends.
+
+<span class="note">This is the real edge over your peers.</span>
+
+---
+
+## Two strands, woven together
+<span class="tag">EXPOSURE</span> — the ideas
+Breadth: how computing works (the survey).
+
+<span class="tag">PRACTICE</span> — the doing
+Python basics · data science · **your AI harness**.
+
+<small>You don't pick one. We do both, all semester.</small>
+
+---
+
+## What's an "AI harness"?
+A personal command center for AI — a coding-agent that can read files, run tasks, search, and remember, all directed by you.
+
+- **First half:** everyone builds a *barebones* one from scratch → you'll understand what it really is (no magic).
+- **Second half:** you personalize it to fit *you*.
+- **Final project:** use it with real data to build & present something.
+
+---
+
+## How do you get access? (free)
+- We use a **free Google Gemini API key** — **no credit card**, no cost.
+- Runs on your own laptop.
+- [**Setup guide**](../setup.html) is on the course site — we start together, now.
+
+<span class="note">Mac = easy. Windows = we'll get you on WSL; I'll help.</span>
+
+---
+
+## GitHub
+- You'll make a **free account** at [github.com](https://github.com).
+- Your **private repository** is where your AI harness lives — and stays yours.
+- We'll set this up together during the install.
+
+---
+
+## How the course works — points
+**1000-point scale.** Points are points.
+
+| Component | pts |
+|---|---:|
+| In-class work (be here!) | 300 |
+| Homework (~10) | 200 |
+| Build your harness | 75 |
+| Current-Events-in-AI paper | 50 |
+| Personalize your harness | 125 |
+| Final group project (presented) | 150 |
+| Final exam | 100 |
+
+---
+
+## The good news
+- **900 = A.** The curve only ever moves the line **down**, never against you.
+- **No bell curve.** If everyone does the work, everyone gets an A.
+- **Extra credit** (hard, optional) can add 200–400 pts on top.
+
+<p class="big">You can all earn an A. Really.</p>
+
+---
+
+## The catch: show up
+This is a night class and the content only works if you're here.
+
+- **~300 pts of in-class work** — *only* earnable in class, can't be made up (lowest 1–2 dropped).
+- <span style="color:#e76f51;font-weight:700;">More than 5 unexcused absences = automatic D.</span> No matter your points.
+
+<span class="note">Come to class. I make it worth it.</span>
+
+---
+
+## Deadlines & tools
+- **Night deadlines = 11:00 PM** (never midnight).
+- **Sakai** = the hub (schedule, assignments, quizzes).
+- **Calendar**: subscribe to the course calendar (link on the course site).
+- Schedule is **tentative** — we flex on topics. Watch Sakai.
+
+---
+
+## A 60-second taste
+Everything — text, images, your TikTok swipes — becomes **numbers** (0s and 1s, *binary*).
+
+```python
+watched = 1;  liked = 0;  shared = 0;  skipped = 1
+# → 1001
+```
+
+How that works — binary, Boolean logic, truth tables — is **next week**. Tonight we get you set up.
+
+---
+
+## Now: the install-fest 🛠️
+Follow along — we do this together:
+1. Make a **GitHub** account (free)
+2. Get a **Gemini API key** (free, no card)
+3. Install **Pi** (your harness) + say hello
+
+<small>Full step-by-step: the [**Setup Guide**](../setup.html). Stuck? That's what tonight is for.</small>
+
+---
+
+## Before you go
+- If we ran out of time, **finish your harness setup** ([**Setup Guide**](../setup.html)).
+- Bring your **laptop** next week.
+
+---
+
+## Next week
+- **Digital information**: binary, Boolean logic, truth tables
+- Keep building your harness
+- Bring your laptop 💻
+
+<p class="big">Welcome to COMP 150.</p>
+</textarea>
+</section>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true, slideNumber: 'c/t', transition: 'slide',
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+  });
+  // open external links in a new tab by default
+  Reveal.on('ready', () => document.querySelectorAll('.reveal a[href^="http"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; }));
+</script>
+</body>
+</html>

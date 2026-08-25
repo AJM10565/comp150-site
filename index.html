@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMP 150-003 · Fall 2026 · Introduction to Computing</title>
+<link rel="alternate" type="text/markdown" title="llms.txt (AI-readable summary)" href="llms.txt">
+<style>
+  :root { --bg:#0f1720; --card:#17212b; --ink:#e6edf3; --muted:#9fb3c8; --accent:#4cc9f0; --warn:#e76f51; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  header { padding:2.5rem 1.25rem 1.5rem; max-width:900px; margin:0 auto; }
+  h1 { margin:0 0 .25rem; font-size:1.9rem; letter-spacing:-.02em; }
+  .sub { color:var(--muted); }
+  main { max-width:900px; margin:0 auto; padding:0 1.25rem 4rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1rem; margin:1.5rem 0; }
+  .grid > .cell { min-width:0; }
+  a.card { display:block; height:100%; text-decoration:none; color:var(--ink); background:var(--card); border:1px solid #24313d; border-radius:14px; padding:1.1rem 1.2rem; transition:.15s; }
+  /* neutralize stray nodes some browser extensions inject next to PDF links */
+  .grid > img, .grid > a:not(.card), .cell > img, .cell > a:not(.card) { display:none !important; }
+  a.card:hover { border-color:var(--accent); transform:translateY(-2px); }
+  a.card b { color:var(--accent); }
+  a.card span { color:var(--muted); font-size:.9rem; }
+  .box { background:var(--card); border:1px solid #24313d; border-radius:14px; padding:1.1rem 1.3rem; margin:1.25rem 0; }
+  .warn { color:var(--warn); font-weight:700; }
+  h2 { margin-top:2rem; font-size:1.2rem; }
+  table { width:100%; border-collapse:collapse; font-size:.95rem; }
+  td,th { text-align:left; padding:.35rem .5rem; border-bottom:1px solid #24313d; }
+  code { background:#0b1017; padding:.1rem .35rem; border-radius:6px; }
+  footer { color:var(--muted); font-size:.85rem; border-top:1px solid #24313d; padding-top:1rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>COMP 150-003 · Introduction to Computing</h1>
+  <div class="sub">Fall 2026 · Tuesdays 4:15–6:45 PM · Information Commons 216 · Prof. Allan Miller (<a href="mailto:amiller17@luc.edu" style="color:var(--accent)">amiller17@luc.edu</a>)</div>
+  <div class="sub">Office hours: Tue 7–9 PM, IC 332</div>
+</header>
+<main>
+  <div class="grid">
+    <div class="cell"><a class="card" href="slides/week00.html"><b>▶ Week 0 Slides</b><br><span>Welcome & getting started</span></a></div>
+    <div class="cell"><a class="card" href="setup.html"><b>🛠️ Setup Guide</b><br><span>Install your AI harness</span></a></div>
+    <div class="cell"><a class="card" href="COMP150_003_Fall2026_Syllabus.pdf" target="_blank" rel="noopener"><b>📄 Syllabus (PDF)</b><br><span>The full details</span></a></div>
+    <div class="cell"><a class="card" href="schedule.html"><b>🗓️ Schedule</b><br><span>At-a-glance (tentative)</span></a></div>
+    <div class="cell"><a class="card" href="https://calendar.google.com/calendar/u/0/r?cid=6c2762a0f5c46f74df59c03279e0388c4ad44ffe1b69c4e8f2361d80d32c2cb3%40group.calendar.google.com" target="_blank" rel="noopener"><b>📆 Subscribe to Calendar</b><br><span>Add to Google Calendar (auto-updates)</span></a></div>
+    <div class="cell"><a class="card" href="https://sakai.luc.edu/portal/site/COMP_150_003_2944_1266"><b>🎓 Sakai</b><br><span>Assignments, quizzes, grades</span></a></div>
+  </div>
+
+  <div class="box">
+    <b>Start here (tonight):</b> Open the <a href="setup.html" style="color:var(--accent)">Setup Guide</a> and get your AI harness saying hello. Stuck? That's what class is for.
+  </div>
+
+  <h2>Key dates (firm)</h2>
+  <table>
+    <tr><td>Tue Aug 25</td><td>First class</td></tr>
+    <tr><td><b>Fri Oct 2, 11 PM</b></td><td>Current Events in AI paper — official due</td></tr>
+    <tr><td>Oct 5–6</td><td>Mid-Semester Break (no class Oct 6)</td></tr>
+    <tr><td><b>Wed Oct 14, 11 PM</b></td><td>AI paper — grace deadline (no penalty)</td></tr>
+    <tr><td>Fri Oct 30</td><td>Last day to withdraw with “W”</td></tr>
+    <tr><td>Nov 25–28</td><td>Thanksgiving (no class; Tue Nov 24 meets)</td></tr>
+    <tr><td>Tue Dec 1</td><td>Last class — final project presentations</td></tr>
+    <tr><td>Dec 7–12</td><td>Final Exam (slot TBD)</td></tr>
+  </table>
+
+  <h2>How you're graded (1000 points)</h2>
+  <p>In-class 300 · Homework 200 · Build harness 75 · AI paper 50 · Personalize harness 125 · Final group project 150 · Final exam 100. <b>900 = A</b> (curve only helps you). Extra credit on top.
+  <br><span class="warn">⚠️ More than 5 unexcused absences = automatic D.</span></p>
+
+  <footer>
+    Night deadlines are <b>11:00 PM</b>. The schedule is tentative — always check Sakai for the current week.<br>
+    🤖 Using an AI harness? A machine-readable summary is at <a href="llms.txt">llms.txt</a> — point your harness here.
+  </footer>
+</main>
+</body>
+</html>

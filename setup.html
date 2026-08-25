@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMP 150 · Setup Your AI Harness</title>
+<style>
+  :root { --bg:#0f1720; --card:#17212b; --ink:#e6edf3; --muted:#9fb3c8; --accent:#4cc9f0; --warn:#e76f51; --ok:#2a9d8f; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  main { max-width:820px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a { color:var(--accent); }
+  h1 { letter-spacing:-.02em; }
+  h2 { margin-top:2.2rem; border-left:4px solid var(--accent); padding-left:.6rem; }
+  ol { padding-left:1.2rem; } li { margin:.4rem 0; }
+  code, pre { background:#0b1017; border-radius:8px; }
+  code { padding:.12rem .4rem; }
+  pre { padding:1rem; overflow:auto; border:1px solid #24313d; }
+  .tab { display:flex; gap:.5rem; margin:1rem 0 .5rem; }
+  .tab button { background:var(--card); color:var(--ink); border:1px solid #24313d; border-radius:10px; padding:.5rem .9rem; cursor:pointer; }
+  .tab button.active { border-color:var(--accent); color:var(--accent); }
+  .panel { display:none; } .panel.active { display:block; }
+  .box { background:var(--card); border:1px solid #24313d; border-radius:12px; padding:1rem 1.2rem; margin:1rem 0; }
+  .warn { color:var(--warn); } .ok { color:var(--ok); }
+  .step { background:var(--card); border:1px solid #24313d; border-radius:12px; padding:1rem 1.2rem; margin:1rem 0; }
+</style>
+</head>
+<body>
+<main>
+  <p><a href="index.html">← Course home</a></p>
+  <h1>🛠️ Set Up Your AI Harness</h1>
+  <p>By the end you'll have <b>Pi</b> — your personal AI coding-agent — running on your laptop, powered by a <b>free Google Gemini</b> key (no credit card).</p>
+
+  <div class="box"><b>You need:</b> a laptop (not a phone/tablet), and about 30–40 minutes.</div>
+
+  <h2>1. Get a free Gemini API key</h2>
+  <ol>
+    <li>Go to <a href="https://aistudio.google.com/app/apikey">aistudio.google.com/app/apikey</a> and sign in with a Google account.</li>
+    <li>Click <b>Create API key</b>. Copy the key somewhere safe for a minute.</li>
+    <li><span class="warn">Do NOT add a credit card.</span> The free tier is plenty for this class.</li>
+    <li><b>Never share or commit your key.</b> Treat it like a password.</li>
+  </ol>
+
+  <h2>2. Install Pi (your harness)</h2>
+  <div class="tab">
+    <button class="active" onclick="tab(event,'mac')">macOS</button>
+    <button onclick="tab(event,'win')">Windows</button>
+  </div>
+  <div id="mac" class="panel active">
+    <div class="step">
+      <b>Open the Terminal app</b> (Cmd+Space, type "Terminal"), then paste:
+      <pre>curl -fsSL https://pi.dev/install.sh | sh</pre>
+      If it asks you to install developer tools, say yes. Close and reopen Terminal when it finishes.
+    </div>
+  </div>
+  <div id="win" class="panel">
+    <div class="step">
+      <b>Windows needs WSL</b> (a small Linux inside Windows). In the <b>Start menu</b> open <b>PowerShell</b> and run:
+      <pre>wsl --install</pre>
+      Restart your computer when prompted, let Ubuntu finish setting up (pick a username/password), then open the <b>Ubuntu</b> app and run:
+      <pre>curl -fsSL https://pi.dev/install.sh | sh</pre>
+      <span class="warn">If WSL gives you trouble, don't panic — flag me in class or office hours. We'll get you going.</span>
+    </div>
+  </div>
+
+  <h2>3. Log in with your Gemini key</h2>
+  <ol>
+    <li>Start Pi by typing <code>pi</code> and pressing Enter.</li>
+    <li>Type <code>/login</code> and choose <b>Google Gemini</b>.</li>
+    <li>Paste your API key from step 1.</li>
+    <li>Type <code>/model</code> and pick a <b>Gemini</b> model from the list (the Flash models are on the free tier).</li>
+  </ol>
+
+  <h2>4. Say hello 👋</h2>
+  <p>Type a message and hit Enter:</p>
+  <pre>Hi! Introduce yourself and tell me one thing you can help me do.</pre>
+  <p class="ok">If it answers — you're done. You have a working AI harness. 🎉</p>
+
+  <h2>Bonus: use your harness with this site</h2>
+  <p>Once it's working, you can point your harness at the course site. If your harness has web access, try asking it:</p>
+  <pre>Read this course site's llms.txt and tell me the key dates and how I'm graded.</pre>
+  <p>A machine-readable summary of the course lives at <a href="llms.txt">llms.txt</a>.</p>
+</main>
+<script>
+function tab(e,id){
+  document.querySelectorAll('.tab button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  e.target.classList.add('active'); document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

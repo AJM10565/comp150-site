@@ -1,0 +1,32 @@
+# COMP 150-003 — Introduction to Computing (Fall 2026)
+
+> Loyola University Chicago general-education Introduction to Computing. Instructor: Allan Miller (amiller17@luc.edu). Meets Tuesdays 4:15–6:45 PM in Information Commons 216. A broad survey of computing (digital information, logic & hardware, AI, networks, security) paired with a hands-on project: each student builds and owns a personal AI "harness" (a coding agent) on their own laptop. This file is a machine-readable summary for AI assistants; point your harness here to answer questions about the course.
+
+## Key facts
+- Section 003, class #2944. Term: Aug 24 – Dec 12, 2026.
+- Office hours: Tuesdays 7–9 PM, Information Commons Room 332.
+- Deadlines at night are due at 11:00 PM (never midnight). The schedule is tentative — always check Sakai for the current week.
+- Model access for the harness: a free Google Gemini API key (no credit card).
+
+## Grading (1000-point scale)
+- In-class work 300 (present-only; attendance matters), Homework 200, Build your harness 75, Current Events in AI paper 50, Personalize your harness 125, Final group data-science project 150, Final exam 100.
+- 900 = A; the curve only ever helps you (never curved down). Extra credit offered on top.
+- More than 5 unexcused absences = automatic D, regardless of points.
+
+## Pages
+- [Course home](./index.html): overview and links.
+- [Week 0 slides](./slides/week00.html): first-class lecture.
+- [Setup guide](./setup.html): step-by-step to install the Pi harness + Gemini key.
+- [Schedule](./schedule.html): key dates and tentative flow; subscribe to the calendar.
+- [Syllabus (PDF)](./COMP150_003_Fall2026_Syllabus.pdf): full official details.
+- [Course Google Calendar (subscribe)](https://calendar.google.com/calendar/u/0/r?cid=6c2762a0f5c46f74df59c03279e0388c4ad44ffe1b69c4e8f2361d80d32c2cb3%40group.calendar.google.com): live class meetings + key dates; auto-updates when the schedule changes.
+- [Sakai course site](https://sakai.luc.edu/portal/site/COMP_150_003_2944_1266): assignments, quizzes, grades, attendance.
+
+## Key dates
+- Fri Oct 2, 11 PM: Current Events in AI paper — official due.
+- Mon–Tue Oct 5–6: Mid-Semester Break (no class Tue Oct 6).
+- Wed Oct 14, 11 PM: AI paper — grace deadline (no penalty).
+- Fri Oct 30: last day to withdraw with "W".
+- Nov 25–28: Thanksgiving break (no class; Tue Nov 24 meets).
+- Tue Dec 1: last class — final project presentations.
+- Dec 7–12: Final Exam (slot TBD).
