@@ -15,12 +15,20 @@
 
 ## Pages
 - [Course home](./index.html): overview and links.
-- [Week 0 slides](./slides/week00.html): first-class lecture.
+- [Week 0 slides](./slides/week00.html): first-class welcome / logistics lecture.
+- [Lecture 1 (PDF)](./COMP150_Lecture1.pdf): intro + Module 1 (Digital Information) slides.
+- [Assignments](./assignments/): list of all assignments.
+- [Assignment 1](./assignments/assignment-01.html): Digital Information + your first AI-harness task. Due Sun Sep 6, 2026, 11:00 PM. Submit on Sakai.
 - [Setup guide](./setup.html): step-by-step to install the Pi harness + Gemini key.
 - [Schedule](./schedule.html): key dates and tentative flow; subscribe to the calendar.
 - [Syllabus (PDF)](./COMP150_003_Fall2026_Syllabus.pdf): full official details.
 - [Course Google Calendar (subscribe)](https://calendar.google.com/calendar/u/0/r?cid=6c2762a0f5c46f74df59c03279e0388c4ad44ffe1b69c4e8f2361d80d32c2cb3%40group.calendar.google.com): live class meetings + key dates; auto-updates when the schedule changes.
-- [Sakai course site](https://sakai.luc.edu/portal/site/COMP_150_003_2944_1266): assignments, quizzes, grades, attendance.
+- [CS Advising](https://advising.cs.luc.edu/): Loyola Computer Science department advising.
+- [Attendance Form](https://docs.google.com/forms/d/e/1FAIpQLSclnj1fuUE75R30iJntNctoO5pxk18eMPei5lvScCEL-YLqcw/viewform): submit your attendance during each class.
+- [Sakai course site](https://sakai.luc.edu/portal/site/COMP_150_003_2944_1266): assignments, quizzes, grades.
+
+## Current assignment
+- Assignment 1 (Digital Information + first harness task), due Sunday, September 6, 2026, 11:00 PM, submit on Sakai. See ./assignments/assignment-01.html.
 
 ## Key dates
 - Fri Oct 2, 11 PM: Current Events in AI paper — official due.
