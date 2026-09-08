@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMP 150 · A1 Recap</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <style>
+    :root { --r-heading-text-transform: none; }
+    .reveal h1,.reveal h2,.reveal h3 { letter-spacing:-.01em; }
+    .reveal small { color:#9fb3c8; }
+    .reveal img.chart { max-height:430px; border-radius:12px; }
+    .reveal .why { color:#9fb3c8; font-size:.5em; margin-top:4px; line-height:1.35; }
+    .reveal .mistake { background:#2a1a1a; border:1px solid #5c3030; border-radius:14px; padding:16px 22px; text-align:left; font-size:.62em; margin:14px auto 0; max-width:900px; }
+    .reveal .mistake code { color:#ff9f9f; }
+    .reveal .fix { background:#15251b; border:1px solid #2b5c3a; border-radius:14px; padding:16px 22px; text-align:left; font-size:.62em; margin:14px auto 0; max-width:900px; }
+    .reveal .fix code { color:#8fe3b0; }
+    .reveal .take { background:#17212b; border-left:5px solid #4cc9f0; border-radius:8px; padding:10px 18px; text-align:left; font-size:.6em; margin:16px auto 0; max-width:900px; }
+    .reveal .take b { color:#4cc9f0; }
+    .reveal .star { background:#241f10; border:1px solid #6b5a1e; border-radius:14px; padding:16px 22px; text-align:left; font-size:.6em; margin:14px auto 0; max-width:920px; }
+    .reveal .star code { color:#ffd166; }
+    .reveal .who { display:inline-block; padding:.1em .55em; border-radius:.5em; background:#264653; color:#ffd166; font-size:.85em; font-weight:700; }
+    .reveal pre { width:100%; box-shadow:none; }
+    .reveal pre code { max-height:340px; font-size:.78em; line-height:1.35; border-radius:10px; }
+    .reveal blockquote { font-size:.65em; width:90%; }
+  </style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- ============ TITLE ============ -->
+<section>
+  <h2>Assignment 1 — How We Did</h2>
+  <h4 style="color:#9fb3c8">Digital Information + Your First Harness Stress-Test</h4>
+  <p><small>COMP 150-003 · Week 3 · All results anonymized — you are a random letter tonight</small></p>
+</section>
+
+<!-- ============ SECTION 1: DATA ============ -->
+<section>
+  <h3>Part 1 — The Numbers</h3>
+  <p><small>Doing the data-science thing on our own assignment.<br>
+  This is exactly the kind of analysis you'll build yourself by December.</small></p>
+</section>
+
+<section>
+  <h3>24 of 27 submitted</h3>
+  <img class="chart" src="assets/submissions.png" alt="Bar chart: 24 submitted, 3 did not submit">
+  <p class="why">If you're one of the 3 (DNS1–3): talk to me tonight. The door is open, but it won't stay open forever.</p>
+</section>
+
+<section>
+  <h3>The class did well — really well</h3>
+  <img class="chart" src="assets/hist_total.png" alt="Histogram of total scores, mean 22.2 of 25">
+  <p class="why">Mean 22.2 / 25 · median 24.25 · ten perfect scores. The left tail is small — and every point lost there is fixable tonight.</p>
+</section>
+
+<section>
+  <h3>Where points were won and lost</h3>
+  <img class="chart" src="assets/per_question.png" alt="Bar chart of class average percent per question">
+  <p class="why">Concepts (Q1/Q2) were nearly universal. The gap is <b>mechanics</b>: Q4 base conversions. That's our review target.</p>
+</section>
+
+<section>
+  <h3>Q4 divided the class the most</h3>
+  <img class="chart" src="assets/box_question.png" alt="Box plot of score spread per question">
+  <p class="why">Read the boxes: tight at the top for Q1–Q3, long whiskers on Q4. Same lecture, very different outcomes — the difference was <b>showing and checking work</b>.</p>
+</section>
+
+<section>
+  <h3>Knowing ≠ executing</h3>
+  <img class="chart" src="assets/scatter_ab.png" alt="Scatter plot of Part A vs Part B scores">
+  <p class="why">Each dot is a student. Nearly everyone sits high on Part B regardless of Part A — honest observation was the assignment, and the amnesty covered the errors.</p>
+</section>
+
+<section>
+  <h3>Yes, the harness errors were real</h3>
+  <img class="chart" src="assets/harness.png" alt="Bar chart: 15 students hit harness errors, 9 completed all objectives">
+  <p class="why">15 of 24 hit quota/model errors — a provider problem, not a you problem. Documented errors earned full credit, as promised. Tonight we fix every harness.</p>
+</section>
+
+<section>
+  <h3>The top misses, counted</h3>
+  <img class="chart" src="assets/misses.png" alt="Horizontal bar chart of most common mistakes">
+  <p class="why">Six patterns explain nearly every lost point in the class. One slide each, coming up.</p>
+</section>
+
+<!-- ============ SECTION 2: MISTAKES ============ -->
+<section>
+  <h3>Part 2 — The Six Misses</h3>
+  <p><small>Real (anonymized) examples from your submissions.<br>
+  If you recognize your own — good. That's the fastest way to never repeat it.</small></p>
+</section>
+
+<section>
+  <h3>Miss #1 — Answers with no work shown <small>(6 students)</small></h3>
+  <div class="mistake"><b>What it looked like:</b><br>
+  <code>1293698 → hexadecimal = 13BD02</code> &nbsp;…and nothing else. No divisions, no remainders.<br>
+  That answer is <b>wrong</b> (correct: <code>13BD82</code>) — and with no work, it scored <b>zero</b>. <small>(numbers changed to the example X; the pattern is real)</small></div>
+  <div class="fix"><b>The rule, as announced:</b> correct answer with no work = full credit (you won the bet).
+  Wrong answer with no work = <b>0</b>. Work shown = partial credit even when the final answer slips.<br>
+  Several students kept most of their Q4 points <em>only</em> because their division steps were on the page.</div>
+  <div class="take"><b>Takeaway:</b> showing work isn't for me — it's <b>insurance for you</b>. It converts "wrong answer" into "one wrong digit."</div>
+</section>
+
+<section>
+  <h3>Miss #2 — UTF-8 counted as 2 bytes per character <small>(5 students)</small></h3>
+  <div class="mistake"><b>What it looked like:</b><br>
+  <code>ASCII size: 18 bytes ✓ &nbsp;&nbsp; UTF-8 (Plane 0) size: 36 bytes ✗</code><br>
+  The thinking: "Unicode characters take 2 bytes, so double it."</div>
+  <div class="take"><b>Here's the thing:</b> that rule is real — it just belongs to a <em>different encoding</em>. And the real story is good enough that it's worth ten minutes. Mini-lecture time.</div>
+</section>
+
+<section>
+  <h3>Every character is just a number</h3>
+  <div class="fix" style="font-size:.58em"><code>A</code> = 65 &nbsp;·&nbsp; <code>é</code> = 233 &nbsp;·&nbsp; <code>中</code> = 20,013 &nbsp;·&nbsp; 🎉 = 127,881<br><br>
+  <b>ASCII</b> (1963) is a tiny catalog: 128 characters, numbers 0–127.<br>
+  <b>Unicode</b> is the big catalog: every character in every language, ~150,000 numbers and counting. <b>"Plane 0"</b> just means the first 65,536 entries — where almost all everyday text lives.<br><br>
+  <b>The key idea:</b> Unicode only assigns <em>numbers</em>. It says nothing about bytes. Turning numbers into bytes is a separate job, done by an <b>encoding</b> — and there are two big ones: <b>UTF-8</b> and <b>UTF-16</b>.</div>
+  <div class="take"><b>Hold onto this:</b> catalog vs. byte-rule. The miss came from blending them together.</div>
+</section>
+
+<section>
+  <h3>The biography of one bit</h3>
+  <div class="fix" style="font-size:.55em">ASCII uses <b>7 bits</b> (128 numbers) — so in an 8-bit byte, ASCII's top bit is always <code>0</code>. Why 7? History, three ways:<br>
+  <b>1963:</b> ASCII was designed for teleprinters, where every bit cost transmission time. 6 bits couldn't fit lowercase; 7 could; 8 was "wasteful padding."<br>
+  <b>Then:</b> the "spare" 8th bit got a job — a <b>parity check</b> for detecting errors on noisy phone lines. (The 8-bit byte itself only became standard in 1964, a year <em>after</em> ASCII shipped.)<br>
+  <b>Then:</b> parity moved into hardware, the bit came free again — and for 30 years every vendor used bytes 128–255 <em>differently</em>: Latin-1, DOS code pages, Mac Roman, KOI8… A hundred incompatible answers to "what does byte 200 mean?"</div>
+  <div class="take"><b>The arc:</b> born as padding nobody wanted to pay for → spent adolescence as a checksum → middle age as a battleground of incompatible alphabets → and in 1992, one final career move…</div>
+</section>
+
+<section>
+  <h3>UTF-8: the bit becomes a flag</h3>
+  <div class="fix" style="font-size:.52em">Sketched by Ken Thompson on a <b>diner placemat</b> in 1992: use ASCII's spare top bit as a signal.<br>
+  <code>0xxxxxxx</code> → plain ASCII, unchanged since 1963 &nbsp;·&nbsp; <code>10xxxxxx</code> → continuation piece &nbsp;·&nbsp; <code>110</code>/<code>1110</code>/<code>11110</code> → "a 2/3/4-byte character starts here" — <b>count the leading 1s, that's the byte count</b>.<br><br>
+  <b>Real bytes of</b> <code>A🎉A</code> — 3 characters, 6 bytes:<br>
+  <code>01000001</code> starts with 0 → <b>A</b> &nbsp;·&nbsp; <code><b>11110</b>000</code> → "4-byte character starts" &nbsp;·&nbsp; <code><b>10</b>011111 <b>10</b>001110 <b>10</b>001001</code> → its 3 continuations (glue the leftover bits → 127,881 → <b>🎉</b>) &nbsp;·&nbsp; <code>01000001</code> → <b>A</b> again.</div>
+  <div class="take"><b>Why this design won:</b> every ASCII file ever written is already valid UTF-8 · no byte of 🎉 can ever be mistaken for a letter or a slash · land anywhere in a stream and you know instantly whether you're mid-character. Today ~98% of the web is UTF-8.</div>
+</section>
+
+<section>
+  <h3>The cliff at character 128</h3>
+  <div class="fix" style="font-size:.55em"><code>U+007F (127): 01111111</code> — one byte, the last free ride.<br>
+  <code>U+0080 (128): 11000010 10000000</code> — <b>two bytes</b>.<br><br>
+  The number 128 <em>would</em> fit in one byte (<code>10000000</code>) — but that pattern is reserved as a continuation marker. The flag system spent it. So characters 128–2,047 (all accented Latin, Greek, Cyrillic, Hebrew, Arabic) pay <b>2 bytes</b>; most of Plane 0 beyond that (including Chinese) pays 3; past Plane 0 (emoji), 4.</div>
+  <div class="take"><b>Footnote:</b> the first <em>printable</em> character that costs double is U+00A1 — <b>¡</b> — upside-down punctuation expressing surprise. Fitting.</div>
+</section>
+
+<section>
+  <h3>So where did "2 bytes each" come from? UTF-16 — and the payoff</h3>
+  <div class="fix" style="font-size:.52em"><b>UTF-16</b> is the other encoding. Its unit is 16 bits: every Plane 0 character = exactly <b>2 bytes</b>, written straight in. (Unicode 1.0 believed 65,536 characters would last forever; Windows, Java, and JavaScript committed to 2-bytes-each in that innocent era and still carry it — it's why JavaScript says <code>"🎉".length</code> is <code>2</code>.)<br><br>
+  <table style="margin:.2em auto; border-collapse:collapse; font-size:.95em">
+  <tr><th style="padding:.05em .7em"></th><th style="padding:.05em .7em">UTF-8</th><th style="padding:.05em .7em">UTF-16</th></tr>
+  <tr><td style="padding:.02em .7em">plain English</td><td style="text-align:center"><b>1 byte</b></td><td style="text-align:center">2 bytes</td></tr>
+  <tr><td style="padding:.02em .7em">é, Greek, Cyrillic</td><td style="text-align:center">2</td><td style="text-align:center">2</td></tr>
+  <tr><td style="padding:.02em .7em">中 (CJK)</td><td style="text-align:center">3</td><td style="text-align:center"><b>2</b></td></tr>
+  <tr><td style="padding:.02em .7em">🎉</td><td style="text-align:center">4</td><td style="text-align:center">4</td></tr>
+  </table>
+  <b>The payoff:</b> your Q3 string is pure ASCII, so in UTF-8 it costs exactly what ASCII costs: <b>18 bytes = 18 bytes</b>. The "×2" answer was UTF-16 thinking.</div>
+  <div class="take"><b>Takeaway:</b> UTF-8 sizes the box to the number; UTF-16 uses a 2-byte box. Nobody lost points — my slide was ambiguous, and that's on me. But now you know the whole story, placemat and all.</div>
+</section>
+
+<section>
+  <h3>Miss #3 — Correct work, wrong final answer <small>(4 students)</small></h3>
+  <div class="mistake"><b>What it looked like:</b> a perfect division chain…<br>
+  <code>293698/8=36712 r2 · 36712/8=4589 r0 · 4589/8=573 r5 · 573/8=71 r5 · 71/8=8 r7 · 8/8=1 r0 · 1/8=0 r1</code><br>
+  …then the remainders copied out as <code>10755022</code> — an extra digit appeared. Correct: <code>1075502</code>.<br>
+  <small>(numbers changed to the assignment's example X — the pattern is real, from 4 submissions)</small></div>
+  <div class="fix"><b>The 10-second check that catches this every time:</b> convert your answer <em>back</em>.<br>
+  <code>1·8⁶ + 0·8⁵ + 7·8⁴ + 5·8³ + 5·8² + 0·8 + 2 = 293698 ✓</code><br>
+  One student in the class did exactly this back-conversion check on every answer. It works.</div>
+  <div class="take"><b>Takeaway:</b> transcription — not math — was the #1 way correct work lost points. <b>Always verify by converting back.</b></div>
+</section>
+
+<section>
+  <h3>Miss #4 — The spaces are characters too <small>(4 students)</small></h3>
+  <div class="mistake"><b>What it looked like:</b> encoding <code>Hi, I am Alex 3698</code> as<br>
+  <code>72 105 44 73 97 109 …</code> — 14 codes for an 18-character string. The comma survived; every <b>space (32)</b> vanished.</div>
+  <div class="fix"><b>The correction:</b> walk the string one character at a time, including every space and punctuation mark:<br>
+  <code>H=72 · i=105 · ,=44 · ␣=32 · I=73 · ␣=32 · a=97 · m=109 · ␣=32 · …</code><br>
+  18 characters → 18 bytes. The assignment even had a hint: <em>"do not forget spaces and punctuation."</em></div>
+  <div class="take"><b>Takeaway:</b> to a computer, a space is just byte 32 — as real as any letter. If you can type it, it gets encoded.</div>
+</section>
+
+<section>
+  <h3>Miss #5 — Interpreter and compiler, reversed <small>(2 students)</small></h3>
+  <div class="mistake"><b>What it looked like:</b><br>
+  <em>"Interpreters turn code into instructions; compilers turn instructions into code."</em><br>
+  <em>"Interpreters are necessary for computers to understand code."</em></div>
+  <div class="fix"><b>The correction:</b> both translate <em>your code → machine instructions</em>. The difference is <b>when</b>:<br>
+  • <b>Interpreter</b>: translates <em>while running</em>, line by line (Python) — quick to test, slower to run.<br>
+  • <b>Compiler</b>: translates the <em>whole program first</em> (C, C++) — faster to run, must recompile after changes.</div>
+  <div class="take"><b>Takeaway:</b> one question to ask yourself: <b>when does translation happen?</b> During the run → interpreter. Before the run → compiler.</div>
+</section>
+
+<section>
+  <h3>Miss #6 — The upload itself <small>(5 students, 3 lost something)</small></h3>
+  <div class="mistake"><b>The rule was "one PDF" — here's how it bent:</b> a PDF ending mid-question · a <code>.dotx</code> template that scrambled the math · experiments living only in loose screenshots, never in the document · two submissions split across files (harmless — everything was findable).</div>
+  <div class="fix"><b>Our part and yours.</b> The syllabus didn't say this clearly, and Sakai's upload box invites multiple files — that's on us; the syllabus now spells it out. <b>Nobody lost points for formatting</b> — only for genuinely absent content. Going forward: <b>one PDF, everything in it</b> (photograph handwritten work and embed it), and <b>open the file before you upload it</b>.</div>
+  <div class="take"><b>Takeaway:</b> formatting slips are forgivable — missing content isn't recoverable. Thirty seconds of checking protects hours of effort.</div>
+</section>
+
+<section>
+  <h3>A note on handwritten work</h3>
+  <div class="mistake"><b>The risk you're taking:</b> handwriting a grader can't decipher is treated like work that isn't there. If your final answer is wrong and we can't read the steps, there's <b>no partial credit to give</b> — the work-shown insurance only pays out if the work is legible.</div>
+  <div class="fix"><b>This time it worked out</b> — the handwritten pages we received were readable and earned their credit. But that was luck, not policy. Going forward (now in the syllabus): typed answers are the standard. If you include handwriting: <b>write large and legibly · photograph in good light · type at least your final answers</b>.</div>
+  <div class="take"><b>Takeaway:</b> your work only counts if the grader can read it. When in doubt, type it out.</div>
+</section>
+
+<!-- ============ SECTION 3: SHOWCASE ============ -->
+<section>
+  <h3>Part 3 — Work Worth Stealing</h3>
+  <p><small>Anonymized slices of genuinely excellent habits from this class.<br>
+  Steal these. That's what they're for.</small></p>
+</section>
+
+<section>
+  <h3><span class="who">Student I</span> — verified every answer by converting back</h3>
+  <div class="star">After each Q4 conversion, a one-line check:<br>
+  <code>Check: 1(8⁶) + 0(8⁵) + 7(8⁴) + 5(8³) + 5(8²) + 2 = 293698 ✓</code><br><br>
+  Every answer confirmed against the original number before submitting. <small>(numbers swapped to the assignment's example X — the habit is verbatim)</small></div>
+  <div class="take"><b>Why it matters:</b> this is the habit that separates "I think it's right" from "I know it's right" — and it's the same instinct behind testing code. Ten seconds per answer.</div>
+</section>
+
+<section>
+  <h3><span class="who">Student M</span> — caught the harness inventing facts</h3>
+  <div class="star">Asked the harness for our course's office hours. It answered <b>confidently — with completely made-up names and times</b>. When pressed, the harness admitted:<br><br>
+  <em>"I generated a confident but entirely fake answer because I lack a grounded retrieval tool."</em></div>
+  <div class="take"><b>Why it matters:</b> this is <b>confident fabrication</b> — the single most dangerous LLM failure mode. It sounds exactly like a real answer. The only defense is what this student did: <b>verify against a source you trust.</b></div>
+</section>
+
+<section>
+  <h3><span class="who">Student L</span> — caught the harness being confidently out of date</h3>
+  <div class="star">Asked a factual question about a public figure, then <b>checked the answer independently</b> — and found the harness was wrong: its training data predated a recent event, but it answered as if it knew.</div>
+  <div class="take"><b>Why it matters:</b> a model's knowledge has a <b>cutoff date</b> it won't volunteer. "Was it right?" isn't paranoia — it's the workflow. Trust, but verify. Especially when the answer sounds certain.</div>
+</section>
+
+<section>
+  <h3><span class="who">Student D</span> — discovered what "no memory" really means</h3>
+  <div class="star">Asked a fresh session to recall their major. The harness "couldn't remember" — <b>then found the answer anyway</b>, by searching its own session log files on disk:<br><br>
+  <em>"I only knew your major because I used bash to search through the logs in ~/.pi/agent/sessions/."</em></div>
+  <div class="take"><b>Why it matters:</b> "the model has no memory" and "the system can't find your data" are <b>different claims</b>. The model forgot; the <em>files remembered</em>. Understanding that split is understanding what a harness actually is.</div>
+</section>
+
+
+<section>
+  <h3><span class="who">Student S</span> — handed the harness a source of truth</h3>
+  <div class="star">Asked the harness to verify a fact about our course. It said it had no schedule data — so the student <b>supplied the course website URL</b>. The harness first <b>refused</b> — "I can't access external URLs" — then tried <code>curl</code>… and succeeded. Its own reflection afterward:<br><br>
+  <em>"I should have just attempted the fetch immediately instead of front-loading a refusal. That wasted a turn and understated my actual capability."</em></div>
+  <div class="take"><b>Why it matters:</b> two lessons in one exchange. When the harness pleads ignorance, <b>hand it a source</b> — that's often all it needed. And don't take its first "I can't" as final: models misjudge their own capabilities in <em>both</em> directions.</div>
+</section>
+
+<!-- ============ CLOSE ============ -->
+<section>
+  <h3>The three sentences to remember</h3>
+  <div class="take" style="font-size:.75em"><b>1.</b> Show your work and <b>convert back to check</b> — transcription, not math, is what cost points.</div>
+  <div class="take" style="font-size:.75em"><b>2.</b> <b>Open the file you're about to submit.</b> The graded artifact is the PDF, not the effort behind it.</div>
+  <div class="take" style="font-size:.75em"><b>3.</b> Your harness will be confidently wrong, confidently incapable, and occasionally broken — <b>verifying is the skill.</b></div>
+  <p><small>Feedback + grades on Sakai. Harness still broken? Tonight we fix it — for good.</small></p>
+</section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>
+  Reveal.initialize({ hash:true, slideNumber:"c/t", plugins:[RevealHighlight] });
+</script>
+</body>
+</html>
