@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMP 150 · Week 3 · Python: The Main Pieces</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <style>
+    :root { --r-heading-text-transform: none; }
+    .reveal h1,.reveal h2,.reveal h3 { letter-spacing:-.01em; }
+    .reveal small { color:#9fb3c8; }
+    .reveal pre { width:95%; box-shadow:none; }
+    .reveal pre code { padding:14px 18px; font-size:.72em; line-height:1.45; border-radius:10px; max-height:520px; }
+    .reveal table { font-size:.65em; }
+    .reveal .good { color:#57cc99; } .reveal .bad { color:#e76f51; }
+    .reveal .note { color:#ffd166; font-size:.65em; }
+    .reveal .cols { display:flex; gap:24px; align-items:flex-start; }
+    .reveal .cols > div { flex:1; }
+    .reveal .rulebox { background:#17212b; border:1px solid #2b3a48; border-radius:12px; padding:12px 18px; text-align:left; font-size:.62em; }
+  .reveal .hljs-ln-numbers { color:#5a7086; padding-right:14px; text-align:right; user-select:none; }
+.reveal pre code.hljs { white-space:pre; }
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section>
+  <h2>Programming in Python</h2>
+  <h4 style="color:#9fb3c8">The Main Pieces, Day One</h4>
+  <p><small>COMP 150-003 · Week 3 · follow along in the lab notebook</small></p>
+</section>
+
+<section>
+  <h3>The canonical first program</h3>
+  <pre><code class="language-python" data-line-numbers>def hello_world():
+    print("hello world!")
+
+hello_world()</code></pre>
+  <div class="rulebox">
+  <b>def</b> — a <em>reserved word</em>: defines a function (a named series of steps)<br>
+  <b>hello_world</b> — the function's name · <b>()</b> — its inputs (none here) · <b>:</b> — body begins<br>
+  <b>indentation</b> — the indented line is <em>inside</em> the function<br>
+  <b>line 4</b> — calling the function by name makes it run</div>
+</section>
+
+<section>
+  <h3>Strings</h3>
+  <p style="font-size:.75em">A <b>character</b> is a single symbol: <code>'A'</code>, <code>'g'</code>, <code>'5'</code>, <code>'%'</code>.<br>
+  A <b>string</b> is a group of characters. Quotes tell Python "this is text, not code":</p>
+  <pre><code class="language-python" data-line-numbers>name = "Ada"
+greeting = f"Hello, {name}! You are {36} years old."
+print(greeting)   # Hello, Ada! You are 36 years old.</code></pre>
+  <p class="note">The <b>f-string</b>: put an f before the quote, and anything in {braces} gets evaluated and embedded. You'll use this constantly.</p>
+</section>
+
+<section>
+  <h3>Common data types</h3>
+  <table>
+    <tr><th>Category</th><th>Types</th><th>Examples</th></tr>
+    <tr><td>Numeric</td><td><code>int</code>, <code>float</code></td><td><code>10</code> · <code>5.5</code></td></tr>
+    <tr><td>Text</td><td><code>str</code></td><td><code>"Alice"</code></td></tr>
+    <tr><td>Boolean</td><td><code>bool</code></td><td><code>True</code> / <code>False</code></td></tr>
+    <tr><td>Sequence</td><td><code>list</code>, <code>tuple</code>, <code>range</code></td><td><code>[1, 2, 3]</code></td></tr>
+    <tr><td>Mapping</td><td><code>dict</code></td><td><code>{'a': 1}</code></td></tr>
+    <tr><td>Sets</td><td><code>set</code></td><td><code>{1, 2, 3}</code></td></tr>
+  </table>
+  <pre><code class="language-python" data-line-numbers>x: int = 10          # type annotations: say what you expect
+name: str = "Alice"  # they make code readable — and catchable
+numbers: list[int] = [1, 2, 3]</code></pre>
+</section>
+
+<section>
+  <h3>Naming things: the rules</h3>
+  <div class="rulebox">
+  <b>Hard rules</b> (same for variables and functions — break these and Python errors):<br>
+  1. Start with a letter or underscore — never a digit<br>
+  2. Letters, numbers, underscores only — no spaces, no special characters<br>
+  3. Not a reserved word (<code>if</code>, <code>for</code>, <code>while</code>, <code>def</code>, <code>return</code>…)<br>
+  4. Case-sensitive: <code>myVariable</code> ≠ <code>myvariable</code></div>
+  <div class="rulebox" style="margin-top:12px">
+  <b>Conventions</b> (break these and future-you is sad):<br>
+  <b>snake_case</b> for variables and functions · UPPERCASE for constants ·
+  descriptive names · leading underscore = "internal, hands off"</div>
+</section>
+
+<section>
+  <h3>Naming: legal or not?</h3>
+  <div class="cols">
+  <div><pre><code class="language-python" data-line-numbers># ✓ valid
+def my_function():
+    pass
+
+def _internal_use_only():
+    pass
+
+def calculate_sum(x, y):
+    return x + y</code></pre></div>
+  <div><pre><code class="language-python" data-line-numbers># ✗ invalid — why?
+def 123_function():
+    pass
+
+def my-function():
+    pass
+
+def for():
+    pass</code></pre></div>
+  </div>
+  <p class="note">Each invalid one breaks a different rule. Which?</p>
+</section>
+
+<section>
+  <h3>Booleans</h3>
+  <p style="font-size:.7em">One of two values — <code>True</code> or <code>False</code> — named for George Boole (1800s). Usually the <em>result of a comparison</em>:</p>
+  <pre><code class="language-python" data-line-numbers>x = 10
+y = 5
+is_greater = x > y    # True
+is_equal = x == y     # False  (== compares; = assigns!)</code></pre>
+  <div class="cols" style="font-size:.85em">
+    <div><table><tr><th>A</th><th>B</th><th>A and B</th></tr>
+    <tr><td>T</td><td>T</td><td class="good">T</td></tr><tr><td>T</td><td>F</td><td class="bad">F</td></tr>
+    <tr><td>F</td><td>T</td><td class="bad">F</td></tr><tr><td>F</td><td>F</td><td class="bad">F</td></tr></table></div>
+    <div><table><tr><th>A</th><th>B</th><th>A or B</th></tr>
+    <tr><td>T</td><td>T</td><td class="good">T</td></tr><tr><td>T</td><td>F</td><td class="good">T</td></tr>
+    <tr><td>F</td><td>T</td><td class="good">T</td></tr><tr><td>F</td><td>F</td><td class="bad">F</td></tr></table></div>
+    <div><table><tr><th>A</th><th>not A</th></tr>
+    <tr><td>T</td><td class="bad">F</td></tr><tr><td>F</td><td class="good">T</td></tr></table></div>
+  </div>
+</section>
+
+<section>
+  <h3>Truthiness</h3>
+  <p style="font-size:.7em">Non-boolean values also count as true or false in a condition. <b>Falsy</b> in Python:</p>
+  <div class="rulebox"><code>None</code> · <code>False</code> · zero (<code>0</code>, <code>0.0</code>) · empty things: <code>''</code>, <code>[]</code>, <code>()</code>, <code>{}</code> — <b>everything else is truthy</b></div>
+  <pre><code class="language-python" data-line-numbers>if 'hello':   # truthy — non-empty string
+    print('True')
+
+if []:        # falsy — empty list
+    print('True')
+else:
+    print('False')</code></pre>
+  <p class="note">Powerful for concise code — and a source of subtle bugs when you forget the rules.</p>
+</section>
+
+<section>
+  <h3>Control flow: if / elif / else</h3>
+  <pre><code class="language-python" data-line-numbers>def check_age(age):
+    is_adult = age >= 18
+    is_teenager = 13 <= age < 18
+    print(f"Age provided: {age}")
+    if is_adult:
+        print("You are an adult.")
+    elif is_teenager:
+        print("You are a teenager.")
+    else:
+        print("You are a child.")
+
+check_age(20)</code></pre>
+</section>
+
+<section>
+  <h3>Why three keywords?</h3>
+  <div class="rulebox" style="font-size:.7em">
+  <b>if</b> — "check this condition." The gate.<br><br>
+  <b>elif</b> — "only if the ones above failed, check this instead."
+  Chains checks so exactly <em>one</em> branch runs — no double-counting, no gaps.<br><br>
+  <b>else</b> — "if everything above failed, do this." The catch-all: guarantees <em>something</em> happens.</div>
+  <p style="font-size:.65em">Order matters: Python checks top-down and takes the <b>first</b> branch that's true. What happens to a 16-year-old if we put the <code>is_teenager</code> check first? …and why does it still work?</p>
+</section>
+
+<section>
+  <h3>Lists</h3>
+  <p style="font-size:.7em">An <b>ordered collection</b> of items — the workhorse data structure. Items sit at numbered positions (<b>indexes</b>) starting at <b>0</b>:</p>
+  <pre><code class="language-python" data-line-numbers>numbers = [10, 20, 30, 40, 50]
+print(numbers[0])     # 10  — first item
+print(numbers[4])     # 50  — last item
+print(len(numbers))   # 5   — how many
+
+numbers.append(60)    # lists are mutable: they can grow and change</code></pre>
+  <p class="note">Ordered · changeable · can hold anything (but usually one type). Loops and lists are best friends — next slide.</p>
+</section>
+
+<section>
+  <h3>for loops — do it for each one</h3>
+  <div class="cols">
+  <div><pre><code class="language-python" data-line-numbers># over items, directly
+for n in [3, 7, 11]:
+    print(n * 2)</code></pre></div>
+  <div><pre><code class="language-python" data-line-numbers># over a range of numbers
+result = 1
+for i in range(1, 6):
+    result *= i
+print(result)  # 120 — 5!</code></pre></div>
+  </div>
+  <div class="rulebox" style="font-size:.65em"><b>range(1, 6)</b> counts 1, 2, 3, 4, 5 — the stop value is <em>not included</em>. The loop variable (<code>n</code>, <code>i</code>) takes each value in turn, and the indented body runs once per value.</div>
+</section>
+
+<section>
+  <h3>while loops — do it until told to stop</h3>
+  <pre><code class="language-python" data-line-numbers>numbers = [1, 2, 3, 4, 5]
+count = 0
+i = 0
+while i < len(numbers):        # checked BEFORE every pass
+    if numbers[i] % 2 == 1:
+        count += 1             # shorthand: count = count + 1
+    i += 1                     # forget this line → infinite loop
+print(count)                   # 3</code></pre>
+  <div class="rulebox" style="font-size:.65em"><b>for</b> — when you know how many times (or have a collection to walk).<br>
+  <b>while</b> — when you only know the <em>stopping condition</em>. You manage the counter — and you make it stop.</div>
+</section>
+
+<section>
+  <h3>Comprehensions — a loop, folded into one line</h3>
+  <div class="cols">
+  <div><pre><code class="language-python" data-line-numbers># the loop pattern
+squares = []
+for x in numbers:
+    squares.append(x ** 2)</code></pre></div>
+  <div><pre><code class="language-python" data-line-numbers># the same thing, folded
+squares = [x ** 2 for x in numbers]</code></pre></div>
+  </div>
+  <div class="rulebox" style="font-size:.65em">Read it aloud: "<b>x squared, for each x in numbers</b>." Same loop, same result — built for the very common pattern <em>transform every item into a new list</em>. Use the loop form when the body gets complicated.</div>
+</section>
+
+<section>
+  <h3>Anatomy of a function</h3>
+  <div class="rulebox" style="font-size:.62em"><b>Input</b> via parameters → <b>behavior</b> in the body → <b>output</b> via return. A named, reusable block: a black box you can call again and again.</div>
+  <pre><code class="language-python" data-line-numbers>def calculate_average(numbers: list) -> float:
+    """Return the average of a list of numbers."""
+    total = sum(numbers)
+    num_items = len(numbers)
+    avg = total / num_items
+    return avg
+
+avg1 = calculate_average([1, 2, 3])    # → 2.0
+avg2 = calculate_average([4, 5, 6])    # same recipe, new input</code></pre>
+  <p class="note">The <b>return</b> value lands in the variable at the call site. Define once, call forever — that's why functions exist.</p>
+</section>
+
+<section>
+  <h3>Putting it together: numbers + booleans + strings</h3>
+  <pre><code class="language-python" data-line-numbers>def calculate_statistics(number1: int, number2: float) -> str:
+    """Calculates and returns a summary of statistics."""
+    sum_result = number1 + number2  # Addition
+    product = number1 * number2     # Multiplication
+    is_odd = number1 % 2 == 1       # Modulo: remainder check
+
+    summary = (f"Sum: {sum_result}\n"
+               f"Product: {product}\n"
+               f"{number1} is {'odd' if is_odd else 'even'}")
+    return summary
+
+print(calculate_statistics(3, 4.5))</code></pre>
+  <p class="note">Docstring says what it does · annotations say what goes in and out · comments say why. That's the standard for this course.</p>
+</section>
+
+<section>
+  <h3>Tonight</h3>
+  <p style="font-size:.75em">Lab notebook (no points — follow along): variables → booleans → arithmetic → loops → functions → reading code → a puzzle with no code at all.</p>
+  <p style="font-size:.75em">Assignment 2 (25 pts, due Sunday 11 PM): the same skills, solo.</p>
+  <p class="note">Rule of the semester: if you submit it, you can explain it.</p>
+</section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>Reveal.initialize({ hash:true, slideNumber:"c/t", plugins:[RevealHighlight] });</script>
+</body>
+</html>
