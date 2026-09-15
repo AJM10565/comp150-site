@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMP 150-003 · Assignment</title>
+<style>
+  :root{--bg:#0f1720;--card:#17212b;--card2:#1b2733;--ink:#e6edf3;--muted:#9fb3c8;
+        --accent:#4cc9f0;--accent2:#a78bfa;--warn:#e76f51;--good:#7ee787;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:18px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+       background:radial-gradient(60rem 30rem at 85% -5%,rgba(76,201,240,.13),transparent 60%),
+                  radial-gradient(50rem 28rem at -10% 20%,rgba(167,139,250,.10),transparent 60%);}
+  main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem;}
+  a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+
+  /* Hero title */
+  h1{font-size:2.3rem;line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 1.1rem;
+     background:linear-gradient(92deg,#fff 30%,var(--accent) 75%,var(--accent2));
+     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+
+  /* Meta block: the paragraph right after the title becomes a card of pills */
+  h1 + p{background:var(--card);border:1px solid #24313d;border-radius:14px;
+     padding:1rem 1.2rem;line-height:2.15;box-shadow:0 8px 30px rgba(0,0,0,.25);}
+  h1 + p strong{color:var(--bg);background:linear-gradient(92deg,var(--accent),#7dd8f7);
+     border-radius:999px;padding:.14rem .6rem;margin-right:.25rem;font-size:.78em;
+     font-weight:700;letter-spacing:.02em;white-space:nowrap;}
+
+  h2{border-left:4px solid var(--accent);padding-left:.6rem;margin-top:2.4rem;font-size:1.35rem;}
+  h2.topic{border:1px solid #2a3a49;border-left:5px solid var(--accent2);border-radius:12px;
+     background:linear-gradient(180deg,var(--card2),var(--card));
+     padding:.85rem 1rem;box-shadow:0 8px 26px rgba(0,0,0,.28);}
+  h3{color:var(--accent);margin-top:1.6rem;font-size:1.05rem;}
+
+  code{background:#0b1017;padding:.12rem .4rem;border-radius:6px;font-size:.92em;}
+  pre code{display:block;padding:1rem;overflow:auto;}
+  blockquote{background:var(--card);border:1px solid #24313d;border-left:3px solid var(--good);
+     border-radius:10px;margin:1rem 0;padding:.8rem 1.1rem;color:#cfe;}
+  hr{border:0;height:1px;margin:2.4rem 0;
+     background:linear-gradient(90deg,transparent,#2c3d4d 20%,#2c3d4d 80%,transparent);}
+  em{color:var(--muted);} strong{color:#fff;}
+
+  table{border-collapse:separate;border-spacing:0;width:100%;font-size:.92em;margin:.8rem 0;
+     border:1px solid #24313d;border-radius:12px;overflow:hidden;}
+  th{background:linear-gradient(92deg,#20303e,#1b2836);color:var(--accent);
+     text-transform:uppercase;font-size:.78em;letter-spacing:.06em;}
+  td,th{border-bottom:1px solid #24313d;padding:.5rem .7rem;text-align:left;}
+  td+td,th+th{text-align:center;border-left:1px solid #24313d;}
+  tr:last-child td{border-bottom:0;}
+  tr:hover td{background:rgba(76,201,240,.05);}
+
+  ul,ol{padding-left:1.3rem;} li{margin:.4rem 0;}
+  li strong:first-child{color:var(--accent);}
+  .backlink{color:var(--muted);font-size:.9em;}
+  @media (max-width:600px){h1{font-size:1.7rem;} body{font-size:16px;}}
+</style>
+</head>
+<body>
+<main>
+  <p><a class="backlink" href="../index.html">&larr; Course home</a></p>
+<h1 id="comp-150-fall-2026-current-events-in-ai-paper">COMP 150 Fall
+2026 — Current Events in AI Paper</h1>
+<p><strong>Course:</strong> COMP 150-003, Fall 2026
+<strong>Worth:</strong> 50 points (this is your “midterm”)
+<strong>Official due:</strong> Friday, October 2, 11:00 PM (counts
+toward your mid-term grade) <strong>Grace deadline:</strong> Wednesday,
+October 14, 11:00 PM (no penalty, but the score counts toward your final
+grade instead of your mid-term grade) <strong>Length:</strong> 1000–2000
+words (excluding citations) <strong>Submission:</strong> One PDF via
+Sakai — <code>LastName_FirstName_COMP150_Paper.pdf</code></p>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>Artificial intelligence is no longer a topic that waits patiently in
+textbooks. The events shaping it — product launches, lawsuits,
+breakthroughs, failures, regulations — are happening <em>right now</em>,
+and their consequences will land squarely on your generation. This
+assignment asks you to engage with one of the two defining AI
+controversies of 2026, anchor your analysis in a real, dated current
+event, and take a clear, well-argued ethical stance.</p>
+<h2 id="objective">Objective</h2>
+<p>Choose <strong>one</strong> of the two topics below. Articulate a
+coherent, defensible position on the question it poses. You must:</p>
+<ol type="1">
+<li><strong>Anchor your paper in a current event</strong> — a specific,
+dated news event from <strong>2026</strong> (a product release,
+incident, lawsuit, policy action, research result, or public
+controversy). This event is your hook and your evidence base, not a
+decoration.</li>
+<li><strong>Develop a clear thesis</strong> and defend it throughout
+with logical reasoning and cited evidence.</li>
+<li><strong>Acknowledge the strongest counterarguments</strong> to your
+position and respond to them honestly.</li>
+</ol>
+<p>This is a stance essay, not a summary. “Both sides have good points”
+is not a thesis.</p>
+<hr />
+<h2 id="topic-a-ai-agents-and-digital-agency" class="topic">Topic A: AI Agents and
+Digital Agency</h2>
+<p><strong>Who is responsible when your AI acts for you?</strong></p>
+<p>In this course you are building and operating your own AI harness —
+an agent that reads, writes, and executes on your behalf. Millions of
+people now delegate real work to AI agents: sending messages, making
+purchases, writing code, filing paperwork. This delegation raises the
+central question: <strong>when an AI agent acts on a person’s behalf,
+who owns the outcome — and who should be allowed to delegate
+what?</strong></p>
+<h3 id="address-the-following-weights-are-a-guide">Address the following
+(weights are a guide):</h3>
+<ul>
+<li><strong>Introduction &amp; Stance (10–15%)</strong> — State your
+position on the ethics of delegating action (not just advice) to AI
+agents. Preview your key arguments.</li>
+<li><strong>Your Current Event (15–20%)</strong> — Present your anchor
+event: a specific 2026 incident, launch, or controversy involving AI
+agents acting autonomously. Explain what happened and why it
+matters.</li>
+<li><strong>Responsibility &amp; Accountability (15–20%)</strong> — When
+an agent causes harm — a wrong purchase, a leaked secret, a damaging
+message, broken code in production — who is accountable: the user, the
+developer, the model provider, or the agent’s own logs? Defend a
+principle, not just a case-by-case shrug.</li>
+<li><strong>Autonomy vs. Oversight (15–20%)</strong> — How much should
+agents be allowed to do without human confirmation? Where should the
+“human in the loop” be mandatory? Consider both convenience and
+catastrophe.</li>
+<li><strong>Agency Inequality (10–15%)</strong> — If capable agents
+multiply what one person can do, what happens to people without access,
+skills, or money to run them? Is “digital agency” becoming a new axis of
+inequality?</li>
+<li><strong>Balancing Progress &amp; Responsibility (10–15%)</strong> —
+Propose specific practices, norms, or policies consistent with your
+stance. What should users, companies, or regulators actually do?</li>
+<li><strong>Concluding Thoughts (10–15%)</strong> — Reiterate your
+stance with conviction. What principles should govern the age of
+delegated intelligence?</li>
+</ul>
+<hr />
+<h2 id="topic-b-the-race-to-artificial-superintelligence-asi" class="topic">Topic B:
+The Race to Artificial Superintelligence (ASI)</h2>
+<p><strong>Should humanity be racing to build minds smarter than our
+own?</strong></p>
+<p>Frontier labs now openly state that their goal is superintelligence —
+AI that exceeds human capability across essentially every domain.
+Enormous capital, compute, and talent are being poured into getting
+there first, while critics range from “this is the most important
+project in history” to “this is the most dangerous.” The question:
+<strong>is the current race to ASI ethically defensible — and if not,
+what should change?</strong></p>
+<h3 id="address-the-following-weights-are-a-guide-1">Address the
+following (weights are a guide):</h3>
+<ul>
+<li><strong>Introduction &amp; Stance (10–15%)</strong> — State your
+position on the race to superintelligence: full speed ahead, proceed
+with specific guardrails, slow down/pause, or something else. Preview
+your key arguments.</li>
+<li><strong>Your Current Event (15–20%)</strong> — Present your anchor
+event: a specific 2026 announcement, capability result, safety incident,
+investment, or policy action in the race toward ASI. Explain what
+happened and why it matters.</li>
+<li><strong>Promise vs. Peril (15–20%)</strong> — Weigh the strongest
+claimed benefits (science, medicine, abundance) against the strongest
+claimed risks (loss of control, misuse, concentration of power). Engage
+the best version of the side you disagree with.</li>
+<li><strong>Who Decides? (15–20%)</strong> — A handful of companies and
+countries are making a species-level decision. Is that legitimate? What
+role should governments, international bodies, and the public play?
+Consider the competition problem: if one actor slows down, others may
+not.</li>
+<li><strong>Alignment &amp; Control (10–15%)</strong> — Can systems
+smarter than us be made to reliably pursue human values? Assess the
+state of the art honestly — what do we actually know how to do, and what
+are we merely hoping?</li>
+<li><strong>Balancing Progress &amp; Responsibility (10–15%)</strong> —
+Propose specific policies, agreements, or practices consistent with your
+stance. What should labs, governments, or citizens actually do?</li>
+<li><strong>Concluding Thoughts (10–15%)</strong> — Reiterate your
+stance with conviction. What principles should govern the pursuit of
+superintelligence?</li>
+</ul>
+<hr />
+<h2 id="research-requirements">Research Requirements</h2>
+<p>Include <strong>at least 5 credible sources</strong>, with at
+least:</p>
+<ul>
+<li><strong>1 news article from 2026</strong> documenting your anchor
+event (this one is mandatory and load-bearing)</li>
+<li><strong>2 substantive sources</strong> — peer-reviewed papers,
+technical reports, or in-depth industry/policy analyses</li>
+<li><strong>2 additional credible sources</strong> of your choice</li>
+</ul>
+<p>Given how fast this field moves, prefer sources from the last 2 years
+except where citing foundational work.</p>
+<h3 id="research-starting-points">Research starting points</h3>
+<ul>
+<li><strong>Reporting:</strong> MIT Technology Review, Wired, The Verge,
+Ars Technica, Reuters/AP technology desks</li>
+<li><strong>Analysis &amp; policy:</strong> Stanford HAI, AI Now
+Institute, Brookings, RAND, Ada Lovelace Institute</li>
+<li><strong>Primary sources:</strong> frontier-lab announcements, system
+cards, and safety frameworks; government AI policy documents (EU AI Act,
+US executive actions, state legislation)</li>
+<li><strong>Topic A:</strong> search “AI agent incident,” “agentic AI
+liability,” “computer-use agents,” “AI agent security”</li>
+<li><strong>Topic B:</strong> search “superintelligence race,” “AI
+scaling,” “frontier AI safety,” “AI pause debate,” “compute
+governance”</li>
+</ul>
+<h2 id="using-ai-on-this-paper">Using AI on This Paper</h2>
+<p>Per the course AI policy, you are encouraged to use AI — including
+your own harness — for <strong>research, brainstorming, critique of your
+drafts, and grammar</strong>. The thesis, argument, and prose must be
+yours: you must be able to explain and defend every claim in this
+paper.</p>
+<p><strong>Required: AI Usage Disclosure.</strong> Include a short block
+(not counted in word count) describing how you used AI, for example:</p>
+<blockquote>
+<p><em>AI Usage Disclosure: I used my Pi harness with Gemini to gather
+candidate news events and summarize two policy reports. I asked it to
+critique my draft thesis, and rejected its suggestion to soften my
+stance. All prose is my own.</em></p>
+</blockquote>
+<p>A thoughtful disclosure is part of the assignment. “No AI was used”
+is acceptable only if true.</p>
+<h2 id="formatting-requirements">Formatting Requirements</h2>
+<ul>
+<li>1000–2000 words (excluding citations and disclosure)</li>
+<li>Clear section headings</li>
+<li>Consistent citation style (MLA or APA)</li>
+<li>Works cited page (not counted in word limit)</li>
+<li>One PDF via Sakai. Open your PDF before submitting and scroll to the
+last page to confirm it is complete.</li>
+</ul>
+<h2 id="evaluation-50-points">Evaluation (50 points)</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thesis &amp; stance — clear, specific, maintained throughout</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Current-event anchor — real, dated, well-explained, genuinely
+load-bearing</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Analysis — depth of reasoning, evidence quality, counterarguments
+engaged</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Writing — organization, clarity, grammar, citations</td>
+<td>10</td>
+</tr>
+<tr>
+<td>AI disclosure — present and thoughtful</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tips-for-success">Tips for Success</h2>
+<ul>
+<li>Pick your anchor event <strong>first</strong> — the right event
+makes the paper write itself.</li>
+<li>A strong stance you partially walk back beats a mushy stance you
+fully defend.</li>
+<li>Be specific with facts: names, dates, numbers, quotes.</li>
+<li>Steelman the other side; a paper that only fights strawmen earns
+strawman points.</li>
+<li>Start before the break. The official deadline (Oct 2) is what puts
+this score on your mid-term grade.</li>
+</ul>
+<hr />
+<p><em>Deadlines per the syllabus Key Dates table; submission and
+late-work rules per the syllabus Assignment Submission and Grading
+Policies.</em></p>
+
+</main>
+</body>
+</html>
