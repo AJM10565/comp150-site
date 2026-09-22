@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMP 150 · A2 Recap</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <style>
+    :root { --r-heading-text-transform: none; }
+    .reveal h1,.reveal h2,.reveal h3 { letter-spacing:-.01em; }
+    .reveal small { color:#9fb3c8; }
+    .reveal img.chart { max-height:430px; border-radius:12px; }
+    .reveal .why { color:#9fb3c8; font-size:.5em; margin-top:4px; line-height:1.35; }
+    .reveal .mistake { background:#2a1a1a; border:1px solid #5c3030; border-radius:14px; padding:12px 20px; text-align:left; font-size:.55em; margin:10px auto 0; max-width:900px; }
+    .reveal .mistake code { color:#ff9f9f; }
+    .reveal .fix { background:#15251b; border:1px solid #2b5c3a; border-radius:14px; padding:12px 20px; text-align:left; font-size:.55em; margin:10px auto 0; max-width:900px; }
+    .reveal .fix code { color:#8fe3b0; }
+    .reveal .take { background:#17212b; border-left:5px solid #4cc9f0; border-radius:8px; padding:8px 16px; text-align:left; font-size:.54em; margin:10px auto 0; max-width:900px; }
+    .reveal .take b { color:#4cc9f0; }
+    .reveal .star { background:#241f10; border:1px solid #6b5a1e; border-radius:14px; padding:12px 20px; text-align:left; font-size:.55em; margin:10px auto 0; max-width:920px; }
+    .reveal .star code { color:#ffd166; }
+    .reveal .who { display:inline-block; padding:.1em .55em; border-radius:.5em; background:#264653; color:#ffd166; font-size:.85em; font-weight:700; }
+    .reveal pre { width:100%; box-shadow:none; }
+    .reveal pre code { max-height:380px; font-size:.72em; line-height:1.35; border-radius:10px; }
+    .reveal table.trace { font-size:.55em; margin:14px auto 0; border-collapse:collapse; }
+    .reveal table.trace th { background:#264653; color:#ffd166; padding:4px 14px; border:1px solid #3a5a6a; }
+    .reveal table.trace td { padding:3px 14px; border:1px solid #3a5a6a; }
+    .reveal table.trace td.hot { background:#402020; color:#ff9f9f; font-weight:700; }
+    .reveal table.trace tr.frag td { }
+  </style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- ============ TITLE ============ -->
+<section>
+  <h2>Assignment 2 — How We Did</h2>
+  <h4 style="color:#9fb3c8">First Steps in Python: names, booleans, loops, bugs, and one river crossing</h4>
+  <p><small>COMP 150-003 · Week 5 · All results anonymized — you are a random letter tonight</small></p>
+</section>
+
+<!-- ============ PART 1: DATA ============ -->
+<section>
+  <h3>Part 1 — The Numbers</h3>
+  <p><small>Same deal as A1: we do the data-science thing on ourselves.<br>
+  By December you'll build charts like these with your own harness.</small></p>
+</section>
+
+<section>
+  <h3>25 of 27 submitted</h3>
+  <img class="chart" src="assets-a2/submissions.png" alt="Bar chart: 23 graded, 2 pending, 2 no submission">
+  <p class="why">Two submissions are still under review — you know who you are, come talk to me. If you're one of the 2 who didn't submit: the door is still open tonight.</p>
+</section>
+
+<section>
+  <h3>This class is <em>good</em> at Python so far</h3>
+  <img class="chart" src="assets-a2/hist_total.png" alt="Histogram of total scores">
+  <p class="why">Mean ~27.9 / 30, median ~28.9. That's not a gift — the evidence standard got <em>stricter</em> this time. You earned this.</p>
+</section>
+
+<section>
+  <h3>Where the points lived</h3>
+  <img class="chart" src="assets-a2/per_problem.png" alt="Bar chart of class average percent per problem">
+  <p class="why">Wolf/goat/cabbage: nearly perfect — you can all think in algorithms. The dip is <b>Problem 7: comments</b>. That's tonight's craft lesson.</p>
+</section>
+
+<section>
+  <h3>Homework vs Lab</h3>
+  <img class="chart" src="assets-a2/scatter_hw_lab.png" alt="Scatter of homework vs lab scores">
+  <p class="why">Most of you live in the top-right. The stragglers are almost all one story: <b>cells that were never run</b> — not concepts.</p>
+</section>
+
+<!-- ============ PART 2: MISSES ============ -->
+<section>
+  <h3>Part 2 — The Five Misses</h3>
+  <p><small>Every one of these is fixable in under a minute.<br>And one of them comes with a policy announcement.</small></p>
+</section>
+
+<!-- MISS 1: comments -->
+<section>
+  <h3>Miss #1 — Comments that repeat the code <small>(19 students)</small></h3>
+  <img class="chart" src="assets-a2/comments.png" alt="4 perfect vs 19 losing points on comments" style="max-height:330px">
+  <p class="why">Only 4 perfect scores on Problem 7 — the lowest of any problem. Let's fix that right now.</p>
+</section>
+
+<section>
+  <h3>The difference between a caption and a comment</h3>
+  <div class="mistake"><b>What most of us wrote:</b><br>
+  <code>for n in numbers:&nbsp;&nbsp;# go through each number in the list</code><br>
+  <code>big_numbers.append(n)&nbsp;&nbsp;# add n to the list</code><br><br>
+  True. Useless. The code already says that — you just said it twice.</div>
+  <div class="fix"><b>What the 4 perfect scores wrote:</b><br>
+  <code>big_numbers.append(n)&nbsp;&nbsp;# keep this one — it passed the cutoff</code><br>
+  <code>return big_numbers&nbsp;&nbsp;&nbsp;&nbsp;# hand back only the survivors</code><br><br>
+  Same line of code. But now the comment tells you something the code <em>can't</em>: the intent.</div>
+  <div class="take"><b>The test:</b> cover the code with your hand and read only your comment. If you can't tell <em>why</em> the line exists, it's a caption, not a comment.</div>
+</section>
+
+<section>
+  <h3>The same function, both ways</h3>
+  <div class="mistake" style="max-width:1000px"><b>Captions (true, but the code already says it):</b>
+  <pre style="margin:6px 0 0"><code class="language-python"># this function finds big numbers
+def find_big_numbers(numbers, cutoff):
+    big_numbers = []                  # make an empty list
+    for n in numbers:                 # loop over the numbers
+        if n > cutoff:                # check if n is bigger than cutoff
+            big_numbers.append(n)     # add n to the list
+    return big_numbers                # return the list</code></pre></div>
+  <div class="fix" style="max-width:1000px"><b>Comments (what the code <em>can't</em> say — purpose, intent, contract):</b>
+  <pre style="margin:6px 0 0"><code class="language-python"># Return only the values above a cutoff, e.g. flagging orders over $100.
+def find_big_numbers(numbers, cutoff):
+    big_numbers = []                  # survivors collect here as we filter
+    for n in numbers:                 # examine every candidate exactly once
+        if n > cutoff:                # strictly greater — ties do NOT pass
+            big_numbers.append(n)     # keep it: this one made the cut
+    return big_numbers                # hand the caller just the keepers</code></pre></div>
+  <div class="take"><b>Notice:</b> the good version answers questions you'd otherwise have to ask — <em>what's this for? do ties count? what comes back?</em> That <code>strictly greater</code> comment has prevented a thousand real-world bugs.</div>
+</section>
+
+<!-- MISS 2: unrun cells -->
+<section>
+  <h3>Miss #2 — Correct code that was never run <small>(4 students, up to −3)</small></h3>
+  <div class="mistake"><b>What it looked like:</b><br>
+  <code># squares = [i**2 for i in range(1, 11)]</code> &nbsp;← a <em>perfect</em> answer… commented out<br>
+  <code>print(squares)</code> &nbsp;← printing a stale value from the previous cell<br><br>
+  Or: a whole notebook with beautiful code and <b>zero outputs anywhere</b>.</div>
+  <div class="fix"><b>The rule going forward:</b> if it's commented out, we can't know you meant it — it's an unanswered question. If it never ran, there's no evidence it works.<br><br>
+  <b>Before you submit, always:</b> Runtime → Run all → scroll to the bottom → every cell shows output.</div>
+  <div class="take"><b>Slogan for the semester:</b> unrun code is a rumor. <b>Output is evidence.</b></div>
+</section>
+
+<section>
+  <h3>📣 One-time amnesty</h3>
+  <div class="star"><b>Because this was your first coding assignment:</b> if you lost points for commented-out answers, you may resubmit with the parts you want graded <b>uncommented and run</b>, and I'll regrade those questions.<br><br>
+  This offer is for A2 only. From Assignment 3 on: commented-out = unanswered, no exceptions.</div>
+  <p class="why">Check your feedback on Sakai — if this applies to you, it says so explicitly.</p>
+</section>
+
+<!-- MISS 3: explain why -->
+<section>
+  <h3>Miss #3 — "Valid." <small>…valid <em>why?</em></small></h3>
+  <div class="mistake"><b>What it looked like:</b><br>
+  <code>1. first_name: valid</code><br>
+  <code>3. age: valid</code><br>
+  <code>9. _temp: valid</code><br><br>
+  The verdicts were right! But the assignment asked <em>why</em> — and here's the thing: the students who skipped the why on easy names were the same ones who then called <code>Student</code> and <code>updateProfile</code> invalid. They're legal — just unusual-looking.</div>
+  <div class="fix"><b>The why is your radar.</b> "Valid: starts with a letter, only letters/underscores, not a keyword" takes eight seconds — and it's exactly the checklist that saves you when a name merely <em>looks</em> wrong.</div>
+  <div class="take"><b>Policy note:</b> this time, each missing-explanation habit was only deducted <b>once</b> per person — first time we've seen it as a class. Now we've seen it. From A3 on, every instance counts.</div>
+</section>
+
+<!-- MISS 4: floor division -->
+<section>
+  <h3>Miss #4 — The two arithmetic traps <small>(4 students each)</small></h3>
+  <div class="mistake"><b>Trap 1:</b> <code>17 % 5</code> — "that's 17 percent of 5… so 0.85?"<br>
+  <b>Trap 2:</b> <code>-7 // 2</code> — "7 // 2 is 3, so -7 // 2 is -3… right?"</div>
+  <div class="fix"><b>Trap 1:</b> <code>%</code> has nothing to do with percent. It's the <b>remainder</b>: 17 = 3×5 + <b>2</b>.<br><br>
+  <b>Trap 2:</b> <code>//</code> doesn't chop toward zero — it <b>floors</b>: always toward −∞.<br>
+  <code>-7 / 2 = -3.5</code> → floor → <code><b>-4</b></code>. On the number line, -4 is <em>below</em> -3.5.</div>
+  <div class="take"><b>Credit where due:</b> several of you predicted wrong, ran the cell, and wrote "this surprised me, here's what I learned" — and earned <b>full credit</b>, exactly as promised. That's the scientific method, and it stays full-credit forever.</div>
+</section>
+
+<!-- MISS 5 + trace tables -->
+<section>
+  <h3>Miss #5 — Finding one bug and declaring victory</h3>
+  <div class="mistake"><b>Problem 6 had two bugs.</b> Several of you found the swapped counters but missed the <code>+ 2</code> — or fixed the <code>+ 2</code> and left the counters swapped. And one fix <em>passed the test anyway</em>. That last one is tonight's best lesson.</div>
+  <div class="take"><b>The tool that finds both, every time:</b> playing the computer. Let's do it together.</div>
+</section>
+
+<section>
+  <h3>Playing the computer 🖥️</h3>
+  <p><small>You are the CPU now. One column per variable, one row per step. No skipping, no vibes.</small></p>
+  <pre><code class="language-python">def count_evens_and_odds(numbers):
+    evens = 0
+    odds = 0
+    for n in numbers:
+        if n % 2 == 0:
+            odds = odds + 1      # bug 1: wrong counter
+        else:
+            evens = evens + 2    # bug 2: wrong counter AND +2
+    return evens, odds
+
+print(count_evens_and_odds([1, 2, 3, 4, 5, 6]))  # want (3, 3)</code></pre>
+</section>
+
+<section>
+  <h3>The trace table</h3>
+  <table class="trace">
+    <tr><th>n</th><th>n % 2 == 0 ?</th><th>branch</th><th>evens</th><th>odds</th></tr>
+    <tr><td>—</td><td>—</td><td>start</td><td>0</td><td>0</td></tr>
+    <tr class="fragment"><td>1</td><td>False</td><td>else</td><td class="hot">2</td><td>0</td></tr>
+    <tr class="fragment"><td>2</td><td>True</td><td>if</td><td>2</td><td class="hot">1</td></tr>
+    <tr class="fragment"><td>3</td><td>False</td><td>else</td><td class="hot">4</td><td>1</td></tr>
+    <tr class="fragment"><td>4</td><td>True</td><td>if</td><td>4</td><td class="hot">2</td></tr>
+    <tr class="fragment"><td>5</td><td>False</td><td>else</td><td class="hot">6</td><td>2</td></tr>
+    <tr class="fragment"><td>6</td><td>True</td><td>if</td><td>6</td><td class="hot">3</td></tr>
+  </table>
+  <div class="take fragment"><b>Returns (6, 3), wanted (3, 3).</b> The table doesn't just say it's wrong — it shows you <em>both</em> bugs: odds went up on even numbers (row 2), and evens jumped by 2 (row 1). Ten rows of honesty beat an hour of staring.</div>
+</section>
+
+<section>
+  <h3>The trap: a wrong fix that passes the test</h3>
+  <div class="mistake"><b>One submitted fix</b> repaired the <code>+2</code> but left the counters swapped — evens counts odds, odds counts evens. It printed <code>(3, 3)</code>. Test passed. Full marks?</div>
+  <table class="trace">
+    <tr><th>list</th><th>true evens</th><th>true odds</th><th>swapped code returns</th><th>caught?</th></tr>
+    <tr><td>[1, 2, 3, 4, 5, 6]</td><td>3</td><td>3</td><td>(3, 3)</td><td class="hot">no 😱</td></tr>
+    <tr class="fragment"><td>[1, 3, 5, 2]</td><td>1</td><td>3</td><td>(3, 1)</td><td>YES</td></tr>
+  </table>
+  <div class="take fragment"><b>Takeaway:</b> a symmetric test can't see a swap. When your test data has a coincidence in it, break the symmetry — then trace. "It printed the right thing" and "it's correct" are different claims.</div>
+</section>
+
+<section>
+  <h3>Trace tables work on loops too</h3>
+  <pre><code class="language-python">squares = []
+i = 1
+while i <= 10:
+    squares.append(i * i)
+    i += 1</code></pre>
+  <table class="trace">
+    <tr><th>step</th><th>i</th><th>i <= 10 ?</th><th>squares</th></tr>
+    <tr><td>start</td><td>1</td><td>True</td><td>[]</td></tr>
+    <tr><td>1</td><td>2</td><td>True</td><td>[1]</td></tr>
+    <tr><td>2</td><td>3</td><td>True</td><td>[1, 4]</td></tr>
+    <tr><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+    <tr><td>10</td><td>11</td><td class="hot">False → stop</td><td>[1, 4, …, 100]</td></tr>
+  </table>
+  <div class="take"><b>Every while-loop question you'll ever face</b> ("why doesn't it stop?", "why is it empty?", "why one too many?") is answered by this table. The student who forgot <code>i = 1</code>? Row zero of the table catches it instantly — there's nothing to write in the <code>i</code> column.</div>
+</section>
+
+<!-- ============ PART 3: STARS + ADMIN ============ -->
+<section>
+  <h3>Part 3 — Things worth stealing</h3>
+  <div class="star">⭐ <b>The honest surprise:</b> <span class="who">?</span> predicted <code>17 % 5</code> was "17 percent of 5," ran it, and wrote: <i>"seeing it now makes sense on how it got to 2."</i> Full credit. Being wrong out loud is a superpower.</div>
+  <div class="star">⭐ <b>The accumulator comment:</b> <span class="who">?</span> wrote <code># Initialize an accumulator list to collect values that meet the threshold</code> — a comment that teaches the <em>pattern</em>, not the line.</div>
+  <div class="star">⭐ <b>The state table:</b> on the water-jug puzzle, <span class="who">?</span> invented a two-column jug-state table — (5,0) → (2,3) → (2,0)… — which is literally playing the computer, discovered independently. That's the whole idea of today's lecture.</div>
+</section>
+
+<section>
+  <h3>Housekeeping</h3>
+  <div class="fix" style="font-size:.55em">
+  <b>1. Reserved words, clarified:</b> <code>if, for, while, def, return</code> ARE reserved words. The naming-rule slide says a name must <em>not be</em> one of them — good catch from a classmate who asked.<br><br>
+  <b>2. Submissions:</b> Colab links worked this time and we graded your latest version. Going forward, double-check your link opens in a private window — one blank-template and one sign-in-locked link cost real points this round.<br><br>
+  <b>3. Work goes through Sakai.</b> Never email, never Drive-share — per the syllabus, unless you have prior written permission.<br><br>
+  <b>4. Grace policy recap:</b> habits that cost the class points for the first time were deducted once, not per instance. Now they're on this screen — from A3, they count every time.</div>
+</section>
+
+<section>
+  <h2>Next: Assignment 3</h2>
+  <p><small>More loops, more functions — and yes, trace tables will be <em>required</em> on one problem.<br>
+  Details on Sakai this week. Tonight's lab continues where the misses left off.</small></p>
+</section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>Reveal.initialize({ hash:true, slideNumber:true, plugins:[RevealHighlight] });</script>
+</body>
+</html>

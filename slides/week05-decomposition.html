@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMP 150 · Week 5 · Break It Down</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <style>
+    :root { --r-heading-text-transform: none; }
+    .reveal h1,.reveal h2,.reveal h3 { letter-spacing:-.01em; }
+    .reveal small { color:#9fb3c8; }
+    .reveal .why { color:#9fb3c8; font-size:.5em; margin-top:4px; line-height:1.35; }
+    .reveal .mistake { background:#2a1a1a; border:1px solid #5c3030; border-radius:14px; padding:12px 20px; text-align:left; font-size:.55em; margin:10px auto 0; max-width:900px; }
+    .reveal .mistake code { color:#ff9f9f; }
+    .reveal .fix { background:#15251b; border:1px solid #2b5c3a; border-radius:14px; padding:12px 20px; text-align:left; font-size:.55em; margin:10px auto 0; max-width:900px; }
+    .reveal .fix code { color:#8fe3b0; }
+    .reveal .take { background:#17212b; border-left:5px solid #4cc9f0; border-radius:8px; padding:8px 16px; text-align:left; font-size:.54em; margin:10px auto 0; max-width:900px; }
+    .reveal .take b { color:#4cc9f0; }
+    .reveal .star { background:#241f10; border:1px solid #6b5a1e; border-radius:14px; padding:12px 20px; text-align:left; font-size:.55em; margin:10px auto 0; max-width:920px; }
+    .reveal .star code { color:#ffd166; }
+    .reveal pre { width:100%; box-shadow:none; }
+    .reveal pre code { max-height:400px; font-size:.72em; line-height:1.35; border-radius:10px; }
+    .reveal table.trace { font-size:.55em; margin:14px auto 0; border-collapse:collapse; }
+    .reveal table.trace th { background:#264653; color:#ffd166; padding:4px 14px; border:1px solid #3a5a6a; }
+    .reveal table.trace td { padding:3px 14px; border:1px solid #3a5a6a; }
+    .reveal .grid { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:14px; }
+    .reveal .cardp { background:#17212b; border:1px solid #2b3a48; border-radius:12px; padding:10px 14px; font-size:.5em; width:200px; text-align:left; }
+    .reveal .cardp b { color:#4cc9f0; }
+    .reveal .step { display:inline-block; background:#264653; color:#ffd166; border-radius:50%; width:1.5em; height:1.5em; line-height:1.5em; font-weight:700; margin-right:.3em; }
+  </style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- TITLE -->
+<section>
+  <h2>Break It Down</h2>
+  <h4 style="color:#9fb3c8">How professionals eat scary problems</h4>
+  <p><small>COMP 150-003 · Week 5 · the method behind tonight's lab and this week's homework</small></p>
+</section>
+
+<!-- THE SECRET -->
+<section>
+  <h3>A secret about programmers</h3>
+  <div class="star">Professional programmers do not think in code. They think in <b>English</b> (or Spanish, or Polish…), and translate at the last possible moment.<br><br>
+  The scary-looking algorithm is never the hard part. The hard part is saying <em>precisely what you want</em> — which you proved you can do two weeks ago, with a wolf, a goat, and a cabbage.</div>
+  <p class="why">Tonight we turn that into a repeatable, three-step method.</p>
+</section>
+
+<!-- THE METHOD -->
+<section>
+  <h3>The method</h3>
+  <div class="fix" style="font-size:.62em">
+  <span class="step">1</span> <b>Say the steps in English</b> — as comments, before any code exists<br><br>
+  <span class="step">2</span> <b>Write the code under each comment</b> — each comment becomes a line or a small group<br><br>
+  <span class="step">3</span> <b>Play the computer</b> — trace one input by hand until you've <em>proved</em> it works</div>
+  <div class="take"><b>English → code → proof.</b> Notice what's missing: "stare at the blank cell until inspiration strikes." That step is cancelled, permanently.</div>
+</section>
+
+<!-- WORKED EXAMPLE INTRO -->
+<section>
+  <h3>Live: The Cash Register</h3>
+  <div class="mistake"><b>The task:</b> a customer is owed change. Hand it over using the fewest bills: 20s, 10s, 5s, 1s. Return how many of each.<br><br>
+  Say it out loud: how do <em>you</em> make change for $48 in real life? You already run this algorithm — you've just never written it down.</div>
+  <p class="why">Follow along in the lab notebook — this is the worked example at the top.</p>
+</section>
+
+<!-- STEP 1 -->
+<section>
+  <h3><span class="step">1</span> Comments only — code is illegal for the next 3 minutes</h3>
+  <pre><code class="language-python"># start with the amount of change owed
+# for each bill size, from largest to smallest:
+#     figure out how many of that bill fits into what's left
+#     reduce what's left by the value of those bills
+# after the smallest bill, nothing should be left</code></pre>
+  <div class="take"><b>Look at what just happened:</b> the problem is already solved. No Python was harmed. If you can write these five lines, the rest is vocabulary.</div>
+</section>
+
+<!-- STEP 2 -->
+<section>
+  <h3><span class="step">2</span> Each comment gets its code</h3>
+  <pre><code class="language-python">def make_change(amount):
+    # start with the amount of change owed
+    remaining = amount
+    counts = []
+    # for each bill size, from largest to smallest:
+    for bill in [20, 10, 5, 1]:
+        # figure out how many of that bill fits into what's left
+        counts.append(remaining // bill)
+        # reduce what's left by the value of those bills
+        remaining = remaining % bill
+    # after the smallest bill, nothing should be left
+    return counts</code></pre>
+  <div class="take"><b>Old friends in new jobs:</b> <code>//</code> answers "how many fit?" and <code>%</code> answers "what's left?" — the same pair that turned 147 minutes into 2h 27m in the Week 3 lab.</div>
+</section>
+
+<!-- STEP 3 -->
+<section>
+  <h3><span class="step">3</span> Prove it: trace $48</h3>
+  <table class="trace">
+    <tr><th>bill</th><th>remaining before</th><th>// bill</th><th>% bill (after)</th><th>counts so far</th></tr>
+    <tr class="fragment"><td>20</td><td>48</td><td>2</td><td>8</td><td>[2]</td></tr>
+    <tr class="fragment"><td>10</td><td>8</td><td>0</td><td>8</td><td>[2, 0]</td></tr>
+    <tr class="fragment"><td>5</td><td>8</td><td>1</td><td>3</td><td>[2, 0, 1]</td></tr>
+    <tr class="fragment"><td>1</td><td>3</td><td>3</td><td>0</td><td>[2, 0, 1, 3]</td></tr>
+  </table>
+  <div class="take fragment"><b>Two 20s, one 5, three 1s — $48.</b> The table isn't homework decoration: it's how you <em>know</em> instead of <em>hope</em>. When a loop misbehaves at 11 PM on a Sunday, this table is your debugger.</div>
+</section>
+
+<!-- TRACE TABLE FORMALIZED -->
+<section>
+  <h3>Trace tables: the general recipe</h3>
+  <div class="fix" style="font-size:.58em">
+  <b>Columns</b> = every variable that changes, plus the loop's condition when it matters<br>
+  <b>Rows</b> = one per step (per loop pass, usually)<br>
+  <b>Stop</b> = when the <em>program</em> stops — not when the table runs out of rows</div>
+  <div class="take"><b>When to reach for one:</b> a loop gives the wrong answer · a loop gives the right answer and you don't know why · before you run code you're unsure about · and on every exam you'll ever take in this building.</div>
+</section>
+
+<!-- THE TWO TRAPS -->
+<section>
+  <h3>The two ways a loop does nothing</h3>
+  <div class="mistake" style="font-size:.55em"><b>Trap A — the search that fails:</b> your loop hunts for something… and it's not there. What does your function return? If the answer lives <em>inside</em> the loop, the answer is "nothing" — one of the most common bugs in all of programming.</div>
+  <div class="mistake" style="font-size:.55em"><b>Trap B — the loop that never starts:</b> a <code>while</code> checks its condition <em>before</em> the first pass. If the condition is false on arrival, the body runs <b>zero times</b> — and your code must still be correct.</div>
+  <div class="take"><b>Both traps are in tonight's lab</b>, hiding inside ⭐-marked tests. Your trace tables will walk you straight into them — on purpose, where it's cheap.</div>
+</section>
+
+<!-- COMMENTS = PROMPTS -->
+<section>
+  <h3>Enrichment: you already know this method</h3>
+  <div class="star"><b>Comments-first is exactly how you talk to your AI harness.</b><br><br>
+  A good prompt: <i>"start from the balance, loop over each month, apply interest, then add the deposit."</i><br>
+  A good comment block: <code># start from the balance</code> <code># loop over each month</code> <code># apply interest, then add the deposit</code><br><br>
+  Same artifact. Which means: <b>the better you get at step 1, the better your AI gets at steps 2</b> — and per the syllabus, you must be able to explain every line either of you writes. The comments <em>are</em> that explanation.</div>
+  <p class="why">This is the digital-agency thesis of the whole course, hiding inside a lab about comments.</p>
+</section>
+
+<!-- EXCEL BRIDGE -->
+<section>
+  <h3>Why this beats the spreadsheet</h3>
+  <div class="mistake" style="font-size:.55em"><b>Excel's dirty secret:</b> dragging <code>=(B3-B2)/dt</code> down 500 rows IS a loop — you're just running it by hand, with your wrist. And <code>(SUM(A)-SMALL(A,1)-SMALL(A,2))/(COUNT(A)-2)</code> is a function — one you can't name, comment, test, or reuse.</div>
+  <div class="fix" style="font-size:.55em"><b>Python makes the loop visible</b> (and the computer runs it), <b>makes the formula a named function</b> (with comments saying why), and — new this week — <b>makes correctness checkable</b>: a test cell full of <code>assert</code>s that either passes silently or tells you exactly what's wrong.</div>
+  <div class="take"><b>That's Assignment 3:</b> eight jobs professionals actually do in Excel — physics, finance, psychology, healthcare, business, climate, sports, and your own gradebook — each one a few honest lines of Python.</div>
+</section>
+
+<!-- A3 GRID -->
+<section>
+  <h3>Assignment 3 — the eight jobs</h3>
+  <div class="grid">
+    <div class="cardp"><b>Physics</b> — cart velocities from motion-sensor positions</div>
+    <div class="cardp"><b>Finance</b> — a retirement account, month by month</div>
+    <div class="cardp"><b>Psychology</b> — cleaning reaction-time data</div>
+    <div class="cardp"><b>Healthcare</b> — blood-pressure screening day</div>
+    <div class="cardp"><b>Business</b> — smoothing a sales dashboard</div>
+    <div class="cardp"><b>Climate</b> — heat days and heat streaks</div>
+    <div class="cardp"><b>Sports</b> — the hot hand 🖥️ <i>trace required</i></div>
+    <div class="cardp"><b>Education</b> — your own drop-the-lowest gradebook</div>
+  </div>
+  <p class="why">Every problem: real context → honest simplification → function signature → <b>provided tests</b>. Each problem lists exactly which helpers are allowed. Last week we hand you the tests — from A4, you write your own.</p>
+</section>
+
+<!-- LOGISTICS -->
+<section>
+  <h3>This week, concretely</h3>
+  <div class="fix" style="font-size:.58em">
+  <b>Tonight's lab (15 pts):</b> five problems × three parts — comments 1 · code 1 · ⭐ trace 1. Only the ✍️ YOUR TURN cells are graded; everything else is playground.<br><br>
+  <b>Homework (25 pts):</b> Assignment 3, eight problems + reflection/AI-disclosure.<br><br>
+  <b>Both due:</b> Sunday, Sep 27, 11:00 PM — two labeled Colab links in the Assignment 3 slot on Sakai.<br><br>
+  <b>Before submitting, always:</b> Runtime → Run all · every ✅ visible · open your own share link in a private window.</div>
+  <div class="take"><b>And remember the recap:</b> comments say why · unrun code is a rumor · state your reasoning. As of this week, those aren't advice — they're points.</div>
+</section>
+
+<!-- CLOSE -->
+<section>
+  <h2>English → code → proof</h2>
+  <p><small>The wolf and the goat got you here. The cash register showed the method.<br>Now: five problems, five traces, and a homework set that would make Excel sweat.</small></p>
+</section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>Reveal.initialize({ hash:true, slideNumber:true, plugins:[RevealHighlight] });</script>
+</body>
+</html>
