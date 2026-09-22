@@ -28,6 +28,10 @@
     .reveal .grid { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:14px; }
     .reveal .cardp { background:#17212b; border:1px solid #2b3a48; border-radius:12px; padding:10px 14px; font-size:.5em; width:200px; text-align:left; }
     .reveal .cardp b { color:#4cc9f0; }
+    .reveal .twoup { display:flex; gap:12px; justify-content:center; align-items:stretch; margin-top:10px; }
+    .reveal .twoup > div { flex:1; max-width:470px; }
+    .reveal .twoup pre { margin:6px 0 0; }
+    .reveal .twoup pre code { font-size:.6em; }
     .reveal .step { display:inline-block; background:#264653; color:#ffd166; border-radius:50%; width:1.5em; height:1.5em; line-height:1.5em; font-weight:700; margin-right:.3em; }
   </style>
 </head>
@@ -170,6 +174,166 @@
   <b>Both due:</b> Sunday, Sep 27, 11:00 PM — two labeled Colab links in the Assignment 3 slot on Sakai.<br><br>
   <b>Before submitting, always:</b> Runtime → Run all · every ✅ visible · open your own share link in a private window.</div>
   <div class="take"><b>And remember the recap:</b> comments say why · unrun code is a rumor · state your reasoning. As of this week, those aren't advice — they're points.</div>
+</section>
+
+<!-- TITLE -->
+<section>
+  <h2>Addendum: Dictionaries</h2>
+  <h4 style="color:#9fb3c8">Labels, not positions</h4>
+  <p><small>The last core data structure you need — if we have time tonight, or read-ahead for next week</small></p>
+</section>
+
+<!-- THE PROBLEM -->
+<section>
+  <h3>Lists have a blind spot</h3>
+  <div class="mistake"><b>You know this pain already.</b> A list answers one question: <i>"what's at position 3?"</i><br><br>
+  But most real questions aren't positional: <i>What's <b>Hanna's</b> grade? How many times did <b>"error 429"</b> appear? What's the price of <b>oat milk</b>?</i><br><br>
+  With only lists, you end up managing <em>two parallel lists</em> — names in one, grades in another — and praying they never fall out of sync.</div>
+  <div class="take"><b>The missing tool:</b> a container you look into by <b>label</b> instead of by position. That's a dictionary.</div>
+</section>
+
+<!-- WHAT IT IS -->
+<section>
+  <h3>A dictionary is a set of label → value pairs</h3>
+  <pre><code class="language-python">grades = {"Hanna": 25, "Vincent": 25, "Abbi": 24.75}
+
+print(grades["Hanna"])      # 25   <- look up by label
+grades["Abbi"] = 25         # change a value
+grades["Jesse"] = 24.65     # add a brand-new pair
+print(len(grades))          # 4</code></pre>
+  <div class="fix"><b>Vocabulary:</b> the labels are called <b>keys</b>, the contents are <b>values</b>, each pair is an <b>item</b>. Curly braces <code>{ }</code>, colon between key and value, commas between pairs.</div>
+  <div class="take"><b>Same square brackets as lists</b> — but where a list wants <code>[3]</code>, a dict wants <code>["Hanna"]</code>. Position out, label in.</div>
+</section>
+
+<!-- LISTS VS DICTS -->
+<section>
+  <h3>List vs Dictionary — same jobs, different questions</h3>
+  <div class="twoup">
+    <div><div class="mistake" style="max-width:none"><b>List</b> — order matters
+    <pre><code class="language-python">temps = [70, 75, 76, 78]
+temps[0]        # first reading
+temps.append(69)
+for t in temps:
+    print(t)</code></pre></div></div>
+    <div><div class="fix" style="max-width:none"><b>Dict</b> — labels matter
+    <pre><code class="language-python">menu = {"latte": 4.50,
+        "drip": 2.75}
+menu["latte"]   # by name
+menu["mocha"] = 5.25
+for drink in menu:
+    print(drink, menu[drink])</code></pre></div></div>
+  </div>
+  <div class="take"><b>Rule of thumb:</b> a <em>sequence</em> of things → list. A <em>lookup table</em> of things → dict. (Sensor readings: list. Price sheet: dict. A gradebook: dict of name → score.)</div>
+</section>
+
+<!-- MISSING KEYS -->
+<section>
+  <h3>The missing-key moment</h3>
+  <pre><code class="language-python">menu = {"latte": 4.50, "drip": 2.75}
+
+print(menu["mocha"])          # 💥 KeyError: 'mocha'
+
+print("mocha" in menu)        # False  — check first, like lists
+print(menu.get("mocha", 0))   # 0      — or supply a fallback</code></pre>
+  <div class="mistake"><b>KeyError</b> is the dictionary's version of last week's not-found problem: you asked for something that isn't there.</div>
+  <div class="fix"><b>Two polite ways to ask:</b> <code>"mocha" in menu</code> answers yes/no · <code>menu.get("mocha", 0)</code> answers "the value, or this default if missing." That second one is about to become the star of the show.</div>
+</section>
+
+<!-- LOOPING -->
+<section>
+  <h3>Looping over a dictionary</h3>
+  <pre><code class="language-python">grades = {"Hanna": 25, "Vincent": 25, "Abbi": 24.75}
+
+for name in grades:                      # keys
+    print(name)
+
+for name in grades:                      # keys -> values
+    print(name, "scored", grades[name])
+
+for name, score in grades.items():      # both at once
+    print(name, "scored", score)</code></pre>
+  <div class="take"><b>Everything you know about loops still applies</b> — accumulate, count, find-the-biggest, trace tables. The loop variable just holds a <em>key</em> instead of a position's value.</div>
+</section>
+
+<!-- THE KILLER APP -->
+<section>
+  <h3>The killer app: counting things</h3>
+  <div class="mistake"><b>The task:</b> count how many times each word appears in a list. With only lists, this is genuinely awkward. With a dict, it's four lines — and it's the single most-used pattern in data science.</div>
+  <pre><code class="language-python">votes = ["pizza", "tacos", "pizza", "sushi", "pizza", "tacos"]
+
+counts = {}                                   # start empty
+for v in votes:
+    # current count if we've seen it, else 0 — then add this one
+    counts[v] = counts.get(v, 0) + 1
+
+print(counts)   # {'pizza': 3, 'tacos': 2, 'sushi': 1}</code></pre>
+  <div class="take"><b>Read that middle line out loud:</b> "the new count for this item is whatever it was before — or zero if it's new — plus one." <code>.get(key, 0)</code> makes the first sighting and the hundredth sighting the same line of code.</div>
+</section>
+
+<!-- TRACE IT -->
+<section>
+  <h3>Prove it: play the computer</h3>
+  <table class="trace">
+    <tr><th>v</th><th>counts.get(v, 0)</th><th>counts after</th></tr>
+    <tr class="fragment"><td>"pizza"</td><td>0</td><td>{'pizza': 1}</td></tr>
+    <tr class="fragment"><td>"tacos"</td><td>0</td><td>{'pizza': 1, 'tacos': 1}</td></tr>
+    <tr class="fragment"><td>"pizza"</td><td>1</td><td>{'pizza': 2, 'tacos': 1}</td></tr>
+    <tr class="fragment"><td>"sushi"</td><td>0</td><td>{'pizza': 2, 'tacos': 1, 'sushi': 1}</td></tr>
+    <tr class="fragment"><td>"pizza"</td><td>2</td><td>{'pizza': 3, 'tacos': 1, 'sushi': 1}</td></tr>
+    <tr class="fragment"><td>"tacos"</td><td>1</td><td>{'pizza': 3, 'tacos': 2, 'sushi': 1}</td></tr>
+  </table>
+  <div class="take fragment"><b>Trace tables work on dicts too</b> — the "counts after" column is just a variable that happens to hold pairs. Watch the <code>.get</code> column: it's 0 exactly on first sightings.</div>
+</section>
+
+<!-- VALUES CAN BE ANYTHING -->
+<section>
+  <h3>Values can be anything — even lists, even dicts</h3>
+  <pre><code class="language-python">student = {
+    "name": "Hanna",
+    "scores": [25, 12, 29.5],          # a list as a value
+    "contact": {"email": "h@luc.edu"}  # a dict as a value
+}
+
+print(student["scores"][0])            # 25
+print(student["contact"]["email"])     # h@luc.edu</code></pre>
+  <div class="star"><b>Look familiar?</b> This shape — labels, holding values, holding more labeled values — is exactly what JSON looks like: the format your AI harness config, every web API, and your Colab notebooks themselves are written in. When you read a <code>.json</code> file in Python, what you get back <em>is a dictionary</em>.</div>
+</section>
+
+<!-- KEY RULES -->
+<section>
+  <h3>The fine print (small, but real)</h3>
+  <div class="fix" style="font-size:.55em">
+  <b>Keys are unique.</b> Assigning to an existing key <em>replaces</em> its value — that's why the counting pattern works.<br><br>
+  <b>Keys are usually strings or numbers.</b> (Technically: anything unchangeable. Lists can't be keys.)<br><br>
+  <b>Values can repeat and can be anything.</b><br><br>
+  <b>Looking up by value takes a loop</b> — dicts are one-directional: key → value is instant, value → key is a search (you wrote that search last week: it's <code>first_above</code> with different clothes).</div>
+  <div class="take"><b>Mental model that never fails:</b> a real dictionary. Words (keys) are unique and looked up instantly; definitions (values) can be anything, and finding "which word means X" requires reading the whole book.</div>
+</section>
+
+<!-- WORKED MICRO EXAMPLE -->
+<section>
+  <h3>Putting it together: the gradebook, upgraded</h3>
+  <pre><code class="language-python"># comments first, as always:
+# start an empty gradebook
+# for each (name, score) pair in the submissions:
+#     record the score under the student's name
+# then answer questions by label, not position
+
+gradebook = {}
+submissions = [("Hanna", 25), ("Vincent", 25), ("Abbi", 24.75)]
+for name, score in submissions:
+    gradebook[name] = score
+
+print(gradebook["Vincent"])            # instant lookup
+print(sum(gradebook.values()) / len(gradebook))  # class average</code></pre>
+  <div class="take"><b>Two parallel lists just became one honest structure.</b> <code>.values()</code> hands you the scores when you need list-style math — the tools compose.</div>
+</section>
+
+<!-- CLOSE -->
+<section>
+  <h2>Position → label</h2>
+  <p><small>Lists answer "what's at spot 3?" · Dictionaries answer "what's Hanna's grade?"<br>
+  Count with <code>.get(key, 0) + 1</code> · check with <code>in</code> · loop with <code>.items()</code> — and trace when in doubt.</small></p>
 </section>
 
 <!-- CLOSE -->
