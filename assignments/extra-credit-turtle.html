@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMP 150-003 · Assignment</title>
+<style>
+  :root{--bg:#0f1720;--card:#17212b;--card2:#1b2733;--ink:#e6edf3;--muted:#9fb3c8;
+        --accent:#4cc9f0;--accent2:#a78bfa;--warn:#e76f51;--good:#7ee787;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:18px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+       background:radial-gradient(60rem 30rem at 85% -5%,rgba(76,201,240,.13),transparent 60%),
+                  radial-gradient(50rem 28rem at -10% 20%,rgba(167,139,250,.10),transparent 60%);}
+  main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem;}
+  a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+
+  /* Hero title */
+  h1{font-size:2.3rem;line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 1.1rem;
+     background:linear-gradient(92deg,#fff 30%,var(--accent) 75%,var(--accent2));
+     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+
+  /* Meta block: the paragraph right after the title becomes a card of pills */
+  h1 + p{background:var(--card);border:1px solid #24313d;border-radius:14px;
+     padding:1rem 1.2rem;line-height:2.15;box-shadow:0 8px 30px rgba(0,0,0,.25);}
+  h1 + p strong{color:var(--bg);background:linear-gradient(92deg,var(--accent),#7dd8f7);
+     border-radius:999px;padding:.14rem .6rem;margin-right:.25rem;font-size:.78em;
+     font-weight:700;letter-spacing:.02em;white-space:nowrap;}
+
+  h2{border-left:4px solid var(--accent);padding-left:.6rem;margin-top:2.4rem;font-size:1.35rem;}
+  h2.topic{border:1px solid #2a3a49;border-left:5px solid var(--accent2);border-radius:12px;
+     background:linear-gradient(180deg,var(--card2),var(--card));
+     padding:.85rem 1rem;box-shadow:0 8px 26px rgba(0,0,0,.28);}
+  h3{color:var(--accent);margin-top:1.6rem;font-size:1.05rem;}
+
+  code{background:#0b1017;padding:.12rem .4rem;border-radius:6px;font-size:.92em;}
+  pre code{display:block;padding:1rem;overflow:auto;}
+  blockquote{background:var(--card);border:1px solid #24313d;border-left:3px solid var(--good);
+     border-radius:10px;margin:1rem 0;padding:.8rem 1.1rem;color:#cfe;}
+  hr{border:0;height:1px;margin:2.4rem 0;
+     background:linear-gradient(90deg,transparent,#2c3d4d 20%,#2c3d4d 80%,transparent);}
+  em{color:var(--muted);} strong{color:#fff;}
+
+  table{border-collapse:separate;border-spacing:0;width:100%;font-size:.92em;margin:.8rem 0;
+     border:1px solid #24313d;border-radius:12px;overflow:hidden;}
+  th{background:linear-gradient(92deg,#20303e,#1b2836);color:var(--accent);
+     text-transform:uppercase;font-size:.78em;letter-spacing:.06em;}
+  td,th{border-bottom:1px solid #24313d;padding:.5rem .7rem;text-align:left;}
+  td+td,th+th{text-align:center;border-left:1px solid #24313d;}
+  tr:last-child td{border-bottom:0;}
+  tr:hover td{background:rgba(76,201,240,.05);}
+
+  ul,ol{padding-left:1.3rem;} li{margin:.4rem 0;}
+  li strong:first-child{color:var(--accent);}
+  .backlink{color:var(--muted);font-size:.9em;}
+  @media (max-width:600px){h1{font-size:1.7rem;} body{font-size:16px;}}
+</style>
+</head>
+<body>
+<main>
+  <p><a class="backlink" href="../index.html">&larr; Course home</a></p>
+<h1 id="extra-credit-turtle-art">Extra Credit — Turtle Art</h1>
+<p><strong>Worth:</strong> 60 bonus points <strong>Due:</strong> Sunday,
+October 11, 2026, 11:00 PM (same as Assignment 4)
+<strong>Submit:</strong> your Colab link in the <em>Extra Credit: Turtle
+Art</em> assignment on Sakai <strong>Notebook:</strong> <a
+href="https://colab.research.google.com/drive/1LZ1Yg88EMTQYd3y_9ZjZSY2s8FhFzxIx">Open
+the Turtle Art notebook in Colab</a> (view-only; File → Save a copy in
+Drive first)</p>
+<hr />
+<h2 id="the-challenge">The challenge</h2>
+<p>Write turtle code that recreates this image as closely as you
+can.</p>
+<figure>
+<img src="assets/ec-turtle-reference.png"
+alt="The target image: a 2×2 grid with a shield, a radial circle array, a colorful spiral on black, and a purple iris" />
+<figcaption aria-hidden="true">The target image: a 2×2 grid with a
+shield, a radial circle array, a colorful spiral on black, and a purple
+iris</figcaption>
+</figure>
+<p>This builds directly on the Week 6 lab: shape functions that draw
+<strong>centered on a point</strong>, loops of shapes that make
+patterns, and careful placement on the canvas.</p>
+<h2 id="how-the-notebook-works">How the notebook works</h2>
+<p>The notebook walks you through it one piece at a time:</p>
+<ol type="1">
+<li><strong>Part 1: Shield of the Captain</strong> (practice)</li>
+<li><strong>Part 2: Radial Circle Array</strong> (practice)</li>
+<li><strong>Part 3: Spiral</strong> (practice)</li>
+<li><strong>Part 4: Iris</strong> (practice)</li>
+<li><strong>Part 5: Titles and background lines</strong> (practice)</li>
+<li><strong>Part 6: The final image</strong> ⭐
+<strong>graded</strong></li>
+</ol>
+<p>Each practice part gives the target’s measurements (sizes, colors,
+counts, positions) and hints, and lets you test that one drawing by
+itself. The algorithms are yours to figure out. <strong>Only Part 6 is
+graded:</strong> copy your finished functions into it and draw the whole
+picture in one cell.</p>
+<h2 id="how-its-graded">How it’s graded</h2>
+<p>I run <strong>only your Part 6 cell</strong>, save the image it
+draws, and compare it <strong>pixel by pixel</strong> with the reference
+image above. Each piece is scored by how closely it matches: an exact
+match earns full points, and a close match earns most of them.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Graded piece</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Panel 1: Shield of the Captain</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Panel 2: Radial Circle Array</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Panel 3: Spiral</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Panel 4: Iris</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Placement: each drawing centered in its panel, with its title</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Background lines: the black border and the center cross, all the
+same thickness</td>
+<td>10</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>60</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="tips">Tips</h2>
+<ul>
+<li><strong>Test one drawing at a time.</strong> Get Panel 1 right on
+its own before you move on.</li>
+<li><strong>Circles start at the bottom.</strong> <code>circle(r)</code>
+begins at the turtle’s position, so to center a circle on
+<code>(cx, cy)</code>, start at <code>(cx, cy - r)</code>.</li>
+<li><strong>Order matters in Part 6.</strong> Draw the four pictures,
+then the titles, then the black lines last, so the lines sit on
+top.</li>
+<li><strong>Zoom in on the reference.</strong> The spiral and the iris
+hide their secrets in the details: count directions, look at one
+ray.</li>
+<li><strong>Run Part 6 by itself before submitting.</strong> If it only
+works when the earlier cells ran first, it won’t work when I grade
+it.</li>
+</ul>
+<h2 id="using-ai">Using AI</h2>
+<p>Per the syllabus, AI is welcome: ask it to explain turtle commands,
+debug your code, or talk through the geometry. You must be able to
+explain every line you submit.</p>
+
+</main>
+</body>
+</html>
