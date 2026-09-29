@@ -4,7 +4,7 @@
 
 ## Key facts
 - Section 003, class #2944. Term: Aug 24 – Dec 12, 2026.
-- Office hours: Tuesdays 7–9 PM, Information Commons Room 332.
+- Office hours: Tuesdays right after class, in the classroom (Information Commons 216).
 - Deadlines at night are due at 11:00 PM (never midnight). The schedule is tentative — always check Sakai for the current week.
 - Model access for the harness: a free Google Gemini API key (no credit card).
 

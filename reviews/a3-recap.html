@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMP 150 · A3 Recap</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <style>
+    :root { --r-heading-text-transform: none; }
+    .reveal h1,.reveal h2,.reveal h3 { letter-spacing:-.01em; }
+    .reveal small { color:#9fb3c8; }
+    .reveal img.chart { max-height:430px; border-radius:12px; }
+    .reveal .why { color:#9fb3c8; font-size:.5em; margin-top:4px; line-height:1.35; }
+    .reveal .mistake { background:#2a1a1a; border:1px solid #5c3030; border-radius:14px; padding:12px 20px; text-align:left; font-size:.55em; margin:10px auto 0; max-width:900px; }
+    .reveal .mistake code { color:#ff9f9f; }
+    .reveal .fix { background:#15251b; border:1px solid #2b5c3a; border-radius:14px; padding:12px 20px; text-align:left; font-size:.55em; margin:10px auto 0; max-width:900px; }
+    .reveal .fix code { color:#8fe3b0; }
+    .reveal .take { background:#17212b; border-left:5px solid #4cc9f0; border-radius:8px; padding:8px 16px; text-align:left; font-size:.54em; margin:10px auto 0; max-width:900px; }
+    .reveal .take b { color:#4cc9f0; }
+    .reveal .star { background:#241f10; border:1px solid #6b5a1e; border-radius:14px; padding:12px 20px; text-align:left; font-size:.55em; margin:10px auto 0; max-width:920px; }
+    .reveal .star code { color:#ffd166; }
+    .reveal .who { display:inline-block; padding:.1em .55em; border-radius:.5em; background:#264653; color:#ffd166; font-size:.85em; font-weight:700; }
+    .reveal pre { width:100%; box-shadow:none; }
+    .reveal pre code { max-height:380px; font-size:.72em; line-height:1.35; border-radius:10px; }
+    .reveal table.trace { font-size:.55em; margin:14px auto 0; border-collapse:collapse; }
+    .reveal table.trace th { background:#264653; color:#ffd166; padding:4px 14px; border:1px solid #3a5a6a; }
+    .reveal table.trace td { padding:3px 14px; border:1px solid #3a5a6a; }
+    .reveal table.trace td.hot { background:#402020; color:#ff9f9f; font-weight:700; }
+    .reveal table.trace tr.frag td { }
+  </style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section>
+  <h2>Assignment 3 — How We Did</h2>
+  <h4 style="color:#9fb3c8">Python did your spreadsheet's job · and you broke it down, comments first</h4>
+  <p><small>COMP 150-003 · Week 6 · All results anonymized</small></p>
+</section>
+
+<section>
+  <h3>Part 1 — The Numbers</h3>
+  <p><small>New this time: I didn't just read your code. I <em>ran</em> it.</small></p>
+</section>
+
+<section>
+  <h3>22 of 27 submitted</h3>
+  <img class="chart" src="assets-a3/submissions.png" alt="22 submitted, 5 did not">
+  <p class="why">If you're one of the 5, talk to me tonight. There's still time to catch up.</p>
+</section>
+
+<section>
+  <h3>The class kept climbing</h3>
+  <img class="chart" src="assets-a3/hist_total.png" alt="Histogram of totals out of 40">
+  <p class="why">Mean about 36 / 40, and the assignment was harder than A2. Most of the points you lost weren't about Python at all. They were about process.</p>
+</section>
+
+<section>
+  <h3>I ran every function you wrote</h3>
+  <img class="chart" src="assets-a3/execution.png" alt="16 students passed every test">
+  <p class="why">16 of 22 of you passed <b>every</b> test in both notebooks. Missing outputs weren't penalized: if your code is right, it's right. The computer is the judge now, not the screenshot.</p>
+</section>
+
+<section>
+  <h3>Where the points lived</h3>
+  <img class="chart" src="assets-a3/per_problem.png" alt="Per-problem averages, homework and lab">
+  <p class="why">Every problem averaged in the high 80s or 90s. What separated a 40 from a 36 was a comment, a trace row, or an indent.</p>
+</section>
+
+<section>
+  <h3>Part 2 — Four Lessons</h3>
+  <p><small>Plus one thing the whole class got right.</small></p>
+</section>
+
+<!-- LESSON 1 -->
+<section>
+  <h3>Lesson 1 — Comments first isn't decoration</h3>
+  <img class="chart" src="assets-a3/comments.png" alt="13 why-comments throughout, 6 some or restating, 3 none" style="max-height:300px">
+  <div class="take"><b>The method was: English plan → code under each line → trace.</b> Three homework submissions had no plan at all, even though all three of those students wrote real plans in the lab. The plan <em>is</em> the assignment. A function with no step comments earns 0 on the comment point.</div>
+</section>
+
+<section>
+  <h3>What a plan comment sounds like (yours, anonymized)</h3>
+  <div class="star">⭐ <code># Stop one position early because every calculation also needs the next reading</code></div>
+  <div class="star">⭐ <code># interest first, then deposit, because order matters</code></div>
+  <div class="star">⭐ <code># stop when there are not enough weeks left to make a full window</code></div>
+  <div class="star">⭐ <code># If we started at or above the target, the loop never ran</code></div>
+  <div class="take"><b>Notice:</b> every one says <em>why</em>, and every one would still make sense if you covered the code. Also: reusing class vocabulary (like "hand back the survivors") is exactly right. That's learning the pattern.</div>
+</section>
+
+<!-- LESSON 2 -->
+<section>
+  <h3>Lesson 2 — The answer that comes <em>after</em> the loop</h3>
+  <div class="mistake"><b>Lab P2, <code>first_above([3, 1, 2], 10)</code>:</b> twelve of you traced the three loop passes perfectly and then stopped, or wrote "return −1" <em>inside</em> the last pass, or even <em>before</em> the loop.</div>
+  <table class="trace">
+    <tr><th>index</th><th>value</th><th>value &gt; 10 ?</th><th>what happens</th></tr>
+    <tr><td>0</td><td>3</td><td>False</td><td>keep looking</td></tr>
+    <tr><td>1</td><td>1</td><td>False</td><td>keep looking</td></tr>
+    <tr><td>2</td><td>2</td><td>False</td><td>keep looking</td></tr>
+    <tr class="fragment"><td>—</td><td>—</td><td>loop ends</td><td><b>return −1</b> (the line <em>after</em> the loop)</td></tr>
+  </table>
+  <div class="take fragment"><b>That last row is the whole lesson.</b> "Not found" isn't something that happens during the search. It's what's left when the search ends empty. One final-state row after the loop is always allowed, and here it's required.</div>
+</section>
+
+<!-- LESSON 3: initial state -->
+<section>
+  <h3>Lesson 3 — Where does the trace start?</h3>
+  <div class="mistake" style="font-size:.52em"><b>Lab P3, <code>smallest_with_position([4, 2, 2, 9])</code>:</b> many traces started at index 1. That was <b>fine</b> (no points lost), because the loop itself starts at index 1. But look at what the first row quietly depends on:</div>
+  <table class="trace">
+    <tr><th>step</th><th>value</th><th>value &lt; best ?</th><th>best</th><th>best_index</th></tr>
+    <tr style="background:#1f3a2a"><td>start</td><td>4</td><td>—</td><td>4</td><td>0</td></tr>
+    <tr><td>index 1</td><td>2</td><td>True</td><td>2</td><td>1</td></tr>
+    <tr><td>index 2</td><td>2</td><td>False</td><td>2</td><td>1</td></tr>
+    <tr><td>index 3</td><td>9</td><td>False</td><td>2</td><td>1</td></tr>
+  </table>
+  <div class="take"><b>The green row is the setup line</b> (<code>best = values[0]</code>). Every comparison below it leans on that value. Write the start row whenever the setup matters: it's where "why does my answer start at 0?" bugs live.</div>
+</section>
+
+<!-- LESSON 4: scope -->
+<section>
+  <h3>Lesson 4 — In Python, indentation <em>is</em> meaning</h3>
+  <pre><code class="language-python">def velocities(positions, dt):
+    result = []
+    for i in range(len(positions) - 1):
+        result.append((positions[i+1] - positions[i]) / dt)
+        return result        # ← one indent too far</code></pre>
+  <table class="trace">
+    <tr><th>i</th><th>result after append</th><th>next line</th></tr>
+    <tr><td>0</td><td>[2.0]</td><td><b>return</b>: the function ends here, on the first pass</td></tr>
+  </table>
+  <div class="take"><b>Same letters, different program.</b> A <code>return</code> inside the loop ends on pass one. An <code>append</code> outside the loop keeps only the last value. An <code>else</code> lined up with <code>for</code> instead of <code>if</code> means something else entirely. A one-row trace catches all three instantly.</div>
+</section>
+
+<!-- WIN -->
+<section>
+  <h3>What you got right — the loop that never runs</h3>
+  <div class="fix"><b>Lab P5, <code>doublings_to_reach(8, 5)</code>:</b> almost everyone traced it correctly as <b>one row</b>. The condition <code>8 &lt; 5</code> is False on arrival, the body runs zero times, and the answer is 0.</div>
+  <table class="trace">
+    <tr><th>current</th><th>keep going ?</th><th>doublings</th></tr>
+    <tr><td>8</td><td>8 &lt; 5 → False</td><td>0</td></tr>
+  </table>
+  <div class="take"><b>That's a genuinely advanced idea.</b> Plenty of professional bugs come from code that assumes a loop runs at least once. You proved yours doesn't.</div>
+</section>
+
+<!-- POLICIES -->
+<section>
+  <h3>How grading works now</h3>
+  <div class="fix" style="font-size:.54em">
+  <b>1. I run your code.</b> Missing outputs are not penalized, and the tests decide correctness.<br><br>
+  <b>2. Syntax slips cost −0.5 once</b> per assignment, however many there are. A typo shouldn't erase correct logic.<br><br>
+  <b>3. Comments are graded on the plan:</b> why-comments earn the point, comments that restate the code earn half, no comments earn nothing.<br><br>
+  <b>4. Final scores round <em>up</em></b> to the nearest quarter point.<br><br>
+  <b>5. No late penalties so far</b> this semester, but submit on time anyway. The weekly rhythm is what keeps you ahead.</div>
+</section>
+
+<section>
+  <h3>Housekeeping</h3>
+  <div class="fix" style="font-size:.55em">
+  <b>Grades and feedback are posted</b> for A1 regrades, the extra credit lab, A2, and A3. Read your feedback: it's written for you, and it's the fastest way to next week's points.<br><br>
+  <b>Two links, labeled:</b> homework <em>and</em> lab, every week. Open each one in a private window before you submit.<br><br>
+  <b>Colab won't let you share?</b> Upload the .ipynb files to Sakai, and come see me at office hours.<br><br>
+  <b>Office hours tonight:</b> right after class, here in the classroom.</div>
+</section>
+
+<section>
+  <h2>Next: you write the tests</h2>
+  <p><small>This was the last week the tests were handed to you.<br>You already know what a good test looks like: every ⭐ you traced was one.</small></p>
+</section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>Reveal.initialize({ hash:true, slideNumber:true, plugins:[RevealHighlight] });</script>
+</body>
+</html>
