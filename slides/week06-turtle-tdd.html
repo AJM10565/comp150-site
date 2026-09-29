@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMP 150 · Week 6 · Turtle, Dictionaries & TDD</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <style>
+    :root { --r-heading-text-transform: none; }
+    .reveal h1,.reveal h2,.reveal h3 { letter-spacing:-.01em; }
+    .reveal small { color:#9fb3c8; }
+    .reveal .why { color:#9fb3c8; font-size:.5em; margin-top:4px; line-height:1.35; }
+    .reveal .mistake { background:#2a1a1a; border:1px solid #5c3030; border-radius:14px; padding:12px 20px; text-align:left; font-size:.55em; margin:10px auto 0; max-width:900px; }
+    .reveal .mistake code { color:#ff9f9f; }
+    .reveal .fix { background:#15251b; border:1px solid #2b5c3a; border-radius:14px; padding:12px 20px; text-align:left; font-size:.55em; margin:10px auto 0; max-width:900px; }
+    .reveal .fix code { color:#8fe3b0; }
+    .reveal .take { background:#17212b; border-left:5px solid #4cc9f0; border-radius:8px; padding:8px 16px; text-align:left; font-size:.54em; margin:10px auto 0; max-width:900px; }
+    .reveal .take b { color:#4cc9f0; }
+    .reveal .star { background:#241f10; border:1px solid #6b5a1e; border-radius:14px; padding:12px 20px; text-align:left; font-size:.55em; margin:10px auto 0; max-width:920px; }
+    .reveal .star code { color:#ffd166; }
+    .reveal pre { width:100%; box-shadow:none; }
+    .reveal pre code { max-height:400px; font-size:.72em; line-height:1.35; border-radius:10px; }
+    .reveal table.trace { font-size:.55em; margin:14px auto 0; border-collapse:collapse; }
+    .reveal table.trace th { background:#264653; color:#ffd166; padding:4px 14px; border:1px solid #3a5a6a; }
+    .reveal table.trace td { padding:3px 14px; border:1px solid #3a5a6a; }
+    .reveal .grid { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:14px; }
+    .reveal .cardp { background:#17212b; border:1px solid #2b3a48; border-radius:12px; padding:10px 14px; font-size:.5em; width:200px; text-align:left; }
+    .reveal .cardp b { color:#4cc9f0; }
+    .reveal .twoup { display:flex; gap:12px; justify-content:center; align-items:stretch; margin-top:10px; }
+    .reveal .twoup > div { flex:1; max-width:470px; }
+    .reveal .twoup pre { margin:6px 0 0; }
+    .reveal .twoup pre code { font-size:.6em; }
+    .reveal .step { display:inline-block; background:#264653; color:#ffd166; border-radius:50%; width:1.5em; height:1.5em; line-height:1.5em; font-weight:700; margin-right:.3em; }
+      .reveal img.pic { max-height:300px; border-radius:10px; background:#fff; }
+    .reveal .row { display:flex; gap:18px; align-items:center; justify-content:center; }
+    .reveal .row pre { width:auto; flex:1; }
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section>
+  <h2>Turtle Graphics, Dictionaries &amp; Test-Driven Development</h2>
+  <h4 style="color:#9fb3c8">A robot pen, a data structure, and a way to prove your code works</h4>
+  <p><small>COMP 150-003 · Week 6</small></p>
+</section>
+
+
+<section>
+  <h3>Part 1 — Dictionaries, a quick review</h3>
+  <p><small>Last week's addendum, and the backbone of Assignment 4.</small></p>
+</section>
+
+<section>
+  <h3>Labels, not positions</h3>
+  <pre><code class="language-python">prices = {"milk": 3.25, "eggs": 2.10}
+
+prices["milk"]          # 3.25   look up by key
+prices["bread"] = 2.50  # add a new pair
+prices["milk"] = 3.40   # update an existing key
+len(prices)             # 3</code></pre>
+  <div class="take"><b>A list answers "what's at position 2?" A dictionary answers "what's the price of milk?"</b> Keys are unique; assigning to an existing key replaces its value.</div>
+  <div class="star">🧪 <b>Try it:</b> what does <code>prices["tea"]</code> do? Predict, then run it in Colab.</div>
+</section>
+
+<section>
+  <h3>Asking safely: <code>in</code> and <code>.get</code></h3>
+  <pre><code class="language-python">prices["tea"]            # 💥 KeyError: 'tea'
+"tea" in prices          # False, so check first
+prices.get("tea", 0)     # 0: the value, or a default if missing</code></pre>
+  <div class="take"><b><code>.get(key, default)</code> is the workhorse.</b> It makes "never seen this key before" and "seen it a hundred times" the same line of code. You'll use it in every Assignment 4 problem.</div>
+</section>
+
+<section>
+  <h3>Looping over a dictionary</h3>
+  <pre><code class="language-python">for item in prices:                  # keys
+    print(item)
+
+for item, price in prices.items():   # keys and values together
+    print(item, "costs", price)
+
+for item in sorted(prices):          # keys in alphabetical order
+    print(item)</code></pre>
+  <div class="take"><b>Remember <code>sorted(...)</code>:</b> dictionaries keep insertion order, so when you need a predictable order (like breaking a tie alphabetically), loop over <code>sorted(the_dict)</code>.</div>
+</section>
+
+<section>
+  <h3>The counting pattern</h3>
+  <pre><code class="language-python">votes = ["pizza", "tacos", "pizza"]
+counts = {}
+for v in votes:
+    counts[v] = counts.get(v, 0) + 1   # old count (or 0) plus one
+# counts == {"pizza": 2, "tacos": 1}</code></pre>
+  <div class="star">🧪 <b>Try it:</b> trace it by hand first. Make a table with columns <code>v</code>, <code>counts.get(v, 0)</code>, and <code>counts after</code>. Three rows. Then run it and check.</div>
+</section>
+
+<section>
+  <h3>Records: a list of dictionaries</h3>
+  <pre><code class="language-python">visits = [
+    {"patient": "A1", "symptom": "fever"},
+    {"patient": "A2", "symptom": "cough"},
+    {"patient": "A3", "symptom": "fever"},
+]
+for visit in visits:
+    print(visit["symptom"])     # each record is a dictionary</code></pre>
+  <div class="take"><b>This is what real data looks like</b>: spreadsheet rows, API responses, sensor logs. Assignment 4's recipe is always two steps: <b>organize</b> the records into a dictionary (count, total, or group), then <b>ask</b> that dictionary a question (the biggest, the ones over a limit, and so on).</div>
+</section>
+
+
+<!-- PART 1 TURTLE -->
+<section>
+  <h3>Part 2 — Meet the turtle</h3>
+  <div class="fix" style="font-size:.6em">A turtle is a tiny robot holding a pen. It sits at the <b>center</b> of the canvas, point <code>(0, 0)</code>, facing right. You give it instructions like "go forward 100" or "turn left 90", and it draws as it moves.<br><br>
+  Every command is a <b>function call</b>, so everything you learned about loops and functions applies immediately.</div>
+  <div class="take"><b>In Colab:</b> run <code>!pip install -q ColabTurtlePlus</code> then <code>from ColabTurtlePlus.Turtle import *</code> once, and start every drawing cell with <code>clearscreen()</code>.</div>
+</section>
+
+<section>
+  <h3>The coordinate system</h3>
+  <div class="fix" style="font-size:.58em">
+  <b>x</b> grows to the <b>right</b>, <b>y</b> grows <b>up</b>, and <code>(0, 0)</code> is the middle.<br>
+  Headings: <code>0</code> = east · <code>90</code> = north · <code>180</code> = west · <code>270</code> = south.</div>
+  <div class="mistake" style="font-size:.55em"><b>The #1 surprise:</b> <code>circle(r)</code> does <em>not</em> draw around the turtle. It starts at the turtle's spot, the <b>bottom</b> of the circle, and curves to the left. To center a circle on <code>(x, y)</code>, start at <code>(x, y - r)</code>.</div>
+  <div class="star">🧪 <b>Try it (lab):</b> run <code>setheading(90)</code> then <code>forward(100)</code>. Which way did it go? Then try 180 and 270.</div>
+</section>
+
+<section>
+  <h3>Your first drawing: a loop</h3>
+  <div class="row">
+  <pre><code class="language-python">clearscreen()
+setup(300, 300)
+pencolor("blue")
+for _ in range(4):
+    forward(100)
+    left(90)</code></pre>
+  <img class="pic" src="assets-w6/square.png">
+  </div>
+  <div class="take"><b>A square is a loop.</b> Four identical steps: go forward, turn 90°. The turtle ends up exactly where it started, facing the same way. That "return to start" is how you know the shape is closed.</div>
+  <div class="star">🧪 <b>Try it (lab):</b> change 4 and 90 to draw a triangle, a pentagon, a hexagon. What's the rule? (All the turns add up to 360°.)</div>
+</section>
+
+<section>
+  <h3>Change one number, get a new shape</h3>
+  <div class="row">
+  <pre><code class="language-python">penup(); goto(-80, 20); pendown()
+pencolor("purple")
+for _ in range(5):
+    forward(160)
+    right(144)</code></pre>
+  <img class="pic" src="assets-w6/star.png">
+  </div>
+  <div class="take"><b>Why 144?</b> A star's points skip around the circle. Five turns of 144° add up to 720°, exactly two full rotations, so the turtle closes the shape after looping around twice. Squares use 90° (4 × 90 = 360, once around).</div>
+</section>
+
+<section>
+  <h3>Loops of shapes make patterns</h3>
+  <div class="row">
+  <pre><code class="language-python">pencolor("green")
+for _ in range(12):
+    circle(50)
+    left(30)</code></pre>
+  <img class="pic" src="assets-w6/pattern.png">
+  </div>
+  <div class="take"><b>12 circles × 30° = 360°.</b> Draw one shape, rotate a little, repeat. Nearly every "fancy" turtle picture is this idea: a small loop inside a bigger loop.</div>
+  <div class="star">🧪 <b>Try it (lab):</b> change the 12 and the 30 together. What has to stay true for the pattern to close?</div>
+</section>
+
+<section>
+  <h3>The big idea: draw <em>centered</em> on a point</h3>
+  <div class="row">
+  <pre><code class="language-python">def draw_square(x, y, size, color):
+    # jump to the bottom-left corner:
+    # half the size left and down
+    penup()
+    goto(x - size / 2, y - size / 2)
+    setheading(0)
+    pendown()
+    fillcolor(color)
+    pencolor(color)
+    begin_fill()
+    for _ in range(4):
+        forward(size)
+        left(90)
+    end_fill()</code></pre>
+  <img class="pic" src="assets-w6/center.png">
+  </div>
+  <div class="take"><b>Both squares are centered on the same dot.</b> When every shape function means "centered on (x, y)", you can place things precisely without trial and error. That's tonight's lab.</div>
+</section>
+
+<section>
+  <h3>A picture is a list of dictionaries</h3>
+  <div class="row">
+  <pre><code class="language-python">house = [
+  {"type": "rectangle", "x": 0, "y": -60,
+   "width": 200, "height": 150, "color": "burlywood"},
+  {"type": "triangle", "x": 0, "y": 60,
+   "size": 230, "color": "firebrick"},
+  ...
+]
+for spec in house:
+    draw_shape(spec)</code></pre>
+  <img class="pic" src="assets-w6/house.png" style="max-height:260px">
+  </div>
+  <div class="take"><b>Data, not code.</b> Each shape describes itself in a dictionary, and one loop draws them all. Want a sun? Add one dictionary; no new drawing code. This is how real graphics programs and games describe their scenes.</div>
+</section>
+
+<!-- OPTIONAL CLASSES -->
+<section>
+  <h3>Optional: bundle data and behavior in a class</h3>
+  <pre><code class="language-python">class Square:
+    def __init__(self, x, y, size, color):
+        self.x, self.y = x, y          # remember where I am
+        self.size, self.color = size, color
+
+    def draw(self):
+        draw_square(self.x, self.y, self.size, self.color)
+
+    def area(self):
+        return self.size * self.size
+
+roof_window = Square(0, 20, 30, "lightblue")
+roof_window.draw()</code></pre>
+  <div class="take"><b>A class is a dictionary that also knows how to act.</b> The data (<code>x</code>, <code>size</code>, …) travels with its behavior (<code>draw</code>, <code>area</code>). It's optional this week, and it's especially handy when a picture has many shapes of the same kind.</div>
+</section>
+
+
+<section>
+  <h3>Part 3 — Test-driven development</h3>
+  <div class="fix" style="font-size:.6em">Until now I handed you the tests. <b>From this week on, you write them, and you write them <em>first</em>.</b><br><br>
+  A test is just <b>a question you already know the answer to</b>: "if I give <code>cheapest_item</code> milk $3.25, eggs $2.10, and bread $2.50, it should say eggs."</div>
+</section>
+
+<section>
+  <h3>A friendlier test than <code>assert</code></h3>
+  <pre><code class="language-python">def test(expected, actual, test_name):
+    """ Print the result of a test. """
+    linenum = sys._getframe(1).f_lineno
+    did_pass = expected == actual
+    result = "PASSED" if did_pass else "FAILED"
+    print(f"Test '{test_name}' at line {linenum} {result}.")
+    if not did_pass:
+        print(f"  Expected: {expected}")
+        print(f"  Actual: {actual}")</code></pre>
+  <div class="mistake" style="font-size:.52em"><code>assert</code> just crashes: <code>AssertionError</code>, with no hint about what you got.</div>
+  <div class="fix" style="font-size:.52em"><code>test()</code> tells you: <code>Test 'tie' at line 4 FAILED.</code> · <code>Expected: Ana</code> · <code>Actual: Cy</code>. That's a clue, not a crash.</div>
+</section>
+
+<section>
+  <h3>Why write the tests <em>before</em> the code?</h3>
+  <div class="fix" style="font-size:.56em">
+  <b>1. It forces you to decide what "right" means</b> before you're attached to your code. Ties? Empty input? You have to answer these first.<br><br>
+  <b>2. It gives you a finish line.</b> You're done when the tests pass, not when you get tired.<br><br>
+  <b>3. It catches your own blind spots.</b> Code written first tends to get tested only on the inputs it already handles.</div>
+  <div class="take"><b>You already do the English version:</b> comments first, then code. TDD adds one more step before the code: <em>examples of the right answer</em>.</div>
+</section>
+
+<section>
+  <h3>The loop: red → green → refactor</h3>
+  <div class="fix" style="font-size:.6em">
+  <b>0. Plan:</b> write your step comments in English.<br><br>
+  <b style="color:#ff9f9f">1. Red:</b> write your tests and run them. They <b>fail</b>, because the code isn't written yet. That proves your tests can catch a wrong answer.<br><br>
+  <b style="color:#8fe3b0">2. Green:</b> write the simplest code that makes the tests pass. Rerun. Fix. Repeat.<br><br>
+  <b style="color:#4cc9f0">3. Refactor:</b> clean up names and comments, rerun, and stay green.</div>
+</section>
+
+<section>
+  <h3>Choosing tests: normal, special, edge</h3>
+  <div class="fix" style="font-size:.56em">
+  <b>Normal:</b> typical input. A few items with a clear answer.<br><br>
+  <b>Special:</b> something that could trip up your logic. A tie, a repeat, a missing entry, a negative number.<br><br>
+  <b>Edge:</b> the extremes. An empty list, a single item, exactly at a limit.</div>
+  <div class="take"><b>How many?</b> There's no magic number: keep going until you can't think of an input that might break your function. And <b>every test gets a comment saying why it's there</b>. If you can't say why, it's probably a duplicate.</div>
+</section>
+
+<section>
+  <h3>Worked example — step 0 and step 1 (red)</h3>
+  <p style="font-size:.5em;margin:0 0 6px">▶ Run it yourself: <a href="https://colab.research.google.com/drive/1EsxKc0956qnij3zEPLuGNfI_klhIdEMx" target="_blank">Week 6 TDD worked example (Colab)</a></p>
+  <pre><code class="language-python">def cheapest_item(prices):
+    # find the item with the lowest price
+    # if two items tie, pick the one that comes first alphabetically
+    # if there are no items, return None
+    pass
+
+# normal: three items with one clear cheapest
+test("eggs", cheapest_item({"milk": 3.25, "eggs": 2.10, "bread": 2.50}), "normal")
+# special: a tie must go to the alphabetically first item
+test("apple", cheapest_item({"pear": 1.0, "apple": 1.0}), "special: tie")
+# edge: an empty store has no cheapest item
+test(None, cheapest_item({}), "edge: empty")</code></pre>
+</section>
+
+<section>
+  <h3>Run it: red</h3>
+  <pre><code class="language-plaintext">Test 'normal' FAILED.
+  Expected: eggs
+  Actual: None
+Test 'special: tie' FAILED.
+  Expected: apple
+  Actual: None
+Test 'edge: empty' PASSED.</code></pre>
+  <div class="take"><b>Two failures: good.</b> The code does nothing yet, and the tests noticed.<br>
+  <b>But look at the edge test:</b> it passes against an <em>empty</em> function. A test that passes before you've written any code isn't proving much by itself. Keep it, but don't let it be your only test.</div>
+</section>
+
+<section>
+  <h3>Step 2 (green), first attempt</h3>
+  <pre><code class="language-python">def cheapest_item(prices):
+    best = None
+    for item in prices:
+        if best is None or prices[item] &lt; prices[best]:
+            best = item
+    return best</code></pre>
+  <pre><code class="language-plaintext">Test 'normal' PASSED.
+Test 'special: tie' FAILED.
+  Expected: apple
+  Actual: pear
+Test 'edge: empty' PASSED.</code></pre>
+  <div class="take"><b>The tie test caught a real bug.</b> The normal test would never have found it. Pear came first in the dictionary, and <code>&lt;</code> never replaces a tie.</div>
+</section>
+
+<section>
+  <h3>Fix, rerun, green</h3>
+  <pre><code class="language-python">def cheapest_item(prices):
+    best = None
+    for item in sorted(prices):      # visit items alphabetically, so ties go to the first name
+        if best is None or prices[item] &lt; prices[best]:
+            best = item
+    return best</code></pre>
+  <pre><code class="language-plaintext">Test 'normal' PASSED.
+Test 'special: tie' PASSED.
+Test 'edge: empty' PASSED.</code></pre>
+  <div class="take"><b>Green.</b> Now refactor if you like (better names, clearer comments) and rerun to stay green. That's the whole loop, and it's exactly what each Assignment 4 problem asks you to do.</div>
+</section>
+
+
+
+
+<section>
+  <h3>This week</h3>
+  <div class="fix" style="font-size:.55em">
+  <b>Tonight's lab (15 pts):</b> 🧪 turtle experiments, then shape functions centered on a point, then a house from a list of dictionaries (add two shapes of your own).<br><br>
+  <b>Assignment 4 (25 pts):</b> five real-world dictionary problems (ecology, retail, public health, sports, music). For each one: plan → <b>tests first</b> (normal, special, edge, each with a why-comment) → code → green.<br><br>
+  <b>Due:</b> Sunday, Oct 4, 11:00 PM · two labeled links (Lab, Homework) on Sakai · open each in a private window first.</div>
+</section>
+
+<section>
+  <h2>Plan it. Test it. Build it. Trust it.</h2>
+  <p><small>The turtle shows you what your code does.<br>Tests written first prove it does what you meant.</small></p>
+</section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>Reveal.initialize({ hash:true, slideNumber:true, plugins:[RevealHighlight] });</script>
+</body>
+</html>
