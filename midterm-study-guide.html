@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMP 150-003 · Midterm Study Guide</title>
+<style>
+  :root{--bg:#0f1720;--card:#17212b;--card2:#1b2733;--ink:#e6edf3;--muted:#9fb3c8;
+        --accent:#4cc9f0;--accent2:#a78bfa;--warn:#e76f51;--good:#7ee787;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:18px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+       background:radial-gradient(60rem 30rem at 85% -5%,rgba(76,201,240,.13),transparent 60%),
+                  radial-gradient(50rem 28rem at -10% 20%,rgba(167,139,250,.10),transparent 60%);}
+  main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem;}
+  a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+
+  h1{font-size:2.3rem;line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 1.1rem;
+     background:linear-gradient(92deg,#fff 30%,var(--accent) 75%,var(--accent2));
+     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+
+  h1 + p{background:var(--card);border:1px solid #24313d;border-radius:14px;
+     padding:1rem 1.2rem;line-height:2.15;box-shadow:0 8px 30px rgba(0,0,0,.25);}
+  h1 + p strong{color:var(--bg);background:linear-gradient(92deg,var(--accent),#7dd8f7);
+     border-radius:999px;padding:.14rem .6rem;margin-right:.25rem;font-size:.78em;
+     font-weight:700;letter-spacing:.02em;white-space:nowrap;}
+
+  h2{border:1px solid #2a3a49;border-left:5px solid var(--accent2);border-radius:12px;
+     background:linear-gradient(180deg,var(--card2),var(--card));
+     padding:.85rem 1rem;margin-top:2.4rem;font-size:1.35rem;
+     box-shadow:0 8px 26px rgba(0,0,0,.28);}
+  h3{color:var(--accent);margin-top:1.6rem;font-size:1.05rem;}
+
+  code{background:#0b1017;padding:.12rem .4rem;border-radius:6px;font-size:.92em;}
+  blockquote{background:var(--card);border:1px solid #24313d;border-left:3px solid var(--good);
+     border-radius:10px;margin:1rem 0;padding:.8rem 1.1rem;color:#cfe;}
+  hr{border:0;height:1px;margin:2.4rem 0;
+     background:linear-gradient(90deg,transparent,#2c3d4d 20%,#2c3d4d 80%,transparent);}
+  em{color:var(--muted);} strong{color:#fff;}
+
+  ul,ol{padding-left:1.3rem;} li{margin:.4rem 0;}
+  li strong:first-child{color:var(--accent);}
+  .backlink{color:var(--muted);font-size:.9em;}
+  .traps{background:#2a1f16;border:1px solid #4a3321;border-left:5px solid var(--warn);
+     border-radius:12px;padding:.9rem 1.2rem;margin:1.2rem 0;}
+  .traps b{color:var(--warn);}
+  .practice{background:var(--card);border:1px solid #24313d;border-left:3px solid var(--good);
+     border-radius:10px;padding:.8rem 1.1rem;margin:1rem 0;}
+  .practice b:first-child{color:var(--good);}
+  @media (max-width:600px){h1{font-size:1.7rem;} body{font-size:16px;}}
+</style>
+</head>
+<body>
+<main>
+<p class="backlink"><a href="index.html">← COMP 150 home</a></p>
+
+<h1>Midterm Study Guide</h1>
+
+<p><strong>Course</strong> COMP 150-003 · Introduction to Computing
+   <strong>Term</strong> Fall 2026
+   <strong>Covers</strong> Assignment 1 · Quiz 1 · Assignments 2–4 · Weeks 3, 5 &amp; 6 labs</p>
+
+<p>This guide covers everything we have assessed so far. If you can do everything on this list <em>without</em> looking anything up, you are in good shape. Everything here is fair game again on the (cumulative, open cheat-sheet) <strong>final</strong> — studying now is studying twice.</p>
+
+<blockquote><strong>How to use this guide:</strong> don't just read it. For every ✅ item, actually <em>do</em> it — on paper or in a fresh Colab cell — and check yourself against the posted solutions and the Quiz 1 key.</blockquote>
+
+<h2>1 · Digital Information <span style="font-size:.7em;color:var(--muted)">(Assignment 1, Part A)</span></h2>
+
+<h3>Core ideas</h3>
+<ul>
+  <li><strong>Interpreters vs. compilers:</strong> how each translates code, trade-offs (speed of execution vs. speed of development, portability), and an example language of each.</li>
+  <li><strong>How text becomes binary:</strong> characters → code points (ASCII/UTF-8) → bits.</li>
+  <li><strong>How bits travel:</strong> radio (modulated waves), electrical (voltage levels), optical (light pulses).</li>
+</ul>
+
+<div class="practice"><b>✅ Skills to practice</b>
+<ul>
+  <li>Encode a short string in ASCII: give decimal and binary codes, and compute its size in bytes (don't forget spaces and punctuation!).</li>
+  <li>Know why ASCII and UTF-8 (Plane 0) sizes can match for plain English text.</li>
+  <li>Convert decimal numbers to <strong>binary</strong>, <strong>octal</strong>, and <strong>hexadecimal</strong> — showing your work.</li>
+</ul>
+</div>
+
+<h2>2 · Python Names, Types &amp; Expressions <span style="font-size:.7em;color:var(--muted)">(Assignment 2 · Quiz 1)</span></h2>
+
+<h3>Core ideas</h3>
+<ul>
+  <li><strong>Valid names</strong> (variables <em>and</em> functions): letters, digits, underscores; can't start with a digit; no hyphens (<code>-</code> is minus!), no <code>#</code>/<code>@</code>; keywords are off-limits (<code>while</code>, <code>for</code>, <code>def</code>, <code>try</code>, <code>class</code>…). <code>_temp</code> and <code>updateProfile</code> are valid.</li>
+  <li><strong>Boolean expressions:</strong> comparisons (<code>==</code> vs. <code>=</code>!), <code>and</code>/<code>or</code>/<code>not</code>, string comparison is alphabetical, mixing types (<code>10 &lt;= "10"</code>) is an error.</li>
+  <li><strong>Arithmetic:</strong> precedence <code>**</code> before <code>*</code> <code>/</code> <code>//</code> <code>%</code> before <code>+</code> <code>-</code>; ties left-to-right; <code>//</code> floor division (watch negatives: <code>-7 // 2 == -4</code>), <code>%</code> remainder, <code>/</code> always gives a float.</li>
+</ul>
+
+<div class="practice"><b>✅ Skills to practice</b>
+<ul>
+  <li>For each name in A2 Problems 1–2: valid or invalid, and <em>why</em>.</li>
+  <li>Evaluate boolean expressions by hand and explain each step (Quiz 1 Q2).</li>
+  <li>Compute <code>19 // 4</code> and <code>19 % 4</code> style pairs and explain via <em>quotient × divisor + remainder</em>.</li>
+  <li>Evaluate mixed expressions like <code>10 - 2 * 3 + 2 ** 2</code> step-by-step (Quiz 1 Q4).</li>
+</ul>
+</div>
+
+<div class="traps"><b>⚠️ Common traps (straight from the Quiz 1 key)</b>
+<ul>
+  <li>A hyphen is never part of a name — Python reads it as subtraction.</li>
+  <li><code>**</code> before <code>*</code>/<code>/</code>, which come before <code>+</code>/<code>-</code>; ties go left to right.</li>
+  <li><code>not</code> applies before <code>and</code>, which applies before <code>or</code>.</li>
+  <li><code>range(a, b)</code> includes <code>a</code> but <strong>excludes</strong> <code>b</code>.</li>
+</ul>
+</div>
+
+<h2>3 · Loops, Lists &amp; Functions <span style="font-size:.7em;color:var(--muted)">(Assignments 2–3 · Quiz 1 Q5)</span></h2>
+
+<h3>Core ideas</h3>
+<ul>
+  <li><strong>One task, many ways</strong> (A2 Problem 5): <code>for</code> over <code>range</code>, <code>for</code> over a list, index loop with <code>range(len(...))</code>, <code>while</code> loop, list comprehension, and wrapping it in a function.</li>
+  <li><strong>Accumulator patterns:</strong> running totals, building lists with <code>.append()</code>, counting with conditions.</li>
+  <li><strong>Tracing loops by hand</strong> — the trace table. One row per iteration, tracking each variable. It appeared on Quiz 1 (Q5), A3 Problem 7, and A4 Problem 4. <em>It will appear again.</em></li>
+</ul>
+
+<div class="practice"><b>✅ Skills to practice</b>
+<ul>
+  <li>Predict what a short loop prints (e.g., <code>total = 0; for i in range(1, 4): total += i * i</code> → 14) and show the trace table.</li>
+  <li>Write <code>squares_up_to(n)</code> all six ways from A2 Problem 5.</li>
+  <li><strong>The streak pattern</strong> (A3 Problems 6–7): two counters, <code>current_streak</code> and <code>best_streak</code>; reset on a miss, <code>max(...)</code> to keep the best. Trace it before you code it.</li>
+  <li>The classic column jobs from A3: consecutive differences (velocities), month-by-month accumulation (compound balance), filter-then-average (reaction times), count + max in one pass (blood pressure), moving average over a window, drop-lowest-then-average with <code>sorted(...)</code> and slicing.</li>
+</ul>
+</div>
+
+<h2>4 · Debugging, Comments &amp; Algorithms <span style="font-size:.7em;color:var(--muted)">(Assignment 2)</span></h2>
+
+<h3>Core ideas</h3>
+<ul>
+  <li>Finding logic bugs in code that <em>runs</em> but gives wrong answers (A2 Problem 6).</li>
+  <li>Good comments explain <strong>why</strong>, not what (<code># keep this one — it passed the cutoff</code> beats <code># add n to the list</code>).</li>
+  <li>What makes a list of steps an <strong>algorithm</strong>: precision, order, a clear stopping point (wolf/goat/cabbage).</li>
+</ul>
+
+<div class="practice"><b>✅ Skills to practice</b>
+<ul>
+  <li>Given a short buggy function, find the bug <em>by tracing</em>, not by staring.</li>
+  <li>Add a one-line "what it does" comment plus why-comments to an uncommented function.</li>
+</ul>
+</div>
+
+<h2>5 · Dictionaries <span style="font-size:.7em;color:var(--muted)">(Assignment 4)</span></h2>
+
+<h3>Core ideas</h3>
+<ul>
+  <li>Records come as lists of items or lists of dictionaries; the answer is always <strong>two steps: organize into a dictionary, then ask it a question.</strong></li>
+  <li>The counting pattern: <code>counts[key] = counts.get(key, 0) + 1</code>.</li>
+  <li>Safe lookups with <code>.get(...)</code> and <code>in</code>; missing keys as a case to handle (missing item = 0 on the shelf; play not in library = skip).</li>
+  <li>Finding the top entry <em>by hand</em> (loop + comparison), including <strong>tie-breaking alphabetically</strong> — not <code>max(key=...)</code>.</li>
+  <li>Building a result dictionary that includes every team/species, even those with 0.</li>
+</ul>
+
+<div class="practice"><b>✅ Skills to practice</b>
+<ul>
+  <li>Re-do the five A4 patterns from scratch: tally + rare items (bird survey), threshold comparison across two dicts (restock), tally + argmax with ties (clinic), points table from game records (league table), lookup-and-accumulate (playlist minutes).</li>
+</ul>
+</div>
+
+<h2>6 · Testing &amp; TDD <span style="font-size:.7em;color:var(--muted)">(Assignments 3–4 · Week 6)</span></h2>
+
+<h3>Core ideas</h3>
+<ul>
+  <li>Reading <code>assert</code>-style tests and understanding what they claim (A3: provided tests).</li>
+  <li><strong>TDD cycle:</strong> Plan (comments first) → <strong>Red</strong> (write tests, watch them fail) → <strong>Green</strong> (write code until they pass) → Refactor (stay green).</li>
+  <li>Choosing tests: <strong>normal</strong> (typical), <strong>special</strong> (ties, repeats, missing entries), <strong>edge</strong> (empty list, one record, exactly at a limit) — with a why-comment on every test.</li>
+</ul>
+
+<div class="practice"><b>✅ Skills to practice</b>
+<ul>
+  <li>Given a function description, write 4–8 tests covering normal/special/edge <em>before</em> writing the function.</li>
+  <li>Explain why a failing test at the Red step is a <em>good</em> sign.</li>
+</ul>
+</div>
+
+<h2>7 · Your Paper <span style="font-size:.7em;color:var(--muted)">(Current Events in AI paper)</span></h2>
+
+<p>You wrote it — now <strong>own it</strong>. Review your own paper closely enough that you could discuss it without having it in front of you:</p>
+<ul>
+  <li>What <strong>stance</strong> you took, and the main <strong>arguments</strong> you made for it.</li>
+  <li>The key <strong>evidence and sources</strong> you cited, and why you chose them.</li>
+  <li>What the strongest <strong>counterargument</strong> to your position is, and how you'd answer it.</li>
+</ul>
+<p><em>The AI policy applies to papers just like code: you must be able to explain — and stand behind — every sentence you submitted.</em></p>
+
+<hr>
+
+<h2>How to study <span style="font-size:.7em;color:var(--muted)">(in priority order)</span></h2>
+
+<ol>
+  <li><strong>Redo, don't reread.</strong> Reopen A2–A4 in fresh Colab cells and re-solve 2–3 problems from each <em>without</em> looking at your old answers.</li>
+  <li><strong>Trace by hand.</strong> Pick any loop from A3/A4 and build the trace table on paper. This is the single most-tested skill so far.</li>
+  <li><strong>Drill the traps.</strong> The "Common traps" box in Section 2 is a quiz-question factory.</li>
+  <li><strong>Check against the keys.</strong> Compare your <em>reasoning</em>, not just your answers.</li>
+  <li><strong>Reasoning is your insurance.</strong> Per course policy, a bare answer without the <em>why</em> gambles for full credit or zero. Practice explaining out loud.</li>
+</ol>
+
+<p><em>Questions? Office hours Tue 7–9 PM, IC 332, or post on Sakai.</em></p>
+
+</main>
+</body>
+</html>
