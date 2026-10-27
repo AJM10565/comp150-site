@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMP 150-003 · Assignment</title>
+<style>
+  :root{--bg:#0f1720;--card:#17212b;--card2:#1b2733;--ink:#e6edf3;--muted:#9fb3c8;
+        --accent:#4cc9f0;--accent2:#a78bfa;--warn:#e76f51;--good:#7ee787;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:18px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+       background:radial-gradient(60rem 30rem at 85% -5%,rgba(76,201,240,.13),transparent 60%),
+                  radial-gradient(50rem 28rem at -10% 20%,rgba(167,139,250,.10),transparent 60%);}
+  main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem;}
+  a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+
+  /* Hero title */
+  h1{font-size:2.3rem;line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 1.1rem;
+     background:linear-gradient(92deg,#fff 30%,var(--accent) 75%,var(--accent2));
+     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+
+  /* Meta block: the paragraph right after the title becomes a card of pills */
+  h1 + p{background:var(--card);border:1px solid #24313d;border-radius:14px;
+     padding:1rem 1.2rem;line-height:2.15;box-shadow:0 8px 30px rgba(0,0,0,.25);}
+  h1 + p strong{color:var(--bg);background:linear-gradient(92deg,var(--accent),#7dd8f7);
+     border-radius:999px;padding:.14rem .6rem;margin-right:.25rem;font-size:.78em;
+     font-weight:700;letter-spacing:.02em;white-space:nowrap;}
+
+  h2{border-left:4px solid var(--accent);padding-left:.6rem;margin-top:2.4rem;font-size:1.35rem;}
+  h2.topic{border:1px solid #2a3a49;border-left:5px solid var(--accent2);border-radius:12px;
+     background:linear-gradient(180deg,var(--card2),var(--card));
+     padding:.85rem 1rem;box-shadow:0 8px 26px rgba(0,0,0,.28);}
+  h3{color:var(--accent);margin-top:1.6rem;font-size:1.05rem;}
+
+  code{background:#0b1017;padding:.12rem .4rem;border-radius:6px;font-size:.92em;}
+  pre code{display:block;padding:1rem;overflow:auto;}
+  blockquote{background:var(--card);border:1px solid #24313d;border-left:3px solid var(--good);
+     border-radius:10px;margin:1rem 0;padding:.8rem 1.1rem;color:#cfe;}
+  hr{border:0;height:1px;margin:2.4rem 0;
+     background:linear-gradient(90deg,transparent,#2c3d4d 20%,#2c3d4d 80%,transparent);}
+  em{color:var(--muted);} strong{color:#fff;}
+
+  table{border-collapse:separate;border-spacing:0;width:100%;font-size:.92em;margin:.8rem 0;
+     border:1px solid #24313d;border-radius:12px;overflow:hidden;}
+  th{background:linear-gradient(92deg,#20303e,#1b2836);color:var(--accent);
+     text-transform:uppercase;font-size:.78em;letter-spacing:.06em;}
+  td,th{border-bottom:1px solid #24313d;padding:.5rem .7rem;text-align:left;}
+  td+td,th+th{text-align:center;border-left:1px solid #24313d;}
+  tr:last-child td{border-bottom:0;}
+  tr:hover td{background:rgba(76,201,240,.05);}
+
+  ul,ol{padding-left:1.3rem;} li{margin:.4rem 0;}
+  li strong:first-child{color:var(--accent);}
+  .backlink{color:var(--muted);font-size:.9em;}
+  @media (max-width:600px){h1{font-size:1.7rem;} body{font-size:16px;}}
+</style>
+</head>
+<body>
+<main>
+  <p><a class="backlink" href="../index.html">&larr; Course home</a></p>
+<h1 id="final-project-solve-a-real-problem-with-real-data">Final
+Project: Solve a Real Problem with Real Data</h1>
+<p><strong>Team</strong> 2–3 students <strong>Worth</strong> 400 pts +
+up to 500 extra credit <strong>Replaces</strong> the final exam
+<strong>Check-ins</strong> Tue Nov 3 · Nov 10 · Nov 17 <strong>Final +
+presentations</strong> Tue Dec 1 (last class)</p>
+<blockquote>
+<p><strong>The short version:</strong> pick a problem real people have.
+Find real data about it. Use that data to understand the problem. Then
+<strong>build something that helps</strong> (an app, dashboard, tool, or
+bot) or <strong>write a report that recommends solutions</strong> backed
+by your data. Present it to the class on Dec 1.</p>
+</blockquote>
+<p>This project replaces the final exam. It is less about writing clever
+code and more about what this course is really for: <strong>using a
+computer, and the tools now available to you (including your AI
+harness), to understand and solve a real problem.</strong> Good design,
+honest use of data, and clear communication earn the points. Ambitious
+engineering earns the extra credit.</p>
+<style>.starters td{text-align:left!important;vertical-align:top}</style>
+<hr />
+<h2 id="how-it-works-three-check-ins-then-the-finish">How it works:
+three check-ins, then the finish</h2>
+<p>Each check-in is a short write-up submitted on Sakai <strong>by 11:00
+PM</strong> on the date listed (one submission per team), plus a
+5-minute conversation with me in class that night. <strong>The check-ins
+are there to catch problems early.</strong> I will tell you if your
+problem is too big, your data won’t work, or your design is missing
+something. No one should get to December with a project that can’t be
+finished.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Check-in</th>
+<th>Due</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Problem &amp; team</strong></td>
+<td>Tue, Nov 3</td>
+<td>25</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Data in hand</strong></td>
+<td>Tue, Nov 10</td>
+<td>50</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Design</strong></td>
+<td>Tue, Nov 17</td>
+<td>50</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Final deliverable</strong> (app or report)</td>
+<td>Tue, Dec 1</td>
+<td>175</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Presentation</strong> (in class)</td>
+<td>Tue, Dec 1</td>
+<td>75</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Individual reflection + peer review</strong></td>
+<td>Fri, Dec 4</td>
+<td>25</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Total</strong></td>
+<td></td>
+<td><strong>400</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="check-in-1-problem-team-25-pts-nov-3">Check-in 1: Problem &amp;
+team (25 pts, Nov 3)</h3>
+<p>1–2 pages:</p>
+<ul>
+<li><strong>Team:</strong> names, and how you’ll communicate and share
+files.</li>
+<li><strong>The problem:</strong> who has it, and why it matters to
+them. Be specific: <em>“CTA riders on the 22 Clark bus can’t tell
+whether to wait or walk”</em> beats <em>“public transit is
+bad.”</em></li>
+<li><strong>The data:</strong> at least <strong>one real data
+source</strong> you’ve actually opened (link it, and say what’s in it:
+rows, columns, date range). A list of 20 starter problems with data is
+below.</li>
+<li><strong>App or report?</strong> Your first guess at which path fits
+(see <em>Two paths</em> below). You can change it later.</li>
+</ul>
+<p>I’ll approve the topic, or ask you to adjust it, within a few
+days.</p>
+<h3 id="check-in-2-data-in-hand-50-pts-nov-10">Check-in 2: Data in hand
+(50 pts, Nov 10)</h3>
+<ul>
+<li>The data <strong>downloaded or connected</strong>, and opened in a
+Colab notebook (or a spreadsheet, if that’s honestly the right
+tool).</li>
+<li><strong>What’s in it:</strong> size, columns, date range, and what
+one row means.</li>
+<li><strong>What’s wrong with it:</strong> missing values, odd entries,
+gaps. Every real dataset has some.</li>
+<li><strong>Three questions</strong> your data can answer, each with a
+<strong>first chart or table</strong> that starts to answer it.</li>
+<li><strong>One surprise:</strong> something in the data you didn’t
+expect.</li>
+</ul>
+<h3 id="check-in-3-design-50-pts-nov-17">Check-in 3: Design (50 pts, Nov
+17)</h3>
+<p><strong>App path:</strong></p>
+<ul>
+<li>Who the user is, and the <strong>one main thing</strong> they come
+to do.</li>
+<li>A <strong>sketch or mockup</strong> of each screen (paper photos are
+fine; Figma or similar is great).</li>
+<li>How the data gets to the user: what’s computed ahead of time
+vs. live.</li>
+<li>What you’ll build it with (Colab + widgets, Streamlit, Google Sheets
++ Apps Script, Glide, a website, …), and why.</li>
+</ul>
+<p><strong>Report path:</strong></p>
+<ul>
+<li>An <strong>outline</strong> of the report, with each section’s claim
+in one sentence.</li>
+<li>The <strong>charts</strong> you plan to include (drafts are
+fine).</li>
+<li>Your <strong>candidate solutions</strong>, and what in the data
+would tell you which one is best.</li>
+</ul>
+<p><strong>Both paths:</strong> a <strong>task split</strong> (who owns
+what) and a <strong>schedule</strong> to Dec 1.</p>
+<h3 id="final-deliverable-175-pts-dec-1">Final deliverable (175 pts, Dec
+1)</h3>
+<ul>
+<li><strong>App path:</strong> a working app I can use, plus a short
+README: what it does, who it’s for, how to run it, where the data comes
+from.</li>
+<li><strong>Report path:</strong> a 6–12 page report (charts count
+toward length) with an executive summary, the problem, your data and
+method, findings, <strong>recommended solutions</strong>, limits, and
+sources.</li>
+<li><strong>Both:</strong> the notebook(s) or code that turn the raw
+data into your results, with comments explaining <em>why</em>. Plus an
+<strong>AI usage disclosure</strong>, the same as on every other
+assignment.</li>
+</ul>
+<h3 id="presentation-75-pts-dec-1">Presentation (75 pts, Dec 1)</h3>
+<p><strong>8–10 minutes per team, plus questions.</strong> Everyone on
+the team speaks. Show the problem, the data, and what you built or
+found. For an app, demo it live. Close with what you’d do next.</p>
+<h3 id="individual-reflection-peer-review-25-pts-dec-4">Individual
+reflection + peer review (25 pts, Dec 4)</h3>
+<p>Each student submits this <strong>separately</strong>:</p>
+<ul>
+<li><strong>Your contributions:</strong> what you did,
+specifically.</li>
+<li><strong>One thing you learned.</strong></li>
+<li><strong>A short, confidential rating</strong> of each teammate’s
+contribution.</li>
+</ul>
+<hr />
+<h2 id="two-paths">Two paths</h2>
+<p><strong>Build an app</strong> when the problem is one that a tool
+could fix: people lack information at the moment they need it, or have
+to do something tedious by hand. <em>Example: a page that tells you, for
+your block, how many days until street sweeping, and texts you the night
+before.</em></p>
+<p><strong>Write a report</strong> when the fix is a decision, a policy,
+or a change in behavior. <em>Example: using crash data to recommend
+which five Chicago intersections most need a protected left turn, and
+why.</em></p>
+<p>Either path can earn full credit. Pick the one that fits <strong>your
+problem</strong>.</p>
+<hr />
+<h2 id="grading">Grading</h2>
+<h3 id="how-team-grades-work">How team grades work</h3>
+<p>Check-ins 1–3, the final deliverable, and the presentation earn a
+<strong>team score</strong>: everyone on the team gets the same points.
+The <strong>individual reflection</strong> is scored per student. If
+peer reviews and your git/Drive history clearly show a teammate didn’t
+contribute, I will adjust <strong>that student’s</strong> team score
+down. I will talk to the team first. If your team is having trouble,
+<strong>tell me early.</strong> I can only help with problems I know
+about.</p>
+<h3 id="final-deliverable-rubric-175">Final deliverable rubric
+(175)</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Points</th>
+<th>What earns full credit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Problem</strong></td>
+<td>25</td>
+<td>Real, specific, and clearly matters to an identifiable group of
+people.</td>
+</tr>
+<tr>
+<td><strong>Data</strong></td>
+<td>40</td>
+<td>Real data, honestly described, cleaned with care. Its limits are
+stated. Sources are cited.</td>
+</tr>
+<tr>
+<td><strong>Analysis</strong></td>
+<td>40</td>
+<td>Charts and numbers that actually answer your questions. Every chart
+has a title, labels, and a takeaway sentence.</td>
+</tr>
+<tr>
+<td><strong>Solution</strong></td>
+<td>45</td>
+<td><strong>App:</strong> it works, it’s usable by the intended user,
+and it uses the data. <strong>Report:</strong> recommendations follow
+from the evidence and are realistic.</td>
+</tr>
+<tr>
+<td><strong>Craft &amp; docs</strong></td>
+<td>25</td>
+<td>Clear README or report writing. Code and notebooks commented with
+<em>why</em>. AI usage disclosure included.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="presentation-rubric-75">Presentation rubric (75)</h3>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Problem and stakes are clear in the first minute</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Data and findings shown clearly (readable charts)</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Solution demo or recommendations</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Everyone speaks; on time (8–10 min)</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Handles questions</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="extra-credit-up-to-500-points">Extra credit (up to 500
+points)</h2>
+<p>This is where the <strong>hard stuff</strong> lives: things that used
+to take a professional team and are now within reach of a motivated
+group with good tools. Extra credit points go to <strong>each
+member</strong> of the team, up to 500 per student. They are only
+awarded if the core project is complete, and the work must be
+<strong>visible and working</strong> on Dec 1.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Extra</th>
+<th>Up to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Host it live</strong>: a public URL anyone can open (GitHub
+Pages, Streamlit Community Cloud, Render, Vercel, Hugging Face Spaces,
+…)</td>
+<td>75</td>
+</tr>
+<tr>
+<td><strong>Build a back-end service</strong>: your own API or server
+that the front end calls, rather than a single notebook</td>
+<td>100</td>
+</tr>
+<tr>
+<td><strong>Live data</strong>: pulls fresh data from an API on a
+schedule, not a one-time download</td>
+<td>75</td>
+</tr>
+<tr>
+<td><strong>A database</strong>: store and query your data properly
+(SQLite, Postgres, Supabase, Firebase, …)</td>
+<td>50</td>
+</tr>
+<tr>
+<td><strong>Real users</strong>: at least 5 people outside the class use
+it, and you show their feedback and what you changed</td>
+<td>75</td>
+</tr>
+<tr>
+<td><strong>Combine datasets</strong>: join two or more independent
+sources to answer something neither can alone</td>
+<td>50</td>
+</tr>
+<tr>
+<td><strong>A predictive model</strong>: e.g. forecast, classifier, or
+clustering, evaluated honestly with a held-out test</td>
+<td>75</td>
+</tr>
+<tr>
+<td><strong>Notifications or automation</strong>: email/SMS/bot alerts,
+or a scheduled job</td>
+<td>50</td>
+</tr>
+<tr>
+<td><strong>Mobile-ready or accessible</strong>: works well on a phone
+and passes an accessibility check</td>
+<td>25</td>
+</tr>
+<tr>
+<td><strong>Publish it</strong>: open-source repo with license and
+README, or a public write-up / blog post</td>
+<td>25</td>
+</tr>
+<tr>
+<td><strong>Something I didn’t list</strong>: propose it at Check-in 3
+and I’ll price it</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<p>The list adds up to more than 500 on purpose. <strong>Pick what
+serves your problem.</strong> Bolting on unrelated extras earns less
+than doing a few that matter.</p>
+<hr />
+<h2 class="starters-h" id="starter-problems-with-real-data">20 starter
+problems (with real data)</h2>
+<p>You may pick one of these, or <strong>bring your own</strong> as long
+as you can show me real data for it at Check-in 1. Many of the Chicago
+datasets live on the <a href="https://data.cityofchicago.org/">Chicago
+Data Portal</a>, and most can be downloaded as CSV with one click.</p>
+<table class="starters">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 44%" />
+<col style="width: 22%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Problem</th>
+<th>Who has it</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Is my bus actually coming?</strong> Which CTA routes are
+least reliable, and when?</td>
+<td>CTA riders</td>
+<td><a
+href="https://data.cityofchicago.org/browse?q=CTA%20ridership">CTA
+ridership</a>, <a
+href="https://www.transitchicago.com/developers/bustracker/">CTA Bus
+Tracker API</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Will there be a Divvy bike?</strong> Stations that run empty
+or full at rush hour</td>
+<td>Bike commuters</td>
+<td><a href="https://divvybikes.com/system-data">Divvy trip data</a>, <a
+href="https://gbfs.divvybikes.com/gbfs/gbfs.json">Divvy live station
+feed (GBFS)</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Dangerous intersections</strong>: where crashes cluster, and
+what would help</td>
+<td>Pedestrians, cyclists, drivers</td>
+<td><a
+href="https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if">Chicago
+traffic crashes</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Potholes and broken streetlights</strong>: how fast does the
+city fix them, and is it fair across neighborhoods?</td>
+<td>Residents</td>
+<td><a
+href="https://data.cityofchicago.org/Service-Requests/311-Service-Requests/v6vf-nfxy">Chicago
+311 service requests</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Is this restaurant safe?</strong> Food inspection results,
+made easy to check</td>
+<td>Diners</td>
+<td><a
+href="https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5">Chicago
+food inspections</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Can I swim today?</strong> Lake Michigan beach water
+quality</td>
+<td>Beachgoers, families</td>
+<td><a
+href="https://data.cityofchicago.org/browse?q=beach%20lab%20data">Chicago
+beach E. coli lab results</a>, <a
+href="https://data.cityofchicago.org/browse?q=beach%20water%20quality">Beach
+water quality, automated sensors</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Lead in drinking water</strong>: which homes still have lead
+service lines?</td>
+<td>Renters, parents</td>
+<td><a href="https://www.chicagowaterquality.org/">Chicago lead service
+line inventory</a>, <a
+href="https://www.epa.gov/ground-water-and-drinking-water/safe-drinking-water-information-system-sdwis-federal-reporting">EPA
+SDWIS</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Bad air days</strong>: when and where air quality is
+unhealthy</td>
+<td>People with asthma, runners</td>
+<td><a href="https://docs.airnowapi.org/">EPA AirNow API</a>, <a
+href="https://www.epa.gov/outdoor-air-quality-data">EPA AirData</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Food deserts</strong>: neighborhoods far from a grocery
+store</td>
+<td>Families without cars</td>
+<td><a
+href="https://www.ers.usda.gov/data-products/food-access-research-atlas/">USDA
+Food Access Research Atlas</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Can I afford to live here?</strong> Rent vs. income by
+neighborhood</td>
+<td>Students, young workers</td>
+<td><a href="https://data.census.gov/">Census ACS (data.census.gov)</a>,
+<a href="https://www.huduser.gov/portal/datasets/fmr.html">HUD Fair
+Market Rents</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Evictions</strong>: where they happen and what predicts
+them</td>
+<td>Renters, advocates</td>
+<td><a href="https://evictionlab.org/">Eviction Lab</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>Is this college worth it?</strong> Cost, debt, and earnings
+by school and major</td>
+<td>High-school seniors, transfer students</td>
+<td><a href="https://collegescorecard.ed.gov/data/">College
+Scorecard</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td><strong>What jobs pay, and what they need</strong>: wages and skills
+by occupation</td>
+<td>Students choosing majors</td>
+<td><a href="https://www.bls.gov/oes/">BLS Occupational Employment &amp;
+Wages</a>, <a
+href="https://www.onetcenter.org/database.html">O*NET</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td><strong>Will my flight be late?</strong> Delays by airline, airport,
+and time of day</td>
+<td>Travelers</td>
+<td><a href="https://www.transtats.bts.gov/ONTIME/">BTS on-time
+performance</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td><strong>Energy-wasting buildings</strong>: which large buildings use
+the most energy?</td>
+<td>Tenants, city planners</td>
+<td><a
+href="https://data.cityofchicago.org/browse?q=energy%20benchmarking">Chicago
+Energy Benchmarking</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td><strong>Health gaps by neighborhood</strong>: asthma, diabetes, no
+checkups</td>
+<td>Public-health workers</td>
+<td><a href="https://www.cdc.gov/places/">CDC PLACES</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td><strong>Scams</strong>: which frauds are rising, and who they
+target</td>
+<td>Older adults, students</td>
+<td><a
+href="https://www.ftc.gov/enforcement/consumer-sentinel-network">FTC
+Consumer Sentinel data</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td><strong>Extreme heat</strong>: who is most at risk during heat
+waves?</td>
+<td>Seniors, outdoor workers</td>
+<td><a href="https://www.ncei.noaa.gov/cdo-web/">NOAA climate data</a>,
+<a href="https://www.heat.gov/">Heat.gov (NIHHIS)</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td><strong>Drug prices</strong>: which prescriptions cost the most, and
+are there cheaper equivalents?</td>
+<td>Patients</td>
+<td><a
+href="https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-medicaid-spending-by-drug">CMS
+Medicare Part D spending</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td><strong>Safe routes to school / campus</strong>: crime and lighting
+along walking routes</td>
+<td>Students</td>
+<td><a
+href="https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2">Chicago
+crimes (2001–present)</a>, <a
+href="https://data.cityofchicago.org/Service-Requests/311-Service-Requests/v6vf-nfxy">311
+streetlight outages</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bringing your own topic?</strong> Great! The test is simple:
+by Check-in 1, link a real dataset you have opened, and tell me who has
+the problem.</p>
+<hr />
+<h2 id="rules-of-the-road">Rules of the road</h2>
+<ul>
+<li><strong>AI tools are welcome</strong>, including your pi harness.
+Use them to build more than you could alone. You must
+<strong>disclose</strong> how you used them, and <strong>every team
+member must be able to explain</strong> every part of what you submit. I
+will ask in the presentation Q&amp;A.</li>
+<li><strong>Cite your data.</strong> Every chart says where its numbers
+came from.</li>
+<li><strong>No personal data about real people</strong> beyond what’s
+already public and aggregated. If your idea needs it, talk to me
+first.</li>
+<li><strong>Late check-ins:</strong> the same flexible policy as the
+rest of the course. But a late check-in means late feedback, which hurts
+<em>you</em>. The <strong>Dec 1 presentation can’t move.</strong></li>
+</ul>
+<p>Questions? Office hours are Tuesdays right after class in IC 216, or
+email me.</p>
+
+</main>
+</body>
+</html>
