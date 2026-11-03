@@ -1,0 +1,65 @@
+{
+ "cableship": {
+  "file": "photo_cableship.jpg",
+  "title": "File:2024-11-26 03 CABLE INNOVATOR - IMO 9101132 \u2013 Victoria, BC CAN.jpg",
+  "artist": "Gordon Leggett",
+  "license": "CC BY 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File%3A2024-11-26_03_CABLE_INNOVATOR_-_IMO_9101132_%E2%80%93_Victoria%2C_BC_CAN.jpg"
+ },
+ "cablecross": {
+  "file": "photo_cablecross.png",
+  "title": "File:Submarine cable cross-section 3D plain.svg",
+  "artist": "Oona R\u00e4is\u00e4nen (User:Mysid)",
+  "license": "Public domain",
+  "url": "https://commons.wikimedia.org/wiki/File%3ASubmarine_cable_cross-section_3D_plain.svg"
+ },
+ "datacenter": {
+  "file": "photo_datacenter.jpg",
+  "title": "File:Google Data Center, The Dalles.jpg",
+  "artist": "Visitor7",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File%3AGoogle_Data_Center%2C_The_Dalles.jpg"
+ },
+ "celltower": {
+  "file": "photo_celltower.jpg",
+  "title": "File:Cellular Mobile UHF Antenna Tower Base station.jpg",
+  "artist": "Goodtiming8871",
+  "license": "CC BY-SA 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File%3ACellular_Mobile_UHF_Antenna_Tower_Base_station.jpg"
+ },
+ "arpanet": {
+  "file": "photo_arpanet.png",
+  "title": "File:Arpanet logical map, march 1977.png",
+  "artist": "ARPANET",
+  "license": "Public domain",
+  "url": "https://commons.wikimedia.org/wiki/File%3AArpanet_logical_map%2C_march_1977.png"
+ },
+ "nextcube": {
+  "file": "photo_nextcube.jpg",
+  "title": "File:NeXTcube first webserver.JPG",
+  "artist": "Geni",
+  "license": "CC BY-SA 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File%3ANeXTcube_first_webserver.JPG"
+ },
+ "mosaic": {
+  "file": "photo_mosaic.png",
+  "title": "File:NCSA Mosaic Browser Screenshot.png",
+  "artist": "Charles Severance",
+  "license": "CC0",
+  "url": "https://commons.wikimedia.org/wiki/File%3ANCSA_Mosaic_Browser_Screenshot.png"
+ },
+ "dynatac": {
+  "file": "photo_dynatac.jpg",
+  "title": "File:DynaTAC8000X.jpg",
+  "artist": "Redrum0486",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File%3ADynaTAC8000X.jpg"
+ },
+ "implog": {
+  "file": "photo_implog.jpg",
+  "title": "File:The IMP Log The Very First Message Sent on the Internet (6293913865).jpg",
+  "artist": "Andrew \"FastLizard4\" Adams from United States",
+  "license": "CC BY-SA 2.0",
+  "url": "https://commons.wikimedia.org/wiki/File%3AThe_IMP_Log_The_Very_First_Message_Sent_on_the_Internet_%286293913865%29.jpg"
+ }
+}
