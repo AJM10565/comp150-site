@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMP 150 · A6 Debrief + Project Final Stretch</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+<style>
+:root{--r-heading-text-transform:none;--gold:#ffc72c;--maroon:#8a1538}
+.reveal .slides section{text-align:left;height:720px;padding:0!important;box-sizing:border-box}
+.reveal h3.t{color:var(--gold);font-size:36px;margin:20px 40px 8px 40px;border-bottom:3px solid var(--maroon);padding-bottom:6px}
+.reveal .body{margin:0 40px;font-size:24px;line-height:1.4}
+.reveal section.sec h2{position:absolute;top:290px;left:60px;right:60px;color:var(--gold);font-size:56px;text-transform:uppercase}
+.reveal section.title h1{position:absolute;top:220px;left:60px;right:60px;color:var(--gold);font-size:64px}
+.reveal section.title .sub{position:absolute;top:400px;left:62px;font-size:30px;color:#ddd}
+.reveal section.title .who{position:absolute;top:470px;left:62px;font-size:22px;color:#9fb3c8}
+.reveal .src{position:absolute;bottom:6px;left:40px;right:40px;font-size:12px;color:#777}
+.reveal ul.b{margin:6px 0 0 24px}.reveal ul.b li{margin:7px 0}.reveal ul.b ul{font-size:.92em}
+.reveal .note{font-size:19px;color:#9fb3c8;margin-top:12px}
+.reveal .disc{margin-top:16px;background:#14202c;border-left:5px solid #4cc9f0;padding:10px 16px;border-radius:6px;font-size:21px;color:#cfe3ff}
+.reveal .big{font-size:110px;font-weight:800;color:var(--gold);line-height:1;margin:4px 0 6px}
+.reveal .cards{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+.reveal .card{flex:1 1 260px;background:#17212b;border:1px solid #2a3a49;border-top:4px solid var(--maroon);border-radius:10px;padding:12px 14px}
+.reveal .card .ch{color:var(--gold);font-weight:700;font-size:20px;margin-bottom:6px}.reveal .card .cb{font-size:19px;line-height:1.35}
+.reveal .card b{color:#fff}
+.reveal table{border-collapse:collapse;margin:10px 0;font-size:20px}
+.reveal table th{background:var(--gold);color:#111;padding:6px 12px;border:1px solid #333;text-align:left}
+.reveal table td{background:#fdf0dc;color:#111;padding:6px 12px;border:1px solid #e5d3b5;vertical-align:top}
+.reveal table.hist td:first-child{white-space:nowrap;font-weight:700;width:120px}
+.reveal table.hist{font-size:19px}.reveal table.hist td{padding:5px 10px}
+.reveal table.grid td:first-child{background:var(--gold);font-weight:700}
+.reveal table.knn{font-size:17px}.reveal table.knn td,.reveal table.knn th{text-align:center;padding:5px 7px}
+.reveal table.knn td:first-child{font-weight:700;background:#ffe39a}
+.reveal .loop{margin:16px 0;background:#241f10;border-left:5px solid var(--gold);padding:10px 16px;border-radius:6px;font-size:22px;color:#ffe39a}
+.reveal pre{width:100%;margin:8px 0;box-shadow:none}.reveal pre code{font-size:18px;line-height:1.35;border-radius:8px;max-height:none}
+.reveal pre.out{background:#eee;color:#111;font-size:18px;padding:8px 14px;border-radius:8px;width:auto}
+.reveal code{font-family:Menlo,monospace;color:#ffe39a}
+.reveal .ex{background:#1b1420;border:2px solid var(--maroon);border-radius:14px;padding:16px 24px;margin-top:14px;font-size:22px}
+.reveal .ex ol{display:block;margin:6px 0 6px 40px}.reveal .ex li{margin:3px 0}
+.reveal .exn{color:var(--gold);font-weight:700;margin-bottom:6px}.reveal .timer{margin-top:10px;color:#ff9f9f;font-weight:700}
+.reveal .hook .q{margin-top:22px;color:#cfe3ff;font-size:26px}.reveal .hook b{color:var(--gold)}
+.reveal .tok{margin:14px 0;display:flex;flex-wrap:wrap;gap:3px}.reveal .tok span{background:#2a3a49;border:1px solid #4cc9f0;border-radius:5px;padding:2px 6px;font:20px Menlo,monospace;white-space:pre}
+.reveal .tok span:nth-child(odd){background:#3a2f0c;border-color:var(--gold)}
+.reveal .quote{font:20px Menlo,monospace;color:#ffe39a;margin:8px 0}
+.reveal .two{display:flex;gap:14px;margin-top:12px}.reveal .two .card{flex:1}
+.reveal .vid{margin:10px 0 14px;font-size:26px;background:#2a1010;border:2px solid #e05a6a;border-radius:10px;padding:14px 18px}.reveal .vid a{color:#ff9f9f}
+.reveal .side{display:flex;gap:22px;align-items:flex-start}.reveal .side .r{flex:1;text-align:center}
+.reveal figure.fig{margin:6px 0;text-align:center}.reveal figure.fig img{max-width:100%;margin:0;border:0;border-radius:8px;box-shadow:none;background:none}
+.reveal figure.fig figcaption{font-size:17px;color:#9fb3c8;margin-top:2px}
+.reveal .flow3{display:flex;gap:10px;align-items:center;margin:18px 0;font-size:20px}.reveal .flow3 span{background:#17212b;border:2px solid #4cc9f0;border-radius:10px;padding:10px 14px}.reveal .flow3 b{color:var(--gold);font-size:30px}
+.reveal .ladder{display:flex;align-items:stretch;gap:10px;margin:30px 0 10px}.reveal .rung{flex:1;border-radius:12px;padding:16px;font-size:20px;line-height:1.35;color:#111}
+.reveal .rung b{font-size:24px}.reveal .rung i{color:#333;font-size:17px}.reveal .r1{background:#7ee787;margin-top:120px}.reveal .r2{background:#ffc72c;margin-top:60px}.reveal .r3{background:#ff6b6b}
+.reveal .ladder .arr{align-self:center;font-size:40px;color:var(--gold)}
+.reveal .flowv{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:40px;font-size:19px}.reveal .flowv div{background:#17212b;border:2px solid #4cc9f0;border-radius:10px;padding:8px 12px}
+.reveal .flowv div:nth-child(even){background:none;border:none;color:var(--gold);font-size:26px;padding:0}.reveal .flowv .g{border-color:var(--gold)!important}
+.reveal table.conf td,.reveal table.conf th{text-align:center;font-size:20px;padding:12px}
+.reveal table.big4{font-size:23px}.reveal table.big4 td{padding:16px}
+.reveal iframe{border:0;border-radius:10px}
+.reveal .pics{display:flex;gap:14px;justify-content:center}.reveal .pics figure{margin:0}
+.reveal .tl{display:flex;gap:0;margin:20px 0 14px;border-top:4px solid var(--gold)}.reveal .tl div{flex:1;font-size:18px;padding:12px 10px 0;position:relative;color:#ddd}
+.reveal .tl div::before{content:"";position:absolute;top:-12px;left:12px;width:18px;height:18px;border-radius:50%;background:var(--gold)}.reveal .tl b{color:var(--gold)}
+.reveal i{color:#cfe3ff}.reveal table i{color:#5a2a00}
+</style></head><body>
+<div class="reveal"><div class="slides">
+<section class="title"><h1>A6 + Module 4 Lab: Debrief</h1><div class="sub">What the grading showed · and the final-project home stretch</div><div class="who">COMP 150-003 · Fall 2026 · Prof. Allan Miller</div></section>
+<section><h3 class="t">First: Assignment 6 debrief</h3><div class="body"><div class="cards"><div class="card"><div class="ch">The good</div><div class="cb">Median <b>37.5/40</b>. P5 essays argued from <b>dated evidence</b>, and most tiny language models and classifiers passed every hidden test.</div></div><div class="card"><div class="ch">Lesson 1 · tests can lie</div><div class="cb">One bug slipped past several of you: a <b>flipped comparison</b> in nearest_neighbor kept the <i>farthest</i> neighbor — and your own tests still passed, because the cases were too friendly. Passing tests ≠ correct code. Test the case that would <b>fail</b> if you're wrong.</div></div><div class="card"><div class="ch">Lesson 2 · read your output</div><div class="cb">In the lab, an indentation slip made the held-out check run <i>after</i> the loop: accuracies came out 0/4 — and got submitted anyway. If the output looks wrong, <b>it probably is</b>.</div></div></div><div class="note">Individual feedback is on Sakai this week.</div></div><div class="src">A6 + Module 4 Lab grading, Nov 24, 2026</div></section>
+<section><h3 class="t">Final project: one week to go</h3><div class="body"><div class="cards"><div class="card"><div class="ch">Where you are</div><div class="cb">Check-in 3 median <b>48/50</b>. Every team has real data and a buildable design. Dec 1: working app or report + presentation.</div></div><div class="card"><div class="ch">The 3 cross-team gaps</div><div class="cb">1 · <b>schedule drift</b>: "we'll finish it this week" is not a task split with names and dates. 2 · <b>the data your concept needs</b> vs the data you have — close that gap NOW or narrow the claim. 3 · <b>precomputed vs live</b>: decide what's computed ahead of time; demos that fetch live data on stage fail on stage.</div></div><div class="card"><div class="ch">This week</div><div class="cb">Freeze scope by Wednesday. Build the walking skeleton first (ugly but end-to-end), polish after. Rehearse the presentation once, timed.</div></div></div><div class="disc">💬 What is the one thing that, if it breaks, sinks your demo on Dec 1? Precompute it.</div></div><div class="src">Check-in 3 reviews, Nov 24, 2026</div></section>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>Reveal.initialize({hash:true,slideNumber:true,width:1280,height:720,center:false,margin:0.02,plugins:[RevealHighlight]});</script>
+</body></html>
